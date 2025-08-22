@@ -1,3 +1,24 @@
+@font-face {
+  font-family: 'Punk Babe';
+  src: url('./assets/punkbabe/PUNKBABE TRIAL.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* Color Palette - Dusty pinks */
+  --lavender-blush: #FAE8ED;
+  --mimi-pink: #FDD5DF;
+  --dusty-pink: #EABEC3;  /* Main dusty pink */
+  --dusty-pink-dark: #D9A5AC;  /* Darker dusty pink */
+  --dusty-pink-darker: #C88B95;  /* Even darker for better contrast */
+  
+  /* Light theme colors */
+  --white: #FFFFFF;
+  --light-pink-bg: #FFF5F7;
+  --text-pink: #C88B95;  /* Darker dusty pink for text */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,11 +35,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--white);
+  color: var(--text-pink);
 }
 
 .app {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--white);
 }
 
 /* Navigation Styles */
@@ -27,26 +50,47 @@ body {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
   padding: 1rem 0;
+  box-shadow: 0 2px 20px rgba(255, 194, 209, 0.2);
 }
 
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
   padding: 0 2rem;
+}
+
+.signature-name {
+  font-family: 'Punk Babe', sans-serif;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--dusty-pink-darker) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  font-weight: normal;
+  letter-spacing: 2px;
+  filter: drop-shadow(0 2px 4px rgba(234, 190, 195, 0.3));
+  flex-shrink: 0;
+  line-height: 1;
+  padding-top: 0.2rem;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 2rem;
 }
 
 .nav-tab {
   background: none;
   border: none;
-  color: #333;
+  color: var(--text-pink);
   font-size: 1rem;
   font-weight: 500;
   padding: 0.5rem 1.5rem;
@@ -54,17 +98,22 @@ body {
   transition: all 0.3s ease;
   border-radius: 25px;
   position: relative;
+  outline: none;
+}
+
+.nav-tab:focus {
+  outline: none;
 }
 
 .nav-tab:hover {
-  color: #667eea;
+  color: var(--dusty-pink-dark);
   transform: translateY(-2px);
 }
 
 .nav-tab.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--dusty-pink-darker) 100%);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(234, 190, 195, 0.4);
 }
 
 /* Main Content */
@@ -84,18 +133,19 @@ body {
 .section-content {
   max-width: 1200px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--white);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 3rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 60px rgba(234, 190, 195, 0.15);
+  border: 2px solid var(--dusty-pink);
   animation: fadeIn 0.6s ease-out;
 }
 
 .section h2 {
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--dusty-pink-darker) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -104,8 +154,81 @@ body {
 .section p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #555;
+  color: var(--text-pink);
   margin-bottom: 1rem;
+}
+
+/* Hero Section Styles */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+}
+
+.hero-content {
+  text-align: center;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.ascii-container {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+}
+
+.ascii-morph-text {
+  display: block;
+  width: 100%;
+}
+
+.ascii-morph-text span {
+  transition: color 0.3s ease;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--dusty-pink-darker) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-pink);
+  margin: 1rem 0 2rem;
+}
+
+.scroll-down-btn {
+  background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--dusty-pink-darker) 100%);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(234, 190, 195, 0.4);
+  outline: none;
+}
+
+.scroll-down-btn:focus {
+  outline: none;
+}
+
+.scroll-down-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 190, 195, 0.5);
 }
 
 /* Animations */
@@ -122,13 +245,25 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .signature-name {
+    font-size: 2rem;
+  }
+  
+  .main-content {
+    padding-top: 70px;
+  }
+  
   .nav-container {
-    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .nav-tabs {
+    gap: 0.5rem;
   }
   
   .nav-tab {
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
   }
   
   .section h2 {
@@ -141,5 +276,17 @@ body {
   
   .section-content {
     padding: 2rem;
+  }
+  
+  .ascii-text {
+    font-size: clamp(0.4rem, 1.5vw, 0.8rem);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
   }
 }

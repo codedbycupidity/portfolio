@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const Navigation = () => {
-  const [activeTab, setActiveTab] = useState('about');
+  const [activeTab, setActiveTab] = useState('home');
 
   const tabs = [
+    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About Me' },
     { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' }
@@ -40,7 +41,9 @@ const Navigation = () => {
   return (
     <nav className="navigation">
       <div className="nav-container">
-        {tabs.map((tab) => (
+        <h1 className="signature-name">Layla Le</h1>
+        <div className="nav-tabs">
+          {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => scrollToSection(tab.id)}
@@ -48,7 +51,8 @@ const Navigation = () => {
           >
             {tab.label}
           </button>
-        ))}
+          ))}
+        </div>
       </div>
     </nav>
   );
