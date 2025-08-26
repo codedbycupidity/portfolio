@@ -17,7 +17,7 @@ const AsciiMorphText: React.FC<AsciiMorphTextProps> = ({ text }) => {
     containerRef.current.innerHTML = '';
     
     // Create spans for each letter
-    letters.forEach((letter, index) => {
+    letters.forEach((letter) => {
       const span = document.createElement('span');
       span.textContent = letter;
       span.style.opacity = '0';

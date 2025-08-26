@@ -231,6 +231,53 @@ body {
   box-shadow: 0 6px 20px rgba(234, 190, 195, 0.5);
 }
 
+/* Project Buttons */
+.project-btn {
+  background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--dusty-pink-darker) 100%);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(234, 190, 195, 0.4);
+  outline: none;
+}
+
+.project-btn:focus {
+  outline: none;
+}
+
+.project-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 190, 195, 0.5);
+}
+
+.project-btn-outline {
+  background: var(--white);
+  color: var(--dusty-pink-darker);
+  border: 2px solid var(--dusty-pink);
+  padding: calc(0.5rem - 2px) calc(1rem - 2px);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.project-btn-outline:focus {
+  outline: none;
+}
+
+.project-btn-outline:hover {
+  background: var(--lavender-blush);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(234, 190, 195, 0.3);
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {

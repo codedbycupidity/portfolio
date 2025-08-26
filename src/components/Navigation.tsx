@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 const Navigation = () => {
   const [activeTab, setActiveTab] = useState('home');
 
-  const tabs = [
+  const tabs = useMemo(() => [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About Me' },
     { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' }
-  ];
+  ], []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +29,7 @@ const Navigation = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [tabs]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
