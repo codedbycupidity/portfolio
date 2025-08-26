@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 
 const Navigation = () => {
   const [activeTab, setActiveTab] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const tabs = useMemo(() => [
     { id: 'home', label: 'Home' },
@@ -12,6 +13,10 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Check if scrolled
+      setIsScrolled(window.scrollY > 10);
+      
+      // Update active tab
       const sections = tabs.map(tab => tab.id);
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
@@ -39,7 +44,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <h1 className="signature-name">Layla Le</h1>
         <div className="nav-tabs">
