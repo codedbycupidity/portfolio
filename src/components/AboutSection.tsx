@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Card } from './ui/card';
+import journalImage from '../assets/journal.PNG';
 
 const AboutSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -29,22 +29,22 @@ const AboutSection = () => {
   }, []);
 
   const stickers = [
-    { id: 1, emoji: '🐰', initialX: -90, initialY: -30, finalX: -320, finalY: -120 },
-    { id: 2, emoji: '🎀', initialX: 90, initialY: -20, finalX: 340, finalY: -100 },
-    { id: 3, emoji: '💖', initialX: -70, initialY: 110, finalX: -280, finalY: 280 },
-    { id: 4, emoji: '🌸', initialX: 100, initialY: 130, finalX: 320, finalY: 310 },
-    { id: 5, emoji: '🌷', initialX: -110, initialY: 60, finalX: -380, finalY: 180 },
-    { id: 6, emoji: '💕', initialX: 80, initialY: 40, finalX: 350, finalY: 140 },
-    { id: 7, emoji: '✨', initialX: -50, initialY: -50, finalX: -220, finalY: -140 },
-    { id: 8, emoji: '🌺', initialX: 60, initialY: 90, finalX: 260, finalY: 220 },
-    { id: 9, emoji: '🎈', initialX: -30, initialY: 160, finalX: -170, finalY: 380 },
-    { id: 10, emoji: '🦋', initialX: 120, initialY: 50, finalX: 420, finalY: 130 },
-    { id: 11, emoji: '🧸', initialX: -140, initialY: -10, finalX: -450, finalY: -80 },
-    { id: 12, emoji: '🍓', initialX: 40, initialY: -60, finalX: 180, finalY: -180 },
-    { id: 13, emoji: '🌈', initialX: -20, initialY: 200, finalX: -120, finalY: 450 },
-    { id: 14, emoji: '💫', initialX: 130, initialY: 10, finalX: 480, finalY: 60 },
-    { id: 15, emoji: '🎪', initialX: -80, initialY: 180, finalX: -300, finalY: 420 },
-    { id: 16, emoji: '🌙', initialX: 70, initialY: -40, finalX: 300, finalY: -160 },
+    { id: 1, emoji: '🐰', initialX: -250, initialY: -100, finalX: -800, finalY: -400 },
+    { id: 2, emoji: '🎀', initialX: 250, initialY: -80, finalX: 850, finalY: -350 },
+    { id: 3, emoji: '💖', initialX: -220, initialY: 280, finalX: -750, finalY: 200 },
+    { id: 4, emoji: '🌸', initialX: 260, initialY: 300, finalX: 800, finalY: 250 },
+    { id: 5, emoji: '🌷', initialX: -280, initialY: 150, finalX: -700, finalY: -50 },
+    { id: 6, emoji: '💕', initialX: 240, initialY: 120, finalX: 750, finalY: 50 },
+    { id: 7, emoji: '✨', initialX: -200, initialY: -150, finalX: -650, finalY: -250 },
+    { id: 8, emoji: '🌺', initialX: 220, initialY: 240, finalX: 700, finalY: 150 },
+    { id: 9, emoji: '🎈', initialX: -160, initialY: 350, finalX: -600, finalY: 350 },
+    { id: 10, emoji: '🦋', initialX: 280, initialY: 140, finalX: 650, finalY: -100 },
+    { id: 11, emoji: '🧸', initialX: -300, initialY: -50, finalX: -550, finalY: -150 },
+    { id: 12, emoji: '🍓', initialX: 180, initialY: -200, finalX: 600, finalY: -200 },
+    { id: 13, emoji: '🌈', initialX: -140, initialY: 400, finalX: -500, finalY: 450 },
+    { id: 14, emoji: '💫', initialX: 290, initialY: 50, finalX: 550, finalY: 400 },
+    { id: 15, emoji: '🎪', initialX: -240, initialY: 380, finalX: -450, finalY: 100 },
+    { id: 16, emoji: '🌙', initialX: 230, initialY: -120, finalX: 500, finalY: -450 },
   ];
 
   const getStickerStyle = (sticker: typeof stickers[0]) => {
@@ -66,7 +66,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" ref={sectionRef} className="min-h-screen py-20 bg-gradient-to-br from-pink-50 to-pink-100">
+    <section id="about" ref={sectionRef} className="min-h-screen py-20 bg-gradient-to-b from-pink-50 via-pink-100 to-pink-100/50">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-16 text-foreground">About Me</h2>
         
@@ -84,55 +84,41 @@ const AboutSection = () => {
             ))}
           </div>
           
-          {/* Journal */}
-          <Card className="max-w-2xl p-8 bg-white shadow-2xl relative z-20 border-2 border-pink-200 rounded-3xl backdrop-blur-sm bg-white/95">
-            <div className="relative">
-              {/* Journal lines */}
-              <div className="absolute inset-0 pointer-events-none">
-                {Array.from({ length: 15 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-px bg-muted-foreground/20 mb-6"
-                    style={{ marginTop: `${i * 24 + 16}px` }}
-                  />
-                ))}
-              </div>
-              
-              {/* Journal holes */}
-              <div className="absolute -left-6 top-0 bottom-0 w-4 flex flex-col justify-start gap-4 pt-6">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-3 h-3 rounded-full bg-muted border-2 border-border"
-                  />
-                ))}
-              </div>
-              
-              {/* Content */}
-              <div className="relative z-10 leading-relaxed text-foreground">
-                <h3 className="text-2xl font-bold mb-4 text-primary">Hello, I'm Layla!</h3>
-                <p className="mb-4">
-                  I'm a passionate software engineer with a love for creating innovative digital solutions. 
-                  My journey in tech has been driven by curiosity and the desire to build meaningful applications 
-                  that make a difference.
-                </p>
-                <p className="mb-4">
-                  With expertise in modern web technologies, I specialize in full-stack development, 
-                  bringing ideas from conception to production. I believe in writing clean, efficient code 
-                  and creating user experiences that are both functional and delightful.
-                </p>
-                <p className="mb-4">
-                  When I'm not coding, you can find me exploring new technologies, contributing to open source 
-                  projects, or sharing my knowledge with the developer community.
-                </p>
-                <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-                  <p className="text-sm text-muted-foreground italic">
-                    "Code is like humor. When you have to explain it, it's bad." - Cory House
+          {/* Journal with PNG background */}
+          <div 
+            className="max-w-6xl w-full relative z-20 rounded-lg overflow-hidden"
+            style={{
+              backgroundImage: `url(${journalImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              minHeight: '600px'
+            }}
+          >
+            {/* Content overlay - positioned on the right */}
+            <div className="relative p-8 md:p-12 flex items-center justify-end min-h-[800px]">
+              <div className="max-w-md w-full mr-4 md:mr-8">
+                <div className="space-y-6 text-gray-800">
+                  <h3 className="text-3xl font-bold mb-6 text-pink-600">Hello, I'm Layla!</h3>
+                  <p className="text-lg leading-relaxed">
+                    I'm a passionate software engineer with a love for creating innovative digital solutions. 
+                    My journey in tech has been driven by curiosity and the desire to build meaningful applications 
+                    that make a difference.
                   </p>
+                  <p className="text-lg leading-relaxed">
+                    With expertise in modern web technologies, I specialize in full-stack development, 
+                    bringing ideas from conception to production. I believe in writing clean, efficient code 
+                    and creating user experiences that are both functional and delightful.
+                  </p>
+                  <p className="text-lg leading-relaxed">
+                    When I'm not coding, you can find me exploring new technologies, contributing to open source 
+                    projects, or sharing my knowledge with the developer community.
+                  </p>
+                 
                 </div>
               </div>
             </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>

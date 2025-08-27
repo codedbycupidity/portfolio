@@ -35,10 +35,10 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="section">
-      <div className="section-content">
-        <h2>Projects</h2>
-        <p className="text-center mb-8">
+    <section id="projects" className="min-h-screen py-20 bg-gradient-to-b from-pink-100/50 via-pink-50/30 to-white">
+      <div className="container mx-auto px-6">
+        <h2 className="text-4xl font-bold text-center mb-4 text-foreground">Projects</h2>
+        <p className="text-center mb-12 text-lg text-gray-600">
           Here are some of the projects I've worked on recently
         </p>
         
