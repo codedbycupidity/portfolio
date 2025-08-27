@@ -142,23 +142,19 @@ const AboutSection = () => {
               </div>
               
               {/* Text on the right */}
-              <div className="max-w-xs w-full ml-auto">
-                <div className="space-y-4 text-gray-800">
-                  <h3 className="text-2xl font-bold mb-4 text-pink-600">Hello, I'm Layla!</h3>
-                  <p className="text-base leading-relaxed">
-                    I'm a passionate software engineer with a love for creating innovative digital solutions. 
-                    My journey in tech has been driven by curiosity and the desire to build meaningful applications 
-                    that make a difference.
+              <div className="max-w-xs w-full ml-auto -mt-8">
+                <div className="space-y-2 text-gray-800" style={{ fontFamily: "'DK Crayonista', sans-serif", fontWeight: 'bold' }}>
+                  <h3 className="text-5xl font-extrabold text-pink-600" style={{ fontFamily: "'DK Crayonista', sans-serif" }}>hi!</h3>
+                  <p className="text-2xl leading-relaxed font-bold">
+                   I’m a software engineer and Computer Science student at the University of Central Florida, 
+                   passionate about developing innovative technologies that 
+                   make a real impact and are built to be used.
                   </p>
-                  <p className="text-base leading-relaxed">
-                    With expertise in modern web technologies, I specialize in full-stack development, 
-                    bringing ideas from conception to production. I believe in writing clean, efficient code 
-                    and creating user experiences that are both functional and delightful.
+                  <p className="text-2xl leading-relaxed font-bold">
+                    When I’m not programming, you’ll probably find me traveling the world, 
+                    designing pixel art, or being a cat mom :) 
                   </p>
-                  <p className="text-base leading-relaxed">
-                    When I'm not coding, you can find me exploring new technologies, contributing to open source 
-                    projects, or sharing my knowledge with the developer community.
-                  </p>
+                
                  
                 </div>
               </div>

@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'DK Crayonista';
+  src: url('./assets/dk_crayonista/DK Crayonista.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   /* Color Palette - Dusty pinks */
   --lavender-blush: #FAE8ED;
