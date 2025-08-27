@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
+import AsciiMorphText from './AsciiMorphText';
+import TypewriterCarousel from './TypewriterCarousel';
 import journalImage from '../assets/journal.PNG';
 import profileImage from '../assets/profile.PNG';
 import koreaStamp from '../assets/korea_stamp.PNG';
@@ -22,6 +24,12 @@ import sticker16 from '../assets/stickers/sticker_16.PNG';
 const AboutSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
+  
+  const roles = [
+    'Software Engineer',
+    'Full-Stack Developer',
+    'Game Developer',
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,11 +92,41 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" ref={sectionRef} className="min-h-screen py-20 bg-gradient-to-b from-pink-50 via-pink-100 to-pink-100/50">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-16 text-foreground">About Me</h2>
-        
-        <div className="flex items-center justify-center relative min-h-[600px]">
+    <section id="home" ref={sectionRef} className="min-h-screen">
+      {/* Hero Section - Separate Div */}
+      <div className="bg-white py-20 ">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center max-w-6xl mx-auto">
+            <div className="text-left">
+              <div className="ascii-container justify-start">
+                <AsciiMorphText text="Hi, I'm Layla" />
+              </div>
+              <div className="hero-subtitle justify-start">
+                <span>I am a&nbsp;<TypewriterCarousel roles={roles} /></span>
+              </div>
+            </div>
+            <div className="text-pink-300" style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace' }}>
+              <pre>
+{`⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢠⡾⠲⠶⣤⣀⣠⣤⣤⣤⡿⠛⠿⡴⠾⠛⢻⡆⠀⠀⠀
+⠀⠀⠀⣼⠁⠀⠀⠀⠉⠁⠀⢀⣿⠐⡿⣿⠿⣶⣤⣤⣷⡀⠀⠀
+⠀⠀⠀⢹⡶⠀⠀⠀⠀⠀⠀⠈⢯⣡⣿⣿⣀⣰⣿⣦⢂⡏⠀⠀
+⠀⠀⢀⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠹⣍⣭⣾⠁⠀⠀
+⠀⣀⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣸⣧⣤⡀
+⠈⠉⠹⣏⡁⠀⢸⣿⠀⠀⠀⢀⡀⠀⠀⠀⣿⠆⠀⢀⣸⣇⣀⠀
+⠀⠐⠋⢻⣅⡄⢀⣀⣀⡀⠀⠯⠽⠂⢀⣀⣀⡀⠀⣤⣿⠀⠉⠀
+⠀⠀⠴⠛⠙⣳⠋⠉⠉⠙⣆⠀⠀⢰⡟⠉⠈⠙⢷⠟⠈⠙⠂⠀
+⠀⠀⠀⠀⠀⢻⣄⣠⣤⣴⠟⠛⠛⠛⢧⣤⣤⣀⡾⠀⠀⠀⠀⠀`}
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* About Section with Stickers and Journal */}
+      <div className="bg-gradient-to-b from-pink-50 via-pink-100 to-pink-100/50 py-12">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-center relative min-h-[600px]">
           {/* Animated Stickers */}
           <div className="absolute inset-0 flex items-center justify-center">
             {stickers.map((sticker) => (
@@ -161,6 +199,7 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

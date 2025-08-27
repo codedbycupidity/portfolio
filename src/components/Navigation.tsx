@@ -6,8 +6,8 @@ const Navigation = () => {
 
   const tabs = useMemo(() => [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Me' },
     { id: 'projects', label: 'Projects' },
+    { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' }
   ], []);
 
@@ -57,6 +57,22 @@ const Navigation = () => {
             {tab.label}
           </button>
           ))}
+          <button 
+            className="nav-tab"
+            onClick={() => {
+              window.open('/resume.pdf', '_blank');
+            }}
+          >
+            Resume
+          </button>
+          <button 
+            className="nav-tab"
+            onClick={() => {
+              window.location.href = 'mailto:layla@example.com';
+            }}
+          >
+            Contact
+          </button>
         </div>
       </div>
     </nav>

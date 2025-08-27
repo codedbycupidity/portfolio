@@ -1,15 +1,23 @@
 import AsciiMorphText from './AsciiMorphText';
+import TypewriterCarousel from './TypewriterCarousel';
 
 const Hero = () => {
+  const roles = [
+    'Software Engineer',
+    'Full-Stack Developer',
+    'Game Developer',
+  ];
+
   return (
     <section id="home" className="section hero-section">
       <div className="section-content hero-content">
         <div className="ascii-container">
           <AsciiMorphText text="Hi, I'm Layla" />
         </div>
-        <p className="hero-subtitle">Software Engineer & Full-Stack Developer</p>
+        <div className="hero-subtitle">
+          <span>I am a <TypewriterCarousel roles={roles} /></span>
+        </div>
         <p className="hero-description">
-          Welcome to my portfolio! Scroll down to learn more about me.
         </p>
         <button 
           className="scroll-down-btn"

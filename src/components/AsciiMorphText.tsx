@@ -56,13 +56,13 @@ const AsciiMorphText: React.FC<AsciiMorphTextProps> = ({ text }) => {
       ref={containerRef}
       className="ascii-morph-text"
       style={{
-        fontSize: 'clamp(2rem, 8vw, 5rem)',
+        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
         fontWeight: 'bold',
         fontFamily: 'monospace',
         letterSpacing: '0.05em',
         textAlign: 'center',
-        margin: '2rem 0',
-        textShadow: '0 0 20px rgba(255, 194, 209, 0.5)',
+        margin: '0.5rem 0',
+        textShadow: '0 0 15px rgba(255, 194, 209, 0.3)',
       }}
     />
   );

@@ -1,7 +1,7 @@
 import Navigation from './components/Navigation'
-import Hero from './components/Hero'
 import AboutSection from './components/AboutSection'
 import Projects from './components/Projects'
+import Experience from './components/Experience'
 import Skills from './components/Skills'
 import './App.css'
 
@@ -10,9 +10,9 @@ function App() {
     <div className="app">
       <Navigation />
       <main className="main-content">
-        <Hero />
         <AboutSection />
         <Projects />
+        <Experience />
         <Skills />
       </main>
     </div>
