@@ -57,22 +57,6 @@ const Navigation = () => {
             {tab.label}
           </button>
           ))}
-          <button 
-            className="nav-tab"
-            onClick={() => {
-              window.open('/resume.pdf', '_blank');
-            }}
-          >
-            Resume
-          </button>
-          <button 
-            className="nav-tab"
-            onClick={() => {
-              window.location.href = 'mailto:layla@example.com';
-            }}
-          >
-            Contact
-          </button>
         </div>
       </div>
     </nav>

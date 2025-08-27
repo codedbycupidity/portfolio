@@ -104,6 +104,24 @@ const AboutSection = () => {
               <div className="hero-subtitle justify-start">
                 <span>I am a&nbsp;<TypewriterCarousel roles={roles} /></span>
               </div>
+              <div className="hero-buttons">
+                <button 
+                  className="hero-action-btn"
+                  onClick={() => {
+                    window.open('/resume.pdf', '_blank');
+                  }}
+                >
+                  Resume →
+                </button>
+                <button 
+                  className="hero-action-btn"
+                  onClick={() => {
+                    window.location.href = '/contact';
+                  }}
+                >
+                  Contact →
+                </button>
+              </div>
             </div>
             <div className="text-pink-300" style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace' }}>
               <pre>

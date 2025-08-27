@@ -242,6 +242,56 @@ body {
   align-items: center;
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 0.8rem;
+  margin: 1.2rem 0 1rem 0;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-action-btn {
+  background: transparent;
+  border: 2px solid var(--dusty-pink);
+  color: var(--dusty-pink-darker);
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--dusty-pink);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.hero-action-btn:hover {
+  color: var(--white);
+  border-color: var(--dusty-pink-darker);
+  transform: translateX(2px);
+}
+
+.hero-action-btn:hover::before {
+  left: 0;
+}
+
 .hero-description {
   font-size: 0.9rem;
   color: var(--text-pink);
