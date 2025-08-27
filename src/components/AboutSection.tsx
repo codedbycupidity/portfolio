@@ -1,5 +1,21 @@
 import { useEffect, useState, useRef } from 'react';
 import journalImage from '../assets/journal.PNG';
+import sticker1 from '../assets/stickers/sticker_1.PNG';
+import sticker2 from '../assets/stickers/sticker_2.PNG';
+import sticker3 from '../assets/stickers/sticker_3.PNG';
+import sticker4 from '../assets/stickers/sticker_4.PNG';
+import sticker5 from '../assets/stickers/sticker_5.PNG';
+import sticker6 from '../assets/stickers/sticker_6.PNG';
+import sticker7 from '../assets/stickers/sticker_7.PNG';
+import sticker8 from '../assets/stickers/sticker_8.PNG';
+import sticker9 from '../assets/stickers/sticker_9.PNG';
+import sticker10 from '../assets/stickers/sticker_10.PNG';
+import sticker11 from '../assets/stickers/sticker_11.PNG';
+import sticker12 from '../assets/stickers/sticker_12.PNG';
+import sticker13 from '../assets/stickers/sticker_13.PNG';
+import sticker14 from '../assets/stickers/sticker_14.PNG';
+import sticker15 from '../assets/stickers/sticker_15.PNG';
+import sticker16 from '../assets/stickers/sticker_16.PNG';
 
 const AboutSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -29,29 +45,29 @@ const AboutSection = () => {
   }, []);
 
   const stickers = [
-    { id: 1, emoji: '🐰', initialX: -250, initialY: -100, finalX: -800, finalY: -400 },
-    { id: 2, emoji: '🎀', initialX: 250, initialY: -80, finalX: 850, finalY: -350 },
-    { id: 3, emoji: '💖', initialX: -220, initialY: 280, finalX: -750, finalY: 200 },
-    { id: 4, emoji: '🌸', initialX: 260, initialY: 300, finalX: 800, finalY: 250 },
-    { id: 5, emoji: '🌷', initialX: -280, initialY: 150, finalX: -700, finalY: -50 },
-    { id: 6, emoji: '💕', initialX: 240, initialY: 120, finalX: 750, finalY: 50 },
-    { id: 7, emoji: '✨', initialX: -200, initialY: -150, finalX: -650, finalY: -250 },
-    { id: 8, emoji: '🌺', initialX: 220, initialY: 240, finalX: 700, finalY: 150 },
-    { id: 9, emoji: '🎈', initialX: -160, initialY: 350, finalX: -600, finalY: 350 },
-    { id: 10, emoji: '🦋', initialX: 280, initialY: 140, finalX: 650, finalY: -100 },
-    { id: 11, emoji: '🧸', initialX: -300, initialY: -50, finalX: -550, finalY: -150 },
-    { id: 12, emoji: '🍓', initialX: 180, initialY: -200, finalX: 600, finalY: -200 },
-    { id: 13, emoji: '🌈', initialX: -140, initialY: 400, finalX: -500, finalY: 450 },
-    { id: 14, emoji: '💫', initialX: 290, initialY: 50, finalX: 550, finalY: 400 },
-    { id: 15, emoji: '🎪', initialX: -240, initialY: 380, finalX: -450, finalY: 100 },
-    { id: 16, emoji: '🌙', initialX: 230, initialY: -120, finalX: 500, finalY: -450 },
+    { id: 1, image: sticker1, initialX: -180, initialY: -80, finalX: -550, finalY: -100 },
+    { id: 2, image: sticker2, initialX: 180, initialY: -60, finalX: 600, finalY: -250 },
+    { id: 3, image: sticker3, initialX: -160, initialY: 240, finalX: -200, finalY: 380 },
+    { id: 4, image: sticker4, initialX: 190, initialY: 260, finalX: 500, finalY: 150 },
+    { id: 5, image: sticker5, initialX: -200, initialY: 120, finalX: -200, finalY: -380 },
+    { id: 6, image: sticker6, initialX: 170, initialY: 100, finalX: 150, finalY: -360 },
+    { id: 7, image: sticker7, initialX: -130, initialY: -130, finalX: -450, finalY: -380 },
+    { id: 8, image: sticker8, initialX: 150, initialY: 200, finalX: 200, finalY: 350 },
+    { id: 9, image: sticker9, initialX: -140, initialY: 300, finalX: -500, finalY: 200 },
+    { id: 10, image: sticker10, initialX: 200, initialY: 120, finalX: 500, finalY: -380 },
+    { id: 11, image: sticker11, initialX: -220, initialY: -40, finalX: 600, finalY: 10 },
+    { id: 12, image: sticker12, initialX: 110, initialY: -180, finalX: 500, finalY: 300 },
+    { id: 13, image: sticker13, initialX: -120, initialY: 360, finalX: 500, finalY: -100 },
+    { id: 14, image: sticker14, initialX: 210, initialY: 40, finalX: -640, finalY: -220 },
+    { id: 15, image: sticker15, initialX: -100, initialY: 160, finalX: -400, finalY: 320 },
+    { id: 16, image: sticker16, initialX: 130, initialY: -100, finalX: -600, finalY: 100 },
   ];
 
   const getStickerStyle = (sticker: typeof stickers[0]) => {
     const progress = scrollProgress; // Direct progress for spreading effect when closer
     const x = sticker.initialX + (sticker.finalX - sticker.initialX) * progress;
     const y = sticker.initialY + (sticker.finalY - sticker.initialY) * progress;
-    const scale = 1.2 + (0.8 * progress);
+    const scale = 0.8 + (0.4 * progress);
     const opacity = 0.9 + (0.1 * progress);
     const rotation = progress * 20; // Add slight rotation
     
@@ -59,8 +75,8 @@ const AboutSection = () => {
       transform: `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotation}deg)`,
       opacity,
       transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
-      fontSize: '3rem',
-      textShadow: '3px 3px 8px rgba(255, 182, 193, 0.8), 0 0 15px rgba(255, 20, 147, 0.4)',
+      width: '80px',
+      height: '80px',
       filter: 'drop-shadow(0 4px 8px rgba(255, 105, 180, 0.3))'
     };
   };
@@ -74,43 +90,43 @@ const AboutSection = () => {
           {/* Animated Stickers */}
           <div className="absolute inset-0 flex items-center justify-center">
             {stickers.map((sticker) => (
-              <div
+              <img
                 key={sticker.id}
+                src={sticker.image}
+                alt={`Sticker ${sticker.id}`}
                 className="absolute z-10 pointer-events-none select-none"
                 style={getStickerStyle(sticker)}
-              >
-                {sticker.emoji}
-              </div>
+              />
             ))}
           </div>
           
           {/* Journal with PNG background */}
           <div 
-            className="max-w-6xl w-full relative z-20 rounded-lg overflow-hidden"
+            className="max-w-4xl w-full relative z-20 rounded-lg overflow-hidden"
             style={{
               backgroundImage: `url(${journalImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              minHeight: '600px'
+              minHeight: '550px'
             }}
           >
             {/* Content overlay - positioned on the right */}
-            <div className="relative p-8 md:p-12 flex items-center justify-end min-h-[800px]">
-              <div className="max-w-md w-full mr-4 md:mr-8">
-                <div className="space-y-6 text-gray-800">
-                  <h3 className="text-3xl font-bold mb-6 text-pink-600">Hello, I'm Layla!</h3>
-                  <p className="text-lg leading-relaxed">
+            <div className="relative p-8 md:p-12 flex items-center justify-end min-h-[600px]">
+              <div className="max-w-xs w-">
+                <div className="space-y-4 text-gray-800">
+                  <h3 className="text-2xl font-bold mb-4 text-pink-600">Hello, I'm Layla!</h3>
+                  <p className="text-base leading-relaxed">
                     I'm a passionate software engineer with a love for creating innovative digital solutions. 
                     My journey in tech has been driven by curiosity and the desire to build meaningful applications 
                     that make a difference.
                   </p>
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-base leading-relaxed">
                     With expertise in modern web technologies, I specialize in full-stack development, 
                     bringing ideas from conception to production. I believe in writing clean, efficient code 
                     and creating user experiences that are both functional and delightful.
                   </p>
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-base leading-relaxed">
                     When I'm not coding, you can find me exploring new technologies, contributing to open source 
                     projects, or sharing my knowledge with the developer community.
                   </p>
