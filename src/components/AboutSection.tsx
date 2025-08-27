@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import journalImage from '../assets/journal.PNG';
+import profileImage from '../assets/profile.PNG';
+import koreaStamp from '../assets/korea_stamp.PNG';
 import sticker1 from '../assets/stickers/sticker_1.PNG';
 import sticker2 from '../assets/stickers/sticker_2.PNG';
 import sticker3 from '../assets/stickers/sticker_3.PNG';
@@ -111,9 +113,36 @@ const AboutSection = () => {
               minHeight: '550px'
             }}
           >
-            {/* Content overlay - positioned on the right */}
-            <div className="relative p-8 md:p-12 flex items-center justify-end min-h-[600px]">
-              <div className="max-w-xs w-">
+            {/* Content overlay */}
+            <div className="relative p-8 md:p-12 flex items-center justify-between min-h-[600px]">
+              {/* Korea stamp overlapping profile */}
+              <div className="absolute left-16 md:left-20 top-[10%] z-0">
+                <img 
+                  src={koreaStamp}
+                  alt="Korea stamp"
+                  className="w-20 h-20 md:w-24 md:h-24 object-contain"
+                  style={{
+                    transform: 'rotate(-30deg)',
+                    opacity: 0.8
+                  }}
+                />
+              </div>
+              
+              {/* Profile image on the left */}
+              <div className="absolute left-8 md:left-12 top-1/2">
+                <img 
+                  src={profileImage}
+                  alt="Layla's profile"
+                  className="w-80 h-80 md:w-96 md:h-96 rounded-lg object-contain"
+                  style={{
+                    transform: 'translateY(-50%) rotate(-5deg)',
+                    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))'
+                  }}
+                />
+              </div>
+              
+              {/* Text on the right */}
+              <div className="max-w-xs w-full ml-auto">
                 <div className="space-y-4 text-gray-800">
                   <h3 className="text-2xl font-bold mb-4 text-pink-600">Hello, I'm Layla!</h3>
                   <p className="text-base leading-relaxed">
