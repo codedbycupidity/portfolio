@@ -117,7 +117,7 @@ const Projects = () => {
   return (
     <section 
       id="projects" 
-      className="min-h-screen py-20 bg-gradient-to-b from-pink-100/50 via-pink-50/30 to-white relative overflow-hidden"
+      className="min-h-screen py-20 bg-gradient-to-b from-pink-100/50 via-pink-50/30 to-pink-100/50 relative overflow-hidden"
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

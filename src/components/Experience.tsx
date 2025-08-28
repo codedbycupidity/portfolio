@@ -17,7 +17,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-8 bg-gradient-to-b from-white via-pink-50/30 to-pink-100/50">
+    <section id="experience" className="py-8 bg-gradient-to-b from-pink-100/50 via-pink-50/30 to-white">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-6 text-foreground">Experience</h2>
 

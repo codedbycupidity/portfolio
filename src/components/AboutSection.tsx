@@ -94,7 +94,7 @@ const AboutSection = () => {
   return (
     <section id="home" ref={sectionRef} className="min-h-screen">
       {/* Hero Section - Separate Div */}
-      <div className="bg-white py-20 ">
+      <div className="bg-gradient-to-b from-white to-pink-50 py-20">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center max-w-6xl mx-auto">
             <div className="text-left">
