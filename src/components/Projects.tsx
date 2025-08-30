@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { ExternalLink, Github } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import { ExternalLink, Github, Heart } from 'lucide-react';
 import stars1 from '../assets/stars/stars_1.PNG';
 import stars2 from '../assets/stars/stars_2.PNG';
 import stars3 from '../assets/stars/stars_3.PNG';
@@ -299,8 +300,24 @@ const Projects = () => {
       ))}
 
       {/* main content container with the project cards */}
-      <div className="container mx-auto px-6 relative">
-        <h2 className="text-4xl font-bold text-center mb-4 text-foreground">Projects</h2>
+      <TooltipProvider delayDuration={200}>
+        <div className="container mx-auto px-6 relative">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <h2 className="text-4xl font-bold text-foreground">Projects</h2>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button className="inline-flex items-center justify-center bg-transparent border-none outline-none">
+                  <Heart 
+                    className="h-5 w-5 text-pink-400 cursor-pointer hover:text-pink-500 transition-colors" 
+                    fill="none"
+                  />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent className="bg-white text-gray-800 border-pink-200">
+                <p>all favicons created by me!</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
         <p className="text-center mb-12 text-lg text-gray-600">
           Here are some of the projects I've worked on recently
         </p>
@@ -351,6 +368,7 @@ const Projects = () => {
           ))}
         </div>
       </div>
+      </TooltipProvider>
     </section>
   );
 };
