@@ -46,7 +46,11 @@ const Navigation = () => {
   return (
     <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
-        <h1 className="signature-name">Layla Le</h1>
+        <h1 className="signature-name" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => window.location.href = '/'}>
+          Layla Le
+        </h1>
         <div className="nav-tabs">
           {tabs.map((tab) => (
           <button
