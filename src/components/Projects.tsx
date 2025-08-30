@@ -14,26 +14,64 @@ import stars8 from '../assets/stars/stars_8.PNG';
 import stars9 from '../assets/stars/stars_9.PNG';
 import stars10 from '../assets/stars/stars_10.PNG';
 import stars11 from '../assets/stars/stars_11.PNG';
+import dragMeStar from '../assets/stars/drag_me_star.PNG';
+import arrow from '../assets/stars/arrow.PNG';
 import PassportBuddyIcon from '../assets/project_icons/PassportBuddyIcon.png';
 import MediMateIcon from '../assets/project_icons/MediMateIcon.png';
 import PortfolioIcon from '../assets/project_icons/PortfolioIcon.png';
 import LioraIcon from '../assets/project_icons/LioraIcon.png';
 
 const Projects = () => {
+  // all the star images we can randomly pick from
   const starImages = [stars1, stars2, stars3, stars4, stars5, stars6, stars7, stars8, stars9,stars10,stars11];
+  
+  // track all the random background stars
   const [stars, setStars] = useState<Array<{id: number; x: number; y: number; image: string; isDragging: boolean}>>([]);
   const [draggedStar, setDraggedStar] = useState<number | null>(null);
+  
+  // the special "drag me" star that starts in top right
+  const [specialStar, setSpecialStar] = useState<{x: number; y: number}>({ x: 85, y: 6});
+  const [isDraggingSpecial, setIsDraggingSpecial] = useState(false);
+  
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Generate 30 random stars
-    const generatedStars = Array.from({ length: 35 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 90, // percentage
-      y: Math.random() * 90, // percentage
-      image: starImages[Math.floor(Math.random() * starImages.length)],
-      isDragging: false
-    }));
+    // spawn stars when component mounts
+    const generatedStars = Array.from({ length: 30 }, (_, i) => {
+      let x, y;
+      
+      // trying to keep stars out of the middle where the cards are
+      const zone = i % 4;
+      if (zone === 0) {
+        // top area
+        x = Math.random() * 85 + 5;
+        y = Math.random() * 25;
+      } else if (zone === 1) {
+        // bottom area
+        x = Math.random() * 85 + 5;
+        y = Math.random() * 25 + 65;
+      } else if (zone === 2) {
+        // sides
+        x = Math.random() < 0.5 ? Math.random() * 20 : Math.random() * 20 + 70;
+        y = Math.random() * 90;
+      } else {
+        // wherever but not dead center
+        x = Math.random() * 90;
+        y = Math.random() * 90;
+        // push em away if they're too close to middle
+        if (x > 30 && x < 60) {
+          x = Math.random() < 0.5 ? x - 20 : x + 20;
+        }
+      }
+      
+      return {
+        id: i,
+        x: x,
+        y: y,
+        image: starImages[Math.floor(Math.random() * starImages.length)],
+        isDragging: false
+      };
+    });
     setStars(generatedStars);
   }, []);
 
@@ -43,23 +81,35 @@ const Projects = () => {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (draggedStar === null || !containerRef.current) return;
+    if (!containerRef.current) return;
     
+    // figure out where the mouse is as a percentage
     const rect = containerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     
-    setStars(prevStars => 
-      prevStars.map(star => 
-        star.id === draggedStar 
-          ? { ...star, x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) }
-          : star
-      )
-    );
+    // move whichever star we're dragging
+    if (isDraggingSpecial) {
+      setSpecialStar({ x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) });
+    } else if (draggedStar !== null) {
+      setStars(prevStars => 
+        prevStars.map(star => 
+          star.id === draggedStar 
+            ? { ...star, x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) }
+            : star
+        )
+      );
+    }
   };
 
   const handleMouseUp = () => {
     setDraggedStar(null);
+    setIsDraggingSpecial(false);
+  };
+  
+  const handleSpecialStarMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDraggingSpecial(true);
   };
 
   const handleTouchStart = (e: React.TouchEvent, starId: number) => {
@@ -68,26 +118,37 @@ const Projects = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (draggedStar === null || !containerRef.current) return;
+    if (!containerRef.current) return;
     
     const touch = e.touches[0];
     const rect = containerRef.current.getBoundingClientRect();
     const x = ((touch.clientX - rect.left) / rect.width) * 100;
     const y = ((touch.clientY - rect.top) / rect.height) * 100;
     
-    setStars(prevStars => 
-      prevStars.map(star => 
-        star.id === draggedStar 
-          ? { ...star, x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) }
-          : star
-      )
-    );
+    if (isDraggingSpecial) {
+      setSpecialStar({ x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) });
+    } else if (draggedStar !== null) {
+      setStars(prevStars => 
+        prevStars.map(star => 
+          star.id === draggedStar 
+            ? { ...star, x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) }
+            : star
+        )
+      );
+    }
   };
 
   const handleTouchEnd = () => {
     setDraggedStar(null);
+    setIsDraggingSpecial(false);
+  };
+  
+  const handleSpecialStarTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault();
+    setIsDraggingSpecial(true);
   };
 
+  // project data - these are the main cards
   const projects = [
     {
       title: "Passport Buddy",
@@ -134,7 +195,76 @@ const Projects = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Draggable Stars */}
+      {/* Special Drag Me Star */}
+      <div
+        className="special-draggable-star"
+        style={{
+          position: 'absolute',
+          left: `${specialStar.x}%`,
+          top: `${specialStar.y}%`,
+          width: '35px',
+          height: '35px',
+          zIndex: 45,
+          cursor: isDraggingSpecial ? 'grabbing' : 'grab',
+          transform: isDraggingSpecial ? 'scale(1.2)' : 'scale(1)',
+          transition: isDraggingSpecial ? 'none' : 'transform 0.2s ease',
+          userSelect: 'none',
+          animation: 'twinkle 3s infinite'
+        }}
+        onMouseDown={handleSpecialStarMouseDown}
+        onTouchStart={handleSpecialStarTouchStart}
+      >
+        <img 
+          src={dragMeStar} 
+          alt="Drag me star" 
+          style={{
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+            filter: 'drop-shadow(0 2px 4px rgba(255, 182, 193, 0.4))'
+          }}
+          draggable={false}
+        />
+      </div>
+      
+      {/* Static "drag me!" text with arrow */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '85%',
+          top: '5%',
+          zIndex: 9,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          pointerEvents: 'none'
+        }}
+      >
+        <img 
+          src={arrow} 
+          alt="Arrow" 
+          style={{
+            width: '30px',
+            height: '30px',
+            marginLeft: '40px'
+          }}
+          draggable={false}
+        />
+        <span 
+          style={{
+            fontFamily: "'DK Crayonista', cursive",
+            fontSize: '26px',
+            color: '#ec4899',
+            fontWeight: 'bold',
+            userSelect: 'none',
+            textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+          }}
+        >
+          drag me!
+        </span>
+      </div>
+
+      {/* all the regular draggable stars scattered around */}
       {stars.map((star) => (
         <div
           key={star.id}
@@ -143,14 +273,13 @@ const Projects = () => {
             position: 'absolute',
             left: `${star.x}%`,
             top: `${star.y}%`,
-            width: '40px',
-            height: '40px',
+            width: '50px',
+            height: '50px',
             cursor: draggedStar === star.id ? 'grabbing' : 'grab',
-            zIndex: draggedStar === star.id ? 5 : 1,
+            zIndex: draggedStar === star.id ? 50 : 40,  // bring to front when dragging
             transform: draggedStar === star.id ? 'scale(1.2)' : 'scale(1)',
             transition: draggedStar === star.id ? 'none' : 'transform 0.2s ease',
-            userSelect: 'none',
-            pointerEvents: draggedStar === star.id ? 'auto' : 'auto'
+            userSelect: 'none'
           }}
           onMouseDown={(e) => handleMouseDown(e, star.id)}
           onTouchStart={(e) => handleTouchStart(e, star.id)}
@@ -169,15 +298,17 @@ const Projects = () => {
         </div>
       ))}
 
-      <div className="container mx-auto px-6 relative z-20">
+      {/* main content container with the project cards */}
+      <div className="container mx-auto px-6 relative">
         <h2 className="text-4xl font-bold text-center mb-4 text-foreground">Projects</h2>
         <p className="text-center mb-12 text-lg text-gray-600">
           Here are some of the projects I've worked on recently
         </p>
         
+        {/* grid layout for project cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 bg-white relative z-30">
+            <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 bg-white relative">
               <CardHeader>
                 <div className="flex items-start gap-3">
                   {project.icon && (
