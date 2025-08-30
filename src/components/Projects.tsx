@@ -41,28 +41,24 @@ const Projects = () => {
     const generatedStars = Array.from({ length: 30 }, (_, i) => {
       let x, y;
       
-      // trying to keep stars out of the middle where the cards are
+      // Keep stars away from the title and cards area (roughly 20-80% horizontally, 15-85% vertically)
       const zone = i % 4;
       if (zone === 0) {
-        // top area
-        x = Math.random() * 85 + 5;
-        y = Math.random() * 25;
+        // top area - above the title
+        x = Math.random() * 90 + 5;
+        y = Math.random() * 10; // Only in top 10%
       } else if (zone === 1) {
-        // bottom area
-        x = Math.random() * 85 + 5;
-        y = Math.random() * 25 + 65;
+        // bottom area - below the cards
+        x = Math.random() * 90 + 5;
+        y = Math.random() * 10 + 90; // Only in bottom 10%
       } else if (zone === 2) {
-        // sides
-        x = Math.random() < 0.5 ? Math.random() * 20 : Math.random() * 20 + 70;
-        y = Math.random() * 90;
+        // left side
+        x = Math.random() * 15; // Only in left 15%
+        y = Math.random() * 60 + 20; // Middle vertical area
       } else {
-        // wherever but not dead center
-        x = Math.random() * 90;
-        y = Math.random() * 90;
-        // push em away if they're too close to middle
-        if (x > 30 && x < 60) {
-          x = Math.random() < 0.5 ? x - 20 : x + 20;
-        }
+        // right side
+        x = Math.random() * 15 + 85; // Only in right 15%
+        y = Math.random() * 60 + 20; // Middle vertical area
       }
       
       return {
@@ -205,7 +201,7 @@ const Projects = () => {
           top: `${specialStar.y}%`,
           width: '35px',
           height: '35px',
-          zIndex: 45,
+          zIndex: 2,
           cursor: isDraggingSpecial ? 'grabbing' : 'grab',
           transform: isDraggingSpecial ? 'scale(1.2)' : 'scale(1)',
           transition: isDraggingSpecial ? 'none' : 'transform 0.2s ease',
@@ -234,7 +230,7 @@ const Projects = () => {
           position: 'absolute',
           left: '85%',
           top: '5%',
-          zIndex: 9,
+          zIndex: 3,
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
@@ -277,7 +273,7 @@ const Projects = () => {
             width: '50px',
             height: '50px',
             cursor: draggedStar === star.id ? 'grabbing' : 'grab',
-            zIndex: draggedStar === star.id ? 50 : 40,  // bring to front when dragging
+            zIndex: draggedStar === star.id ? 5 : 1,  // keep stars behind content
             transform: draggedStar === star.id ? 'scale(1.2)' : 'scale(1)',
             transition: draggedStar === star.id ? 'none' : 'transform 0.2s ease',
             userSelect: 'none'
@@ -301,7 +297,7 @@ const Projects = () => {
 
       {/* main content container with the project cards */}
       <TooltipProvider delayDuration={200}>
-        <div className="container mx-auto px-6 relative">
+        <div className="container mx-auto px-6 relative z-10">
           <div className="flex items-center justify-center gap-2 mb-4">
             <h2 className="text-4xl font-bold text-foreground">Projects</h2>
             <Tooltip>
