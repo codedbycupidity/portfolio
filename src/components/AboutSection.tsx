@@ -29,6 +29,7 @@ const AboutSection = () => {
     'Software Engineer',
     'Full-Stack Developer',
     'Game Developer',
+    'Frontend Developer',
   ];
 
   useEffect(() => {
@@ -92,7 +93,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="home" ref={sectionRef} className="min-h-screen">
+    <section id="about" ref={sectionRef} className="min-h-screen">
       {/* Hero Section - Separate Div */}
       <div className="bg-gradient-to-b from-white to-pink-50 py-20">
         <div className="container mx-auto px-6">
@@ -102,7 +103,7 @@ const AboutSection = () => {
                 <AsciiMorphText text="Hi, I'm Layla" />
               </div>
               <div className="hero-subtitle justify-start">
-                <span>I am a&nbsp;<TypewriterCarousel roles={roles} /></span>
+                <span>I am a<TypewriterCarousel roles={roles} /></span>
               </div>
               <div className="hero-buttons">
                 <button 
@@ -208,7 +209,7 @@ const AboutSection = () => {
                   </p>
                   <p className="text-2xl leading-relaxed font-bold">
                     When I’m not programming, you’ll probably find me traveling the world, 
-                    designing pixel art, or being a cat mom :) 
+                    designing pixel art, throwing pottery, or being a cat mom :) 
                   </p>
                 
                  

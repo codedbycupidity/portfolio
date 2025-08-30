@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 
 const Navigation = () => {
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState('about');
   const [isScrolled, setIsScrolled] = useState(false);
 
   const tabs = useMemo(() => [
-    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
     { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' }
