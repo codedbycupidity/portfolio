@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { ExternalLink, Github } from 'lucide-react';
@@ -13,6 +14,10 @@ import stars8 from '../assets/stars/stars_8.PNG';
 import stars9 from '../assets/stars/stars_9.PNG';
 import stars10 from '../assets/stars/stars_10.PNG';
 import stars11 from '../assets/stars/stars_11.PNG';
+import PassportBuddyIcon from '../assets/project_icons/PassportBuddyIcon.png';
+import MediMateIcon from '../assets/project_icons/MediMateIcon.png';
+import PortfolioIcon from '../assets/project_icons/PortfolioIcon.png';
+import LioraIcon from '../assets/project_icons/LioraIcon.png';
 
 const Projects = () => {
   const starImages = [stars1, stars2, stars3, stars4, stars5, stars6, stars7, stars8, stars9,stars10,stars11];
@@ -85,31 +90,35 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "Project One",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      technologies: ["React", "TypeScript", "Tailwind"],
-      liveUrl: "#",
+      title: "Passport Buddy",
+      description: "Enterprise travel platform combining flight tracking with social networking. Features PWA with offline capabilities, 98% accurate OCR boarding pass scanning, and GraphQL real-time sync. Tested with 10,000+ users.",
+      technologies: ["React.js", "Flutter", "TypeScript", "MongoDB", "Apollo Client", "GraphQL", "Docker"],
+      icon: PassportBuddyIcon,
+      detailsUrl: "/projects/passport-buddy",
       githubUrl: "#"
     },
     {
-      title: "Project Two",
-      description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      technologies: ["Next.js", "Node.js", "PostgreSQL"],
-      liveUrl: "#",
+      title: "Medi-Mate",
+      description: "Full-stack medication reminder platform with AI-powered scheduling and prescription conflict detection. Features Pinecone vector search achieving 95% accuracy in duplicate detection, containerized microservices architecture.",
+      technologies: ["React.js", "React Native", "TypeScript", "Node.js", "Express.js", "MongoDB", "Pinecone", "Docker", "OpenAI"],
+      icon: MediMateIcon,
+      detailsUrl: "/projects/medi-mate",
       githubUrl: "#"
     },
     {
-      title: "Project Three",
-      description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      technologies: ["Vue.js", "Express", "MongoDB"],
-      liveUrl: "#",
+      title: "Liora",
+      description: "Web-based ASL gesture recognition app with real-time hand tracking and ML capabilities. Features color-coded finger visualization, motion tracking for movement-based gestures, and personalized accuracy training.",
+      technologies: ["JavaScript", "MediaPipe", "TensorFlow.js", "Python"],
+      icon: LioraIcon,
+      detailsUrl: "/projects/liora",
       githubUrl: "#"
     },
     {
-      title: "Project Four",
-      description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      technologies: ["Python", "Django", "Redis"],
-      liveUrl: "#",
+      title: "Portfolio Website",
+      description: "This portfolio website that you see built with React and TypeScript! Features interactive UI elements, draggable stars, smooth animations, and a clean design focused on user experience.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+      icon: PortfolioIcon,
+      detailsUrl: "/projects/portfolio",
       githubUrl: "#"
     }
   ];
@@ -170,12 +179,23 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 bg-white relative z-30">
               <CardHeader>
-                <CardTitle className="text-xl group-hover:text-pink-500 transition-colors">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="text-gray-600">
-                  {project.description}
-                </CardDescription>
+                <div className="flex items-start gap-3">
+                  {project.icon && (
+                    <img 
+                      src={project.icon} 
+                      alt={`${project.title} icon`}
+                      className="w-12 h-12 rounded-lg object-cover"
+                    />
+                  )}
+                  <div className="flex-1">
+                    <CardTitle className="text-xl group-hover:text-pink-500 transition-colors">
+                      {project.title}
+                    </CardTitle>
+                    <CardDescription className="text-gray-600 mt-2">
+                      {project.description}
+                    </CardDescription>
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -186,14 +206,14 @@ const Projects = () => {
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <button className="project-btn flex items-center gap-1">
+                  <Link to={project.detailsUrl} className="project-btn flex items-center gap-1">
                     <ExternalLink className="h-4 w-4" />
-                    Live Demo
-                  </button>
-                  <button className="project-btn-outline flex items-center gap-1">
+                    Details
+                  </Link>
+                  <a href={project.githubUrl} className="project-btn-outline flex items-center gap-1">
                     <Github className="h-4 w-4" />
                     Code
-                  </button>
+                  </a>
                 </div>
               </CardContent>
             </Card>
