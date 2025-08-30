@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import figlet from 'figlet';
-// @ts-expect-error - figlet fonts import doesn't have proper TypeScript definitions
 import standard from 'figlet/importable-fonts/Standard.js';
 
 interface AsciiTextAnimationProps {

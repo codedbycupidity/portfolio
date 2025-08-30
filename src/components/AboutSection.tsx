@@ -23,6 +23,7 @@ import sticker16 from '../assets/stickers/sticker_16.PNG';
 
 const AboutSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [asciiText, setAsciiText] = useState('');
   const sectionRef = useRef<HTMLDivElement>(null);
   
   const roles = [
@@ -31,6 +32,38 @@ const AboutSection = () => {
     'Game Developer',
     'Frontend Developer',
   ];
+
+  const fullAsciiArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢠⡾⠲⠶⣤⣀⣠⣤⣤⣤⡿⠛⠿⡴⠾⠛⢻⡆⠀⠀⠀
+⠀⠀⠀⣼⠁⠀⠀⠀⠉⠁⠀⢀⣿⠐⡿⣿⠿⣶⣤⣤⣷⡀⠀⠀
+⠀⠀⠀⢹⡶⠀⠀⠀⠀⠀⠀⠈⢯⣡⣿⣿⣀⣰⣿⣦⢂⡏⠀⠀
+⠀⠀⢀⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠹⣍⣭⣾⠁⠀⠀
+⠀⣀⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣸⣧⣤⡀
+⠈⠉⠹⣏⡁⠀⢸⣿⠀⠀⠀⢀⡀⠀⠀⠀⣿⠆⠀⢀⣸⣇⣀⠀
+⠀⠐⠋⢻⣅⡄⢀⣀⣀⡀⠀⠯⠽⠂⢀⣀⣀⡀⠀⣤⣿⠀⠉⠀
+⠀⠀⠴⠛⠙⣳⠋⠉⠉⠙⣆⠀⠀⢰⡟⠉⠈⠙⢷⠟⠈⠙⠂⠀
+⠀⠀⠀⠀⠀⢻⣄⣠⣤⣴⠟⠛⠛⠛⢧⣤⣤⣀⡾⠀⠀⠀⠀⠀`;
+
+  // Typewriter effect for ASCII art
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingSpeed = 3; // Speed in milliseconds
+    
+    const typeWriter = () => {
+      if (currentIndex < fullAsciiArt.length) {
+        setAsciiText(fullAsciiArt.substring(0, currentIndex + 1));
+        currentIndex++;
+        setTimeout(typeWriter, typingSpeed);
+      }
+    };
+    
+    // Start typing after a small delay
+    const startDelay = setTimeout(() => {
+      typeWriter();
+    }, 500);
+    
+    return () => clearTimeout(startDelay);
+  }, []); // Only run once on mount
 
   useEffect(() => {
     const handleScroll = () => {
@@ -124,19 +157,8 @@ const AboutSection = () => {
                 </button>
               </div>
             </div>
-            <div className="text-pink-300" style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace' }}>
-              <pre>
-{`⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢠⡾⠲⠶⣤⣀⣠⣤⣤⣤⡿⠛⠿⡴⠾⠛⢻⡆⠀⠀⠀
-⠀⠀⠀⣼⠁⠀⠀⠀⠉⠁⠀⢀⣿⠐⡿⣿⠿⣶⣤⣤⣷⡀⠀⠀
-⠀⠀⠀⢹⡶⠀⠀⠀⠀⠀⠀⠈⢯⣡⣿⣿⣀⣰⣿⣦⢂⡏⠀⠀
-⠀⠀⢀⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠹⣍⣭⣾⠁⠀⠀
-⠀⣀⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣸⣧⣤⡀
-⠈⠉⠹⣏⡁⠀⢸⣿⠀⠀⠀⢀⡀⠀⠀⠀⣿⠆⠀⢀⣸⣇⣀⠀
-⠀⠐⠋⢻⣅⡄⢀⣀⣀⡀⠀⠯⠽⠂⢀⣀⣀⡀⠀⣤⣿⠀⠉⠀
-⠀⠀⠴⠛⠙⣳⠋⠉⠉⠙⣆⠀⠀⢰⡟⠉⠈⠙⢷⠟⠈⠙⠂⠀
-⠀⠀⠀⠀⠀⢻⣄⣠⣤⣴⠟⠛⠛⠛⢧⣤⣤⣀⡾⠀⠀⠀⠀⠀`}
-              </pre>
+            <div className="text-pink-300" style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '200px' }}>
+              <pre>{asciiText}</pre>
             </div>
           </div>
         </div>
