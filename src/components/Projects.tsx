@@ -153,7 +153,7 @@ const Projects = () => {
       technologies: ["React.js", "Flutter", "TypeScript", "MongoDB", "Apollo Client", "GraphQL", "Docker"],
       icon: PassportBuddyIcon,
       detailsUrl: "/projects/passport-buddy",
-      githubUrl: "#"
+      githubUrl: "https://github.com/Izaacapp/flutterrr"
     },
     {
       title: "Medi-Mate",
@@ -161,7 +161,7 @@ const Projects = () => {
       technologies: ["React.js", "React Native", "TypeScript", "Node.js", "Express.js", "MongoDB", "Pinecone", "Docker", "OpenAI"],
       icon: MediMateIcon,
       detailsUrl: "/projects/medi-mate",
-      githubUrl: "#"
+      githubUrl: "https://github.com/cupidtiy/medi-mate"
     },
     {
       title: "Liora",
@@ -169,15 +169,15 @@ const Projects = () => {
       technologies: ["JavaScript", "MediaPipe", "TensorFlow.js", "Python"],
       icon: LioraIcon,
       detailsUrl: "/projects/liora",
-      githubUrl: "#"
+      githubUrl: "https://github.com/cupidtiy/Liora"
     },
     {
-      title: "Portfolio Website",
+      title: "Personal Portfolio",
       description: "This portfolio website that you see built with React and TypeScript! Features interactive UI elements, draggable stars, smooth animations, and a clean design focused on user experience.",
       technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
       icon: PortfolioIcon,
       detailsUrl: "/projects/portfolio",
-      githubUrl: "#"
+      githubUrl: "https://github.com/cupidtiy/portfolio"
     }
   ];
 
@@ -298,13 +298,16 @@ const Projects = () => {
       {/* main content container with the project cards */}
       <TooltipProvider delayDuration={200}>
         <div className="container mx-auto px-6 relative z-10">
-          <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="flex items-center justify-center gap-1 mb-4">
             <h2 className="text-4xl font-bold text-foreground">Projects</h2>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button className="inline-flex items-center justify-center bg-transparent border-none outline-none">
+                <button className="inline-flex items-center justify-center bg-transparent border-none outline-none focus:outline-none">
                   <Heart 
-                    className="h-5 w-5 text-pink-400 cursor-pointer hover:text-pink-500 transition-colors" 
+                    className="h-5 w-5 cursor-pointer transition-colors"
+                    style={{ color: '#EABEC3' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#D9A5AC'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#EABEC3'} 
                     fill="none"
                   />
                 </button>
@@ -350,11 +353,11 @@ const Projects = () => {
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <Link to={project.detailsUrl} className="project-btn flex items-center gap-1">
+                  <Link to={project.detailsUrl} className="project-btn flex items-center gap-1" style={{ textDecoration: 'none', color: 'white' }}>
                     <ExternalLink className="h-4 w-4" />
                     Details
                   </Link>
-                  <a href={project.githubUrl} className="project-btn-outline flex items-center gap-1">
+                  <a href={project.githubUrl} className="project-btn-outline flex items-center gap-1" style={{ textDecoration: 'none', color: 'inherit' }} target="_blank" rel="noopener noreferrer">
                     <Github className="h-4 w-4" />
                     Code
                   </a>
