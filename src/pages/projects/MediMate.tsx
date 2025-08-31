@@ -8,6 +8,7 @@ import ProjectSection from '../../components/project/ProjectSection';
 import ProjectOverview from '../../components/project/ProjectOverview';
 import TechStack from '../../components/project/TechStack';
 import TechnicalHighlights from '../../components/project/TechnicalHighlights';
+import { socialLinks } from '../../config/socialLinks';
 
 const MediMate = () => {
   const projectImages = [
@@ -77,7 +78,7 @@ const MediMate = () => {
         icon={MediMateIcon}
         title="MediMate"
         subtitle="Comprehensive Medication Management Platform"
-        githubUrl="https://github.com/cupidtiy/medi-mate"
+        githubUrl={socialLinks.repositories.mediMate}
         features={features}
       />
 

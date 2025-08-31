@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Badge } from './ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { ExternalLink, Github, Heart } from 'lucide-react';
+import { socialLinks } from '../config/socialLinks';
 import stars1 from '../assets/stars/stars_1.PNG';
 import stars2 from '../assets/stars/stars_2.PNG';
 import stars3 from '../assets/stars/stars_3.PNG';
@@ -87,6 +88,7 @@ const Projects = () => {
       };
     });
     setStars(generatedStars);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode]);
 
   const handleMouseDown = (e: React.MouseEvent, starId: number) => {
@@ -170,7 +172,7 @@ const Projects = () => {
       technologies: ["React.js", "Flutter", "TypeScript", "MongoDB", "Apollo Client", "GraphQL", "Docker"],
       icon: PassportBuddyIcon,
       detailsUrl: "/projects/passport-buddy",
-      githubUrl: "https://github.com/Izaacapp/flutterrr"
+      githubUrl: socialLinks.repositories.passportBuddy
     },
     {
       title: "Medi-Mate",
@@ -178,7 +180,7 @@ const Projects = () => {
       technologies: ["React.js", "React Native", "TypeScript", "Node.js", "Express.js", "MongoDB", "Pinecone", "Docker", "OpenAI"],
       icon: MediMateIcon,
       detailsUrl: "/projects/medi-mate",
-      githubUrl: "https://github.com/cupidtiy/medi-mate"
+      githubUrl: socialLinks.repositories.mediMate
     },
     {
       title: "Liora",
@@ -186,7 +188,7 @@ const Projects = () => {
       technologies: ["JavaScript", "MediaPipe", "TensorFlow.js", "Python"],
       icon: LioraIcon,
       detailsUrl: "/projects/liora",
-      githubUrl: "https://github.com/cupidtiy/Liora"
+      githubUrl: socialLinks.repositories.liora
     },
     {
       title: "Personal Portfolio",
@@ -194,7 +196,7 @@ const Projects = () => {
       technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
       icon: PortfolioIcon,
       detailsUrl: "/projects/portfolio",
-      githubUrl: "https://github.com/cupidtiy/portfolio"
+      githubUrl: socialLinks.repositories.portfolio
     }
   ];
 

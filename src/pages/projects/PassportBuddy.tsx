@@ -8,6 +8,7 @@ import ProjectSection from '../../components/project/ProjectSection';
 import ProjectOverview from '../../components/project/ProjectOverview';
 import TechStack from '../../components/project/TechStack';
 import TechnicalHighlights from '../../components/project/TechnicalHighlights';
+import { socialLinks } from '../../config/socialLinks';
 
 const PassportBuddy = () => {
   const projectImages = [
@@ -71,7 +72,7 @@ const PassportBuddy = () => {
         icon={PassportBuddyIcon}
         title="Passport Buddy"
         subtitle="Enterprise Travel Platform"
-        githubUrl="https://github.com/Izaacapp/flutterrr"
+        githubUrl={socialLinks.repositories.passportBuddy}
         features={features}
       />
 

@@ -8,6 +8,7 @@ import ProjectSection from '../../components/project/ProjectSection';
 import ProjectOverview from '../../components/project/ProjectOverview';
 import TechStack from '../../components/project/TechStack';
 import TechnicalHighlights from '../../components/project/TechnicalHighlights';
+import { socialLinks } from '../../config/socialLinks';
 
 const Liora = () => {
   const projectImages = [
@@ -73,7 +74,7 @@ const Liora = () => {
         icon={LioraIcon}
         title="Liora"
         subtitle="Real-time ASL Gesture Recognition App"
-        githubUrl="https://github.com/cupidtiy/Liora"
+        githubUrl={socialLinks.repositories.liora}
         features={features}
       />
 

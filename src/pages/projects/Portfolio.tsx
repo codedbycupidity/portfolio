@@ -8,6 +8,7 @@ import ProjectSection from '../../components/project/ProjectSection';
 import ProjectOverview from '../../components/project/ProjectOverview';
 import TechStack from '../../components/project/TechStack';
 import TechnicalHighlights from '../../components/project/TechnicalHighlights';
+import { socialLinks } from '../../config/socialLinks';
 
 const Portfolio = () => {
   const projectImages = [
@@ -79,7 +80,7 @@ const Portfolio = () => {
         icon={PortfolioIcon}
         title="Personal Portfolio"
         subtitle="Interactive Website with Unique Design"
-        githubUrl="https://github.com/cupidtiy/portfolio"
+        githubUrl={socialLinks.repositories.portfolio}
         features={features}
       />
 

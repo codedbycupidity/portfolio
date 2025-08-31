@@ -3,6 +3,7 @@ import { Mail, Github, Linkedin } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import Aurora from '../components/ui/aurora';
 import BackButton from '../components/BackButton';
+import { socialLinks } from '../config/socialLinks';
 
 const Contact = () => {
   const { isDarkMode } = useDarkMode();
@@ -50,8 +51,8 @@ const Contact = () => {
             </div>
             <h3 id="email-heading" className="text-xl font-semibold mb-2" style={{ color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)' }}>Email</h3>
             <a 
-              href="mailto:info.laylale@gmail.com"
-              aria-label="Send email to info.laylale@gmail.com"
+              href={`mailto:${socialLinks.email}`}
+              aria-label={`Send email to ${socialLinks.email}`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors hover:opacity-80"
               style={{
                 backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgb(252, 231, 243)',
@@ -60,7 +61,7 @@ const Contact = () => {
             >
               Send Email
             </a>
-            <p className="text-xs mt-3" style={{ color: isDarkMode ? '#D9A5AC' : 'rgb(107, 114, 128)' }}>info.laylale@gmail.com</p>
+            <p className="text-xs mt-3" style={{ color: isDarkMode ? '#D9A5AC' : 'rgb(107, 114, 128)' }}>{socialLinks.display.email}</p>
           </article>
 
           {/* GitHub Card */}
@@ -70,10 +71,10 @@ const Contact = () => {
             </div>
             <h3 id="github-heading" className="text-xl font-semibold mb-2" style={{ color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)' }}>GitHub</h3>
             <a 
-              href="https://github.com/cupidtiy"
+              href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View GitHub profile at github.com/codedbycupidity (opens in new tab)"
+              aria-label={`View GitHub profile at ${socialLinks.display.github} (opens in new tab)`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors hover:opacity-80"
               style={{
                 backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgb(252, 231, 243)',
@@ -82,7 +83,7 @@ const Contact = () => {
             >
               View Profile
             </a>
-            <p className="text-xs mt-3" style={{ color: isDarkMode ? '#D9A5AC' : 'rgb(107, 114, 128)' }}>github.com/codedbycupidity</p>
+            <p className="text-xs mt-3" style={{ color: isDarkMode ? '#D9A5AC' : 'rgb(107, 114, 128)' }}>{socialLinks.display.github}</p>
           </article>
 
           {/* LinkedIn Card */}
@@ -92,10 +93,10 @@ const Contact = () => {
             </div>
             <h3 id="linkedin-heading" className="text-xl font-semibold mb-2" style={{ color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)' }}>LinkedIn</h3>
             <a 
-              href="https://linkedin.com/in/laylale/"
+              href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Connect on LinkedIn at linkedin.com/in/laylale (opens in new tab)"
+              aria-label={`Connect on LinkedIn at ${socialLinks.display.linkedin} (opens in new tab)`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors hover:opacity-80"
               style={{
                 backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgb(252, 231, 243)',
@@ -104,7 +105,7 @@ const Contact = () => {
             >
               Connect
             </a>
-            <p className="text-xs mt-3" style={{ color: isDarkMode ? '#D9A5AC' : 'rgb(107, 114, 128)' }}>linkedin.com/in/laylale</p>
+            <p className="text-xs mt-3" style={{ color: isDarkMode ? '#D9A5AC' : 'rgb(107, 114, 128)' }}>{socialLinks.display.linkedin}</p>
           </article>
 
         </section>
