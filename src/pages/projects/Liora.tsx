@@ -1,7 +1,6 @@
 import { Hand, Eye, BarChart, Palette } from 'lucide-react';
-import LioraIcon from '../../assets/project_icons/LioraIcon.png';
+import { LioraIcon, comingSoon } from '../../assets';
 import ImageCarousel from '../../components/ImageCarousel';
-import comingSoon from '../../assets/coming_soon.png';
 import ProjectLayout from '../../components/project/ProjectLayout';
 import ProjectHeader from '../../components/project/ProjectHeader';
 import ProjectSection from '../../components/project/ProjectSection';

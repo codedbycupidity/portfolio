@@ -31,7 +31,7 @@ portfolio/
 │   │   ├── stickers/     # Sticker images
 │   │   └── fonts/        # Custom typography
 │   ├── components/
-│   │   ├── AboutSection.tsx
+│   │   ├── About.tsx
 │   │   ├── AsciiMorphText.tsx
 │   │   ├── Experience.tsx
 │   │   ├── Hero.tsx

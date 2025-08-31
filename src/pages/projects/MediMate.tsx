@@ -1,7 +1,6 @@
 import { Pill, Brain, Bell, Shield } from 'lucide-react';
-import MediMateIcon from '../../assets/project_icons/MediMateIcon.png';
+import { MediMateIcon, comingSoon } from '../../assets';
 import ImageCarousel from '../../components/ImageCarousel';
-import comingSoon from '../../assets/coming_soon.png';
 import ProjectLayout from '../../components/project/ProjectLayout';
 import ProjectHeader from '../../components/project/ProjectHeader';
 import ProjectSection from '../../components/project/ProjectSection';

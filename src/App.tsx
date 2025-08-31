@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext'
-import Navigation from './components/Navigation'
-import AboutSection from './components/AboutSection'
-import Projects from './components/Projects'
+import Navigation from './components/section/Navigation'
+import About from './components/section/About'
+import Projects from './components/section/Projects'
 import Experience from './components/Experience'
-import Skills from './components/Skills'
+import Skills from './components/section/Skills'
 import Footer from './components/Footer'
 import PassportBuddy from './pages/projects/PassportBuddy'
 import MediMate from './pages/projects/MediMate'
@@ -16,16 +16,16 @@ import './App.css'
 
 function HomePage() {
   const { isDarkMode } = useDarkMode();
-  
+
   return (
     <>
-      <AboutSection />
+      <About />
       <Projects />
       <Experience />
       {/* Divider with proper background */}
       <div className="w-full py-8" style={{
-        background: isDarkMode 
-          ? '#0A0F1B' 
+        background: isDarkMode
+          ? '#0A0F1B'
           : 'linear-gradient(180deg, rgb(254 245 245) 0%, rgb(254 242 242) 50%, rgb(254 245 245) 100%)',
         transition: 'background 0.3s ease-in-out'
       }}>
@@ -38,7 +38,7 @@ function HomePage() {
 
 function AppContent() {
   const { isDarkMode } = useDarkMode();
-  
+
   return (
     <div className="app transition-colors duration-300" style={{ backgroundColor: isDarkMode ? '#101727' : undefined }}>
       <a href="#main-content" className="skip-link">Skip to main content</a>

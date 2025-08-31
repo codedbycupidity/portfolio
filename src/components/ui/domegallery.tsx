@@ -2,40 +2,45 @@ import { useEffect, useMemo, useRef, useCallback } from "react";
 import { useGesture } from "@use-gesture/react";
 
 // Import all techstack icons
-import AWS from "../../assets/techstack/AWS-Light.svg";
-import Bootstrap from "../../assets/techstack/Bootstrap.svg";
-import C from "../../assets/techstack/C.svg";
-import CPP from "../../assets/techstack/CPP.svg";
-import CS from "../../assets/techstack/CS.svg";
-import CSS from "../../assets/techstack/CSS.svg";
-import Dart from "../../assets/techstack/Dart-Light.svg";
-import Docker from "../../assets/techstack/Docker.svg";
-import Electron from "../../assets/techstack/Electron.svg";
-import ExpressJS from "../../assets/techstack/ExpressJS-Light.svg";
-import Flutter from "../../assets/techstack/Flutter-Light.svg";
-import Github from "../../assets/techstack/Github-Light.svg";
-import GraphQL from "../../assets/techstack/GraphQL-Light.svg";
-import HTML from "../../assets/techstack/HTML.svg";
-import Java from "../../assets/techstack/Java-Light.svg";
-import JavaScript from "../../assets/techstack/JavaScript.svg";
-import JQuery from "../../assets/techstack/JQuery.svg";
-import LaTeX from "../../assets/techstack/LaTeX-Light.svg";
-import MaterialUI from "../../assets/techstack/MaterialUI-Light.svg";
-import MongoDB from "../../assets/techstack/MongoDB.svg";
-import NodeJS from "../../assets/techstack/NodeJS-Light.svg";
-import Notion from "../../assets/techstack/Notion-Light.svg";
-import Npm from "../../assets/techstack/Npm-Light.svg";
-import Postman from "../../assets/techstack/Postman.svg";
-import ReactIcon from "../../assets/techstack/React-Light.svg";
-import Redis from "../../assets/techstack/Redis-Light.svg";
-import StackOverflow from "../../assets/techstack/StackOverflow-Light.svg";
-import TailwindCSS from "../../assets/techstack/TailwindCSS-Light.svg";
-import TensorFlow from "../../assets/techstack/TensorFlow-Light.svg";
-import ThreeJS from "../../assets/techstack/ThreeJS-Light.svg";
-import TypeScript from "../../assets/techstack/TypeScript.svg";
-import Unity from "../../assets/techstack/Unity-Light.svg";
-import Vercel from "../../assets/techstack/Vercel-Light.svg";
-import Vite from "../../assets/techstack/Vite-Light.svg";
+import { techStackIcons } from "../../assets/techstack";
+
+// Destructure for backwards compatibility with existing code
+const {
+    AWSLight: AWS,
+    Bootstrap,
+    C,
+    CPP,
+    CS,
+    CSS,
+    DartLight: Dart,
+    Docker,
+    Electron,
+    ExpressJSLight: ExpressJS,
+    FlutterLight: Flutter,
+    GithubLight: Github,
+    GraphQLLight: GraphQL,
+    HTML,
+    JavaLight: Java,
+    JavaScript,
+    JQuery,
+    LaTeXLight: LaTeX,
+    MaterialUILight: MaterialUI,
+    MongoDB,
+    NodeJSLight: NodeJS,
+    NotionLight: Notion,
+    NpmLight: Npm,
+    Postman,
+    ReactLight: ReactIcon,
+    RedisLight: Redis,
+    StackOverflowLight: StackOverflow,
+    TailwindCSSLight: TailwindCSS,
+    TensorFlowLight: TensorFlow,
+    ThreeJSLight: ThreeJS,
+    TypeScript,
+    UnityLight: Unity,
+    VercelLight: Vercel,
+    ViteLight: Vite,
+} = techStackIcons;
 
 type ImageItem = string | { src: string; alt?: string };
 

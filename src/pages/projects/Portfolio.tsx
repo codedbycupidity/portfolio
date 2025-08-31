@@ -1,7 +1,6 @@
 import { Sparkles, Palette, Mouse, Heart } from 'lucide-react';
-import PortfolioIcon from '../../assets/project_icons/PortfolioIcon.png';
+import { PortfolioIcon, comingSoon } from '../../assets';
 import ImageCarousel from '../../components/ImageCarousel';
-import comingSoon from '../../assets/coming_soon.png';
 import ProjectLayout from '../../components/project/ProjectLayout';
 import ProjectHeader from '../../components/project/ProjectHeader';
 import ProjectSection from '../../components/project/ProjectSection';

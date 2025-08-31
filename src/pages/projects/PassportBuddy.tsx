@@ -1,7 +1,6 @@
 import { Globe, Calendar, Users, Plane } from 'lucide-react';
-import PassportBuddyIcon from '../../assets/project_icons/PassportBuddyIcon.png';
+import { PassportBuddyIcon, comingSoon } from '../../assets';
 import ImageCarousel from '../../components/ImageCarousel';
-import comingSoon from '../../assets/coming_soon.png';
 import ProjectLayout from '../../components/project/ProjectLayout';
 import ProjectHeader from '../../components/project/ProjectHeader';
 import ProjectSection from '../../components/project/ProjectSection';
