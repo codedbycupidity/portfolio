@@ -41,8 +41,9 @@ function AppContent() {
   
   return (
     <div className="app transition-colors duration-300" style={{ backgroundColor: isDarkMode ? '#101727' : undefined }}>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navigation />
-      <main className="main-content">
+      <main id="main-content" className="main-content" role="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<Contact />} />

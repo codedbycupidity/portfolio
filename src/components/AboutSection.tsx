@@ -185,7 +185,7 @@ const AboutSection = () => {
               <img
                 key={sticker.id}
                 src={sticker.image}
-                alt={`Sticker ${sticker.id}`}
+                alt=""
                 className="absolute z-10 pointer-events-none select-none"
                 style={getStickerStyle(sticker)}
               />
@@ -196,7 +196,7 @@ const AboutSection = () => {
           <div className="max-w-4xl w-full relative z-20">
             <img 
               src={aboutMeJournal}
-              alt="About Me"
+              alt="Journal page with handwritten personal introduction and interests"
               className="w-full h-auto object-contain cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => setShowProfileModal(true)}
             />
@@ -220,7 +220,7 @@ const AboutSection = () => {
           <div className={`relative max-w-lg ${isClosing ? 'animate-scaleOut' : 'animate-scaleIn'}`}>
             <img 
               src={profileImage}
-              alt="Layla's profile"
+              alt="Profile photo of Layla Le in Korea"
               className="w-full h-full object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />

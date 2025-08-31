@@ -166,7 +166,7 @@ const Projects = () => {
   const projects = [
     {
       title: "Passport Buddy",
-      description: "Enterprise travel platform combining flight tracking with social networking. Features PWA with offline capabilities, 98% accurate OCR boarding pass scanning, and GraphQL real-time sync. Tested with 10,000+ users.",
+      description: "Enterprise travel platform combining flight tracking with social networking. Features PWA with cross-platform capabilities, 98% accurate OCR boarding pass scanning, and GraphQL real-time sync. Tested with 10,000+ users.",
       technologies: ["React.js", "Flutter", "TypeScript", "MongoDB", "Apollo Client", "GraphQL", "Docker"],
       icon: PassportBuddyIcon,
       detailsUrl: "/projects/passport-buddy",
@@ -345,7 +345,7 @@ const Projects = () => {
         {/* grid layout for project cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 dark:border-gray-700 bg-white dark:bg-gray-800 relative">
+            <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 dark:border-gray-700 bg-white dark:bg-gray-800 relative" role="article" aria-label={`${project.title} project`}>
               <CardHeader>
                 <div className="flex items-start gap-3">
                   {project.icon && (
@@ -379,12 +379,12 @@ const Projects = () => {
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <Link to={project.detailsUrl} className="project-btn flex items-center gap-1" style={{ textDecoration: 'none', color: 'white' }}>
-                    <ExternalLink className="h-4 w-4" />
+                  <Link to={project.detailsUrl} className="project-btn flex items-center gap-1" style={{ textDecoration: 'none', color: 'white' }} aria-label={`View ${project.title} project details`}>
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
                     Details
                   </Link>
-                  <a href={project.githubUrl} className="project-btn-outline flex items-center gap-1" style={{ textDecoration: 'none', color: 'inherit' }} target="_blank" rel="noopener noreferrer">
-                    <Github className="h-4 w-4" />
+                  <a href={project.githubUrl} className="project-btn-outline flex items-center gap-1" style={{ textDecoration: 'none', color: 'inherit' }} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source code on GitHub`}>
+                    <Github className="h-4 w-4" aria-hidden="true" />
                     Code
                   </a>
                 </div>
