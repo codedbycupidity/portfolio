@@ -16,7 +16,6 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({ children }) => {
 
   return (
     <main 
-      role="main" 
       aria-label="Project details" 
       className="min-h-screen py-20 transition-colors duration-300" 
       style={{ backgroundColor: isDarkMode ? '#0A0F1B' : 'rgb(254 245 245)' }}

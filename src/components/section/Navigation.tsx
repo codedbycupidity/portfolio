@@ -47,23 +47,15 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation">
+    <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`} aria-label="Main navigation">
       <div className="nav-container">
-        <h1 className="signature-name"
-          style={{ cursor: 'pointer', color: isDarkMode ? '#EABEC3' : undefined }}
+        <button className="signature-name"
+          style={{ cursor: 'pointer', color: isDarkMode ? '#EABEC3' : undefined, background: 'none', border: 'none' }}
           onClick={() => window.location.href = '/'}
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              window.location.href = '/';
-            }
-          }}
-          role="link"
-          aria-label="Go to homepage">
+          aria-label="Layla Le - Go to homepage">
           Layla Le
-        </h1>
-        <div className="nav-tabs" role="tablist">
+        </button>
+        <div className="nav-tabs" role="tablist" aria-label="Main navigation tabs">
           {tabs.map((tab) => (
             <button
               key={tab.id}

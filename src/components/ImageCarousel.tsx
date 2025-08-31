@@ -44,6 +44,9 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
                 src={image} 
                 alt={`${projectName} screenshot ${index + 1}`}
                 className="w-full h-full object-cover flex-shrink-0"
+                loading="lazy"
+                width="800"
+                height="600"
               />
             ))}
           </div>
@@ -51,7 +54,7 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300" 
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300" 
             style={{ 
               backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
               color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
@@ -63,7 +66,7 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
           
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300" 
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300" 
             style={{ 
               backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
               color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
@@ -80,21 +83,32 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex justify-center gap-2 mt-4">
+        <div className="flex justify-center gap-0 mt-4">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 transition-all rounded-full focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2 ${
-                index === currentIndex 
-                  ? 'w-8' 
-                  : 'w-2'
-              }`}
+              className={`transition-all focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2 flex items-center justify-center`}
               style={{ 
-                backgroundColor: index === currentIndex ? '#EABEC3' : (isDarkMode ? 'rgba(234, 190, 195, 0.3)' : 'rgb(209, 213, 219)')
+                minWidth: '44px',
+                minHeight: '44px',
+                padding: '0',
+                backgroundColor: 'transparent',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               } as React.CSSProperties}
               aria-label={`Go to slide ${index + 1}`}
-            />
+            >
+              <span 
+                className="rounded-full transition-all"
+                style={{
+                  width: index === currentIndex ? '32px' : '12px',
+                  height: '12px',
+                  backgroundColor: index === currentIndex ? '#EABEC3' : (isDarkMode ? 'rgba(234, 190, 195, 0.3)' : 'rgb(209, 213, 219)')
+                }}
+              />
+            </button>
           ))}
         </div>
       </div>

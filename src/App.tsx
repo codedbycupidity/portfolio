@@ -29,7 +29,7 @@ function HomePage() {
           : 'linear-gradient(180deg, rgb(254 245 245) 0%, rgb(254 242 242) 50%, rgb(254 245 245) 100%)',
         transition: 'background 0.3s ease-in-out'
       }}>
-        <img src={divider} alt="Section divider" className="w-full h-auto" />
+        <img src={divider} alt="Section divider" className="w-full h-auto" width="1200" height="100" loading="lazy" />
       </div>
       <Skills />
     </>
@@ -43,7 +43,7 @@ function AppContent() {
     <div className="app transition-colors duration-300" style={{ backgroundColor: isDarkMode ? '#101727' : undefined }}>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navigation />
-      <main id="main-content" className="main-content" role="main">
+      <main id="main-content" className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<Contact />} />

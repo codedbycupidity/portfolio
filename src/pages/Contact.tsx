@@ -14,7 +14,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <main role="main" aria-label="Contact page" className="min-h-screen py-20 transition-colors duration-300 relative overflow-hidden" style={{ backgroundColor: isDarkMode ? '#0A0F1B' : 'rgb(254 245 245)' }}>
+    <main aria-label="Contact page" className="min-h-screen py-20 transition-colors duration-300 relative overflow-hidden" style={{ backgroundColor: isDarkMode ? '#0A0F1B' : 'rgb(254 245 245)' }}>
       {/* Aurora Background */}
       <div className="fixed inset-0 z-0" style={{ opacity: isDarkMode ? 1 : 0.3 }}>
         <Aurora
@@ -45,7 +45,7 @@ const Contact = () => {
         <section className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto" aria-label="Contact methods">
           
           {/* Email Card */}
-          <article className="rounded-lg shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300" style={{ backgroundColor: isDarkMode ? 'rgb(31, 41, 55)' : 'white' }} role="region" aria-labelledby="email-heading">
+          <article className="rounded-lg shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300" style={{ backgroundColor: isDarkMode ? 'rgb(31, 41, 55)' : 'white' }} aria-labelledby="email-heading">
             <div className="flex justify-center mb-4">
               <Mail className="h-12 w-12 text-pink-500" aria-hidden="true" />
             </div>
@@ -65,7 +65,7 @@ const Contact = () => {
           </article>
 
           {/* GitHub Card */}
-          <article className="rounded-lg shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300" style={{ backgroundColor: isDarkMode ? 'rgb(31, 41, 55)' : 'white' }} role="region" aria-labelledby="github-heading">
+          <article className="rounded-lg shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300" style={{ backgroundColor: isDarkMode ? 'rgb(31, 41, 55)' : 'white' }} aria-labelledby="github-heading">
             <div className="flex justify-center mb-4">
               <Github className="h-12 w-12 text-pink-500" aria-hidden="true" />
             </div>
@@ -87,7 +87,7 @@ const Contact = () => {
           </article>
 
           {/* LinkedIn Card */}
-          <article className="rounded-lg shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300" style={{ backgroundColor: isDarkMode ? 'rgb(31, 41, 55)' : 'white' }} role="region" aria-labelledby="linkedin-heading">
+          <article className="rounded-lg shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300" style={{ backgroundColor: isDarkMode ? 'rgb(31, 41, 55)' : 'white' }} aria-labelledby="linkedin-heading">
             <div className="flex justify-center mb-4">
               <Linkedin className="h-12 w-12 text-pink-500" aria-hidden="true" />
             </div>

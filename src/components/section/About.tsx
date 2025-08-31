@@ -172,6 +172,9 @@ const About = () => {
                   alt=""
                   className="absolute z-10 pointer-events-none select-none"
                   style={getStickerStyle(sticker)}
+                  loading="lazy"
+                  width="100"
+                  height="100"
                 />
               ))}
             </div>
@@ -183,6 +186,8 @@ const About = () => {
                 alt="Journal page with handwritten personal introduction and interests"
                 className="w-full h-auto object-contain cursor-pointer hover:opacity-90 transition-opacity"
                 onClick={() => setShowProfileModal(true)}
+                width="800"
+                height="600"
               />
             </div>
           </div>
@@ -207,15 +212,14 @@ const About = () => {
               alt="Profile photo of Layla Le in Korea"
               className="w-full h-full object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
+              loading="lazy"
+              width="512"
+              height="768"
             />
-            <p
-              className="text-center mt-4 text-gray-700 dark:text-gray-200 text-4xl font-bold"
-              style={{ fontFamily: "'DK Crayonista', sans-serif" }}
-            >
-              me in korea
-            </p>
+           
             <button
-              className="absolute top-4 right-4 text-white bg-pink-500 hover:bg-pink-600 rounded-full w-10 h-10 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90"
+              className="absolute top-4 right-4 text-white bg-pink-500 hover:bg-pink-600 rounded-full w-11 h-11 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90"
+              aria-label="Close modal"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsClosing(true);

@@ -56,7 +56,6 @@ const Projects = () => {
       };
     });
     setStars(generatedStars);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDarkMode]);
 
   const handleMouseDown = (e: React.MouseEvent, starId: number) => {
@@ -192,8 +191,8 @@ const Projects = () => {
           position: 'absolute',
           left: `${specialStar.x}%`,
           top: `${specialStar.y}%`,
-          width: '35px',
-          height: '35px',
+          width: '44px',
+          height: '44px',
           zIndex: 2,
           cursor: isDraggingSpecial ? 'grabbing' : 'grab',
           transform: isDraggingSpecial ? 'scale(1.2)' : 'scale(1)',
@@ -213,6 +212,9 @@ const Projects = () => {
             pointerEvents: 'none'
           }}
           draggable={false}
+          loading="lazy"
+          width="44"
+          height="44"
         />
       </div>
 
@@ -238,6 +240,9 @@ const Projects = () => {
             marginLeft: '40px'
           }}
           draggable={false}
+          loading="lazy"
+          width="45"
+          height="45"
         />
         <span
           style={{
@@ -282,6 +287,9 @@ const Projects = () => {
               pointerEvents: 'none'
             }}
             draggable={false}
+            loading="lazy"
+            width="50"
+            height="50"
           />
         </div>
       ))}
@@ -293,7 +301,7 @@ const Projects = () => {
             <h2 className="text-4xl font-bold text-foreground dark:text-white">Projects</h2>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button className="inline-flex items-center justify-center bg-transparent border-none outline-none focus:outline-none">
+                <button className="inline-flex items-center justify-center bg-transparent border-none outline-none focus:outline-none" style={{ minWidth: '44px', minHeight: '44px' }}>
                   <Heart
                     className="h-5 w-5 cursor-pointer transition-colors"
                     style={{ color: '#EABEC3' }}
@@ -315,7 +323,7 @@ const Projects = () => {
           {/* grid layout for project cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 dark:border-gray-700 bg-white dark:bg-gray-800 relative" role="article" aria-label={`${project.title} project`}>
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 dark:border-gray-700 bg-white dark:bg-gray-800 relative" aria-label={`${project.title} project`}>
                 <CardHeader>
                   <div className="flex items-start gap-3">
                     {project.icon && (
@@ -323,6 +331,9 @@ const Projects = () => {
                         src={project.icon}
                         alt={`${project.title} icon`}
                         className="w-12 h-12 rounded-lg object-cover"
+                        loading="lazy"
+                        width="48"
+                        height="48"
                       />
                     )}
                     <div className="flex-1">
@@ -341,14 +352,14 @@ const Projects = () => {
                       <Badge key={techIndex} variant="secondary" className="text-xs bg-pink-50 dark:bg-gray-700 text-pink-700 dark:text-pink-300 border-pink-200 dark:border-gray-600"
                         style={{
                           backgroundColor: 'rgba(234, 190, 195, 0.1)',
-                          color: '#C88B95',
+                          color: '#A6707B',
                           borderColor: '#EABEC3'
                         }}>
                         {tech}
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <Link to={project.detailsUrl} className="project-btn flex items-center gap-1" style={{ textDecoration: 'none', color: 'white' }} aria-label={`View ${project.title} project details`}>
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />
                       Details
