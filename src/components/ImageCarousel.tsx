@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useDarkMode } from '../contexts/DarkModeContext';
 
 interface ImageCarouselProps {
   images: string[];
@@ -8,6 +9,7 @@ interface ImageCarouselProps {
 
 const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { isDarkMode } = useDarkMode();
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => 
@@ -26,12 +28,12 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Project Screenshots</h2>
+    <div className="rounded-lg shadow-lg p-8 mb-8" style={{ backgroundColor: isDarkMode ? 'rgb(31, 41, 55)' : 'white' }}>
+      <h2 className="text-2xl font-semibold mb-6" style={{ color: isDarkMode ? 'white' : 'rgb(31, 41, 55)' }}>Project Screenshots</h2>
       
       <div className="relative">
         {/* Main Image Display with Sliding Animation */}
-        <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden">
+        <div className="relative aspect-video rounded-lg overflow-hidden" style={{ backgroundColor: isDarkMode ? 'rgb(17, 24, 39)' : 'rgb(243, 244, 246)' }}>
           <div 
             className="flex transition-transform duration-500 ease-in-out h-full"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -49,7 +51,11 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2" style={{ '--tw-ring-color': '#EABEC3' }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300" 
+            style={{ 
+              backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
+              color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
+            } as React.CSSProperties}
             aria-label="Previous image"
           >
             <ChevronLeft className="h-6 w-6" />
@@ -57,7 +63,11 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
           
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2" style={{ '--tw-ring-color': '#EABEC3' }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300" 
+            style={{ 
+              backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
+              color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
+            } as React.CSSProperties}
             aria-label="Next image"
           >
             <ChevronRight className="h-6 w-6" />
@@ -75,16 +85,14 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 transition-all rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+              className={`h-2 transition-all rounded-full focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2 ${
                 index === currentIndex 
                   ? 'w-8' 
-                  : 'w-2 bg-gray-300'
+                  : 'w-2'
               }`}
               style={{ 
-                backgroundColor: index === currentIndex ? '#EABEC3' : undefined,
-                '--tw-ring-color': '#EABEC3',
-                ...(index !== currentIndex && { ':hover': { backgroundColor: '#FDD5DF' } })
-              }}
+                backgroundColor: index === currentIndex ? '#EABEC3' : (isDarkMode ? 'rgba(234, 190, 195, 0.3)' : 'rgb(209, 213, 219)')
+              } as React.CSSProperties}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

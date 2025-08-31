@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import AsciiMorphText from './AsciiMorphText';
 import TypewriterCarousel from './TypewriterCarousel';
+import { useDarkMode } from '../contexts/DarkModeContext';
 import aboutMeJournal from '../assets/aboutme_journal.png';
 import profileImage from '../assets/profile.PNG';
 import sticker1 from '../assets/stickers/sticker_1.PNG';
@@ -26,6 +27,7 @@ const AboutSection = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { isDarkMode } = useDarkMode();
   
   const roles = [
     'Software Engineer',
@@ -127,9 +129,14 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" ref={sectionRef} className="min-h-screen">
-      {/* Hero Section - Separate Div */}
-      <div className="bg-gradient-to-b from-white to-pink-50 py-20">
+    <section id="about" ref={sectionRef} className="min-h-screen" style={{ 
+      background: isDarkMode 
+        ? '#0A0F1B' 
+        : 'linear-gradient(180deg, white 0%, white 40%, rgb(254 245 245) 60%, rgb(254 240 240) 100%)',
+      transition: 'background 0.3s ease-in-out'
+    }}>
+      {/* Hero Section */}
+      <div className="py-20">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center max-w-6xl mx-auto">
             <div className="text-left">
@@ -158,7 +165,7 @@ const AboutSection = () => {
                 </button>
               </div>
             </div>
-            <div className="text-pink-300" style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '200px' }}>
+            <div style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '200px', color: '#EABEC3' }}>
               <pre>{asciiText}</pre>
             </div>
           </div>
@@ -166,7 +173,11 @@ const AboutSection = () => {
       </div>
 
       {/* About Section with Stickers and Journal */}
-      <div className="bg-gradient-to-b from-pink-50 via-pink-100 to-pink-100/50 py-12">
+      <div className="py-12" style={{ 
+        background: isDarkMode 
+          ? 'transparent' 
+          : 'linear-gradient(180deg, transparent 0%, rgb(254 240 240 / 0.5) 50%, rgb(254 235 235) 100%)' 
+      }}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-center relative min-h-[600px]">
           {/* Animated Stickers */}
@@ -215,7 +226,7 @@ const AboutSection = () => {
               onClick={(e) => e.stopPropagation()}
             />
             <p 
-              className="text-center mt-4 text-gray-700 text-3xl font-bold"
+              className="text-center mt-4 text-gray-700 dark:text-gray-200 text-3xl font-bold"
               style={{ fontFamily: "'DK Crayonista', sans-serif" }}
             >
               me in korea

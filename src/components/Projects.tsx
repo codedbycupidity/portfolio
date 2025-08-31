@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDarkMode } from '../contexts/DarkModeContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
@@ -15,29 +16,45 @@ import stars8 from '../assets/stars/stars_8.PNG';
 import stars9 from '../assets/stars/stars_9.PNG';
 import stars10 from '../assets/stars/stars_10.PNG';
 import stars11 from '../assets/stars/stars_11.PNG';
+import starsDark1 from '../assets/stars/stars_dark_1.PNG';
+import starsDark2 from '../assets/stars/stars_dark_2.PNG';
+import starsDark3 from '../assets/stars/stars_dark_3.PNG';
+import starsDark4 from '../assets/stars/stars_dark_4.PNG';
+import starsDark5 from '../assets/stars/stars_dark_5.PNG';
+import starsDark6 from '../assets/stars/stars_dark_6.PNG';
+import starsDark7 from '../assets/stars/stars_dark_7.PNG';
+import starsDark8 from '../assets/stars/stars_dark_8.PNG';
+import starsDark9 from '../assets/stars/stars_dark_9.PNG';
+import starsDark10 from '../assets/stars/stars_dark_10.PNG';
+import starsDark11 from '../assets/stars/stars_dark_11.PNG';
 import dragMeStar from '../assets/stars/drag_me_star.PNG';
+import dragMeStarDark from '../assets/stars/drag_me_star_dark.PNG';
 import arrow from '../assets/stars/arrow.PNG';
+import arrowDark from '../assets/stars/arrow_dark.PNG';
 import PassportBuddyIcon from '../assets/project_icons/PassportBuddyIcon.png';
 import MediMateIcon from '../assets/project_icons/MediMateIcon.png';
 import PortfolioIcon from '../assets/project_icons/PortfolioIcon.png';
 import LioraIcon from '../assets/project_icons/LioraIcon.png';
 
 const Projects = () => {
+  const { isDarkMode } = useDarkMode();
+  
   // all the star images we can randomly pick from
-  const starImages = [stars1, stars2, stars3, stars4, stars5, stars6, stars7, stars8, stars9,stars10,stars11];
+  const lightStarImages = [stars1, stars2, stars3, stars4, stars5, stars6, stars7, stars8, stars9, stars10, stars11];
+  const darkStarImages = [starsDark1, starsDark2, starsDark3, starsDark4, starsDark5, starsDark6, starsDark7, starsDark8, starsDark9, starsDark10, starsDark11];
   
   // track all the random background stars
   const [stars, setStars] = useState<Array<{id: number; x: number; y: number; image: string; isDragging: boolean}>>([]);
   const [draggedStar, setDraggedStar] = useState<number | null>(null);
   
   // the special "drag me" star that starts in top right
-  const [specialStar, setSpecialStar] = useState<{x: number; y: number}>({ x: 85, y: 6});
+  const [specialStar, setSpecialStar] = useState<{x: number; y: number}>({ x: 85, y: 7});
   const [isDraggingSpecial, setIsDraggingSpecial] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // spawn stars when component mounts
+    // spawn stars when component mounts or dark mode changes
     const generatedStars = Array.from({ length: 30 }, (_, i) => {
       let x, y;
       
@@ -65,12 +82,12 @@ const Projects = () => {
         id: i,
         x: x,
         y: y,
-        image: starImages[Math.floor(Math.random() * starImages.length)],
+        image: (isDarkMode ? darkStarImages : lightStarImages)[Math.floor(Math.random() * (isDarkMode ? darkStarImages : lightStarImages).length)],
         isDragging: false
       };
     });
     setStars(generatedStars);
-  }, []);
+  }, [isDarkMode]);
 
   const handleMouseDown = (e: React.MouseEvent, starId: number) => {
     e.preventDefault();
@@ -184,7 +201,13 @@ const Projects = () => {
   return (
     <section 
       id="projects" 
-      className="min-h-screen py-20 bg-gradient-to-b from-pink-100/50 via-pink-50/30 to-pink-100/50 relative overflow-hidden"
+      className="min-h-screen py-20 relative overflow-hidden transition-colors duration-300"
+      style={{ 
+        background: isDarkMode 
+          ? '#0A0F1B' 
+          : 'linear-gradient(180deg, rgb(254 235 235) 0%, rgb(254 240 240) 50%, rgb(254 235 235) 100%)',
+        transition: 'background 0.3s ease-in-out'
+      }}
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -212,13 +235,12 @@ const Projects = () => {
         onTouchStart={handleSpecialStarTouchStart}
       >
         <img 
-          src={dragMeStar} 
+          src={isDarkMode ? dragMeStarDark : dragMeStar} 
           alt="Drag me star" 
           style={{
             width: '100%',
             height: '100%',
-            pointerEvents: 'none',
-            filter: 'drop-shadow(0 2px 4px rgba(255, 182, 193, 0.4))'
+            pointerEvents: 'none'
           }}
           draggable={false}
         />
@@ -238,11 +260,11 @@ const Projects = () => {
         }}
       >
         <img 
-          src={arrow} 
+          src={isDarkMode ? arrowDark : arrow} 
           alt="Arrow" 
           style={{
-            width: '30px',
-            height: '30px',
+            width: '45px',
+            height: '45px',
             marginLeft: '40px'
           }}
           draggable={false}
@@ -251,7 +273,7 @@ const Projects = () => {
           style={{
             fontFamily: "'DK Crayonista', cursive",
             fontSize: '26px',
-            color: '#ec4899',
+            color: isDarkMode ? '#FDD5DF' : '#ec4899',
             fontWeight: 'bold',
             userSelect: 'none',
             textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
@@ -287,8 +309,7 @@ const Projects = () => {
             style={{
               width: '100%',
               height: '100%',
-              pointerEvents: 'none',
-              filter: 'drop-shadow(0 2px 4px rgba(255, 182, 193, 0.4))'
+              pointerEvents: 'none'
             }}
             draggable={false}
           />
@@ -299,7 +320,7 @@ const Projects = () => {
       <TooltipProvider delayDuration={200}>
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex items-center justify-center gap-1 mb-4">
-            <h2 className="text-4xl font-bold text-foreground">Projects</h2>
+            <h2 className="text-4xl font-bold text-foreground dark:text-white">Projects</h2>
             <Tooltip>
               <TooltipTrigger asChild>
                 <button className="inline-flex items-center justify-center bg-transparent border-none outline-none focus:outline-none">
@@ -317,14 +338,14 @@ const Projects = () => {
               </TooltipContent>
             </Tooltip>
           </div>
-        <p className="text-center mb-12 text-lg text-gray-600">
+        <p className="text-center mb-12 text-lg text-gray-600 dark:text-gray-300">
           Here are some of the projects I've worked on recently
         </p>
         
         {/* grid layout for project cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 bg-white relative">
+            <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 dark:border-gray-700 bg-white dark:bg-gray-800 relative">
               <CardHeader>
                 <div className="flex items-start gap-3">
                   {project.icon && (
@@ -335,10 +356,10 @@ const Projects = () => {
                     />
                   )}
                   <div className="flex-1">
-                    <CardTitle className="text-xl group-hover:text-pink-500 transition-colors">
+                    <CardTitle className="text-xl group-hover:text-pink-500 dark:text-gray-100 dark:group-hover:text-pink-400 transition-colors">
                       {project.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-600 mt-2">
+                    <CardDescription className="text-gray-600 dark:text-gray-400 mt-2">
                       {project.description}
                     </CardDescription>
                   </div>
@@ -347,7 +368,12 @@ const Projects = () => {
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, techIndex) => (
-                    <Badge key={techIndex} variant="secondary" className="text-xs bg-pink-50 text-pink-700 border-pink-200">
+                    <Badge key={techIndex} variant="secondary" className="text-xs bg-pink-50 dark:bg-gray-700 text-pink-700 dark:text-pink-300 border-pink-200 dark:border-gray-600"
+                      style={{ 
+                        backgroundColor: 'rgba(234, 190, 195, 0.1)',
+                        color: '#C88B95',
+                        borderColor: '#EABEC3'
+                      }}>
                       {tech}
                     </Badge>
                   ))}

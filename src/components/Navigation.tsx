@@ -1,8 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
+import DarkModeToggle from './DarkModeToggle';
+import { useDarkMode } from '../contexts/DarkModeContext';
 
 const Navigation = () => {
   const [activeTab, setActiveTab] = useState('about');
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const tabs = useMemo(() => [
     { id: 'about', label: 'About' },
@@ -47,7 +50,7 @@ const Navigation = () => {
     <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <h1 className="signature-name" 
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', color: isDarkMode ? '#EABEC3' : undefined }}
             onClick={() => window.location.href = '/'}>
           Layla Le
         </h1>
@@ -57,10 +60,17 @@ const Navigation = () => {
             key={tab.id}
             onClick={() => scrollToSection(tab.id)}
             className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
+            style={{ color: isDarkMode ? '#D9A5AC' : undefined }}
           >
             {tab.label}
           </button>
           ))}
+          <div className="ml-4">
+            <DarkModeToggle
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+            />
+          </div>
         </div>
       </div>
     </nav>

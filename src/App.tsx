@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext'
 import Navigation from './components/Navigation'
 import AboutSection from './components/AboutSection'
 import Projects from './components/Projects'
@@ -13,12 +14,20 @@ import divider from './assets/divider.PNG'
 import './App.css'
 
 function HomePage() {
+  const { isDarkMode } = useDarkMode();
+  
   return (
     <>
       <AboutSection />
       <Projects />
       <Experience />
-      <div className="w-full py-8">
+      {/* Divider with proper background */}
+      <div className="w-full py-8" style={{
+        background: isDarkMode 
+          ? '#0A0F1B' 
+          : 'linear-gradient(180deg, rgb(254 245 245) 0%, rgb(254 242 242) 50%, rgb(254 245 245) 100%)',
+        transition: 'background 0.3s ease-in-out'
+      }}>
         <img src={divider} alt="Section divider" className="w-full h-auto" />
       </div>
       <Skills />
@@ -26,9 +35,11 @@ function HomePage() {
   )
 }
 
-function App() {
+function AppContent() {
+  const { isDarkMode } = useDarkMode();
+  
   return (
-    <div className="app">
+    <div className="app transition-colors duration-300" style={{ backgroundColor: isDarkMode ? '#101727' : undefined }}>
       <Navigation />
       <main className="main-content">
         <Routes>
@@ -41,6 +52,14 @@ function App() {
       </main>
       <Footer />
     </div>
+  )
+}
+
+function App() {
+  return (
+    <DarkModeProvider>
+      <AppContent />
+    </DarkModeProvider>
   )
 }
 

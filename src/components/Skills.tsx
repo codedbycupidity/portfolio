@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import DomeGallery from "./ui/domegallery";
+import { useDarkMode } from "../contexts/DarkModeContext";
 
 const Skills = () => {
   const [scale, setScale] = useState(0.5);
   const sectionRef = useRef<HTMLDivElement>(null);
   const domeContainerRef = useRef<HTMLDivElement>(null);
+  const { isDarkMode } = useDarkMode();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,9 +49,14 @@ const Skills = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="skills" className="min-h-screen py-20 bg-gradient-to-b from-white via-pink-50/30 to-pink-100/40">
+    <section ref={sectionRef} id="skills" className="min-h-screen py-20" style={{ 
+      background: isDarkMode 
+        ? '#0A0F1B' 
+        : 'linear-gradient(180deg, rgb(254 245 245) 0%, rgb(254 240 240) 50%, rgb(254 235 235) 100%)',
+      transition: 'background 0.3s ease-in-out'
+    }}>
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Skills</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-foreground dark:text-white">Skills</h2>
         <div 
           ref={domeContainerRef}
           className="relative w-full" 
@@ -65,9 +72,9 @@ const Skills = () => {
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: `
-                radial-gradient(ellipse at center, transparent 30%, rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0.15) 60%, rgba(255, 255, 255, 0.35) 75%, rgba(255, 255, 255, 0.55) 85%, rgba(255, 255, 255, 0.75) 92%, rgba(255, 255, 255, 0.9) 100%)
-              `,
+              background: isDarkMode 
+                ? `radial-gradient(ellipse at center, transparent 30%, rgba(17, 24, 39, 0.05) 45%, rgba(17, 24, 39, 0.15) 60%, rgba(17, 24, 39, 0.35) 75%, rgba(17, 24, 39, 0.55) 85%, rgba(17, 24, 39, 0.75) 92%, rgba(17, 24, 39, 0.9) 100%)`
+                : `radial-gradient(ellipse at center, transparent 30%, rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0.15) 60%, rgba(255, 255, 255, 0.35) 75%, rgba(255, 255, 255, 0.55) 85%, rgba(255, 255, 255, 0.75) 92%, rgba(255, 255, 255, 0.9) 100%)`,
               filter: 'blur(2px)',
               maskImage: 'radial-gradient(ellipse at center, black 50%, transparent 100%)',
               WebkitMaskImage: 'radial-gradient(ellipse at center, black 50%, transparent 100%)',
