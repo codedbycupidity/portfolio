@@ -1,32 +1,33 @@
 // Star assets module - consolidates all star imports
-import stars1 from './stars_1.PNG';
-import stars2 from './stars_2.PNG';
-import stars3 from './stars_3.PNG';
-import stars4 from './stars_4.PNG';
-import stars5 from './stars_5.PNG';
-import stars6 from './stars_6.PNG';
-import stars7 from './stars_7.PNG';
-import stars8 from './stars_8.PNG';
-import stars9 from './stars_9.PNG';
-import stars10 from './stars_10.PNG';
-import stars11 from './stars_11.PNG';
+// Use optimized versions
+import stars1 from './stars_1-optimized.png';
+import stars2 from './stars_2-optimized.png';
+import stars3 from './stars_3-optimized.png';
+import stars4 from './stars_4-optimized.png';
+import stars5 from './stars_5-optimized.png';
+import stars6 from './stars_6-optimized.png';
+import stars7 from './stars_7-optimized.png';
+import stars8 from './stars_8-optimized.png';
+import stars9 from './stars_9-optimized.png';
+import stars10 from './stars_10-optimized.png';
+import stars11 from './stars_11-optimized.png';
 
-import starsDark1 from './stars_dark_1.PNG';
-import starsDark2 from './stars_dark_2.PNG';
-import starsDark3 from './stars_dark_3.PNG';
-import starsDark4 from './stars_dark_4.PNG';
-import starsDark5 from './stars_dark_5.PNG';
-import starsDark6 from './stars_dark_6.PNG';
-import starsDark7 from './stars_dark_7.PNG';
-import starsDark8 from './stars_dark_8.PNG';
-import starsDark9 from './stars_dark_9.PNG';
-import starsDark10 from './stars_dark_10.PNG';
-import starsDark11 from './stars_dark_11.PNG';
+import starsDark1 from './stars_dark_1-optimized.png';
+import starsDark2 from './stars_dark_2-optimized.png';
+import starsDark3 from './stars_dark_3-optimized.png';
+import starsDark4 from './stars_dark_4-optimized.png';
+import starsDark5 from './stars_dark_5-optimized.png';
+import starsDark6 from './stars_dark_6-optimized.png';
+import starsDark7 from './stars_dark_7-optimized.png';
+import starsDark8 from './stars_dark_8-optimized.png';
+import starsDark9 from './stars_dark_9-optimized.png';
+import starsDark10 from './stars_dark_10-optimized.png';
+import starsDark11 from './stars_dark_11-optimized.png';
 
-import dragMeStar from './drag_me_star.PNG';
-import dragMeStarDark from './drag_me_star_dark.PNG';
-import arrow from './arrow.PNG';
-import arrowDark from './arrow_dark.PNG';
+import dragMeStar from './drag_me_star-optimized.png';
+import dragMeStarDark from './drag_me_star_dark-optimized.png';
+import arrow from './arrow-optimized.png';
+import arrowDark from './arrow_dark-optimized.png';
 
 export const lightStars = [
   stars1,
