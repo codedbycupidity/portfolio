@@ -26,7 +26,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   return (
     <div className="rounded-lg shadow-lg p-8 mb-8" style={{ backgroundColor: isDarkMode ? "rgb(31, 41, 55)" : "white" }}>
       <div className="flex items-start gap-6 mb-6">
-        <img src={icon} alt={title} className="w-24 h-24 rounded-lg" />
+        <img src={icon} alt={title} className="w-24 h-24 rounded-lg" loading="lazy" width="96" height="96" />
         <div className="flex-1">
           <h1 className="text-4xl font-bold mb-2" style={{ color: isDarkMode ? "white" : "rgb(31, 41, 55)" }}>{title}</h1>
           <p className="text-lg" style={{ color: isDarkMode ? "white" : "rgb(75, 85, 99)" }}>{subtitle}</p>

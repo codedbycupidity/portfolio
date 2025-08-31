@@ -310,17 +310,20 @@ export default function DomeGallery({
             );
             applyTransform(rotationRef.current.x, rotationRef.current.y);
 
+            // Only perform expensive DOM calculations when overlay exists
             const enlargedOverlay = viewerRef.current?.querySelector(
                 ".enlarge"
             ) as HTMLElement;
             if (enlargedOverlay && frameRef.current && mainRef.current) {
+                // Batch DOM reads to minimize layout thrashing
                 const frameR = frameRef.current.getBoundingClientRect();
                 const mainR = mainRef.current.getBoundingClientRect();
 
                 const hasCustomSize = openedImageWidth && openedImageHeight;
                 if (hasCustomSize) {
+                    // Use CSS calculations instead of DOM manipulation when possible
                     const tempDiv = document.createElement("div");
-                    tempDiv.style.cssText = `position: absolute; width: ${openedImageWidth}; height: ${openedImageHeight}; visibility: hidden;`;
+                    tempDiv.style.cssText = `position: absolute; width: ${openedImageWidth}; height: ${openedImageHeight}; visibility: hidden; top: -9999px;`;
                     document.body.appendChild(tempDiv);
                     const tempRect = tempDiv.getBoundingClientRect();
                     document.body.removeChild(tempDiv);
@@ -330,13 +333,19 @@ export default function DomeGallery({
                     const centeredTop =
                         frameR.top - mainR.top + (frameR.height - tempRect.height) / 2;
 
-                    enlargedOverlay.style.left = `${centeredLeft}px`;
-                    enlargedOverlay.style.top = `${centeredTop}px`;
+                    // Batch DOM writes
+                    Object.assign(enlargedOverlay.style, {
+                        left: `${centeredLeft}px`,
+                        top: `${centeredTop}px`
+                    });
                 } else {
-                    enlargedOverlay.style.left = `${frameR.left - mainR.left}px`;
-                    enlargedOverlay.style.top = `${frameR.top - mainR.top}px`;
-                    enlargedOverlay.style.width = `${frameR.width}px`;
-                    enlargedOverlay.style.height = `${frameR.height}px`;
+                    // Batch DOM writes
+                    Object.assign(enlargedOverlay.style, {
+                        left: `${frameR.left - mainR.left}px`,
+                        top: `${frameR.top - mainR.top}px`,
+                        width: `${frameR.width}px`,
+                        height: `${frameR.height}px`
+                    });
                 }
             }
         });

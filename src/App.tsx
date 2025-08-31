@@ -3,10 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext'
 import Navigation from './components/section/Navigation'
 import About from './components/section/About'
-import Projects from './components/section/Projects'
-import Experience from './components/Experience'
-import Skills from './components/section/Skills'
-import Footer from './components/Footer'
 import divider from './assets/divider.PNG'
 import './App.css'
 
@@ -17,14 +13,24 @@ const Liora = lazy(() => import('./pages/projects/Liora'))
 const Portfolio = lazy(() => import('./pages/projects/Portfolio'))
 const Contact = lazy(() => import('./pages/Contact'))
 
+// Lazy load below-the-fold components for better initial load
+const Projects = lazy(() => import('./components/section/Projects'))
+const Experience = lazy(() => import('./components/Experience'))
+const Skills = lazy(() => import('./components/section/Skills'))
+const Footer = lazy(() => import('./components/Footer'))
+
 function HomePage() {
   const { isDarkMode } = useDarkMode();
 
   return (
     <>
       <About />
-      <Projects />
-      <Experience />
+      <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
+        <Projects />
+      </Suspense>
+      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
+        <Experience />
+      </Suspense>
       {/* Divider with proper background */}
       <div className="w-full py-8" style={{
         background: isDarkMode
@@ -34,7 +40,9 @@ function HomePage() {
       }}>
         <img src={divider} alt="Section divider" className="w-full h-auto" width="1200" height="100" loading="lazy" />
       </div>
-      <Skills />
+      <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
+        <Skills />
+      </Suspense>
     </>
   )
 }
@@ -58,7 +66,9 @@ function AppContent() {
           </Routes>
         </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="h-32 flex items-center justify-center">Loading...</div>}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }

@@ -68,16 +68,15 @@ const Skills = () => {
           }}
         >
           <DomeGallery />
-          {/* Faded edges overlay with much softer blending */}
+          {/* Faded edges overlay with performance-optimized blending */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background: isDarkMode
-                ? `radial-gradient(ellipse at center, transparent 30%, rgba(17, 24, 39, 0.05) 45%, rgba(17, 24, 39, 0.15) 60%, rgba(17, 24, 39, 0.35) 75%, rgba(17, 24, 39, 0.55) 85%, rgba(17, 24, 39, 0.75) 92%, rgba(17, 24, 39, 0.9) 100%)`
-                : `radial-gradient(ellipse at center, transparent 30%, rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0.15) 60%, rgba(255, 255, 255, 0.35) 75%, rgba(255, 255, 255, 0.55) 85%, rgba(255, 255, 255, 0.75) 92%, rgba(255, 255, 255, 0.9) 100%)`,
-              filter: 'blur(2px)',
-              maskImage: 'radial-gradient(ellipse at center, black 50%, transparent 100%)',
-              WebkitMaskImage: 'radial-gradient(ellipse at center, black 50%, transparent 100%)',
+                ? `radial-gradient(ellipse at center, transparent 40%, rgba(10, 15, 27, 0.1) 70%, rgba(10, 15, 27, 0.6) 90%, rgba(10, 15, 27, 0.8) 100%)`
+                : `radial-gradient(ellipse at center, transparent 40%, rgba(254, 240, 240, 0.1) 70%, rgba(254, 235, 235, 0.6) 90%, rgba(254, 235, 235, 0.8) 100%)`,
+              maskImage: 'radial-gradient(ellipse at center, black 50%, transparent 85%)',
+              WebkitMaskImage: 'radial-gradient(ellipse at center, black 50%, transparent 85%)',
             }}
           />
         </div>
