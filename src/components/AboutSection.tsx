@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AsciiMorphText from './AsciiMorphText';
 import TypewriterCarousel from './TypewriterCarousel';
 import { useDarkMode } from '../contexts/DarkModeContext';
-import aboutMeJournal from '../assets/aboutme_journal.png';
+import aboutMeJournal from '../assets/aboutme_journal.PNG';
 import profileImage from '../assets/profile.PNG';
 import sticker1 from '../assets/stickers/sticker_1.PNG';
 import sticker2 from '../assets/stickers/sticker_2.PNG';
