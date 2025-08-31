@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import AsciiMorphText from '../AsciiMorphText';
 import TypewriterCarousel from '../TypewriterCarousel';
 import { useDarkMode } from '../../contexts/DarkModeContext';
-import { aboutMeJournal, profile1, profile2, profile3, stickers as stickerImages } from '../../assets';
+import { aboutMeJournalPng, aboutMeJournalWebp800, aboutMeJournalWebp400, profile1, profile2, profile3, stickers as stickerImages } from '../../assets';
 
 
 const About = () => {
@@ -236,15 +236,24 @@ const About = () => {
 
             {/* About Me Journal Image */}
             <div className="max-w-4xl w-full relative z-20">
-              <img
-                src={aboutMeJournal}
-                alt="Journal page with handwritten personal introduction and interests"
-                className="w-full h-auto object-contain cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => setShowProfileModal(true)}
-                width="800"
-                height="600"
-                fetchPriority="high"
-              />
+              <picture>
+                <source 
+                  srcSet={`${aboutMeJournalWebp400} 400w, ${aboutMeJournalWebp800} 800w`}
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  type="image/webp"
+                />
+                {/* fallback for browsers that dont support webp */}
+                <img
+                  src={aboutMeJournalPng}
+                  alt="Journal page with handwritten personal introduction and interests"
+                  className="w-full h-auto object-contain cursor-pointer hover:opacity-90 transition-opacity"
+                  onClick={() => setShowProfileModal(true)}
+                  width="800"
+                  height="600"
+                  fetchPriority="high"
+                  loading="eager"
+                />
+              </picture>
             </div>
           </div>
         </div>

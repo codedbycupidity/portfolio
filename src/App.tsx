@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext'
 import Navigation from './components/section/Navigation'
@@ -6,13 +7,15 @@ import Projects from './components/section/Projects'
 import Experience from './components/Experience'
 import Skills from './components/section/Skills'
 import Footer from './components/Footer'
-import PassportBuddy from './pages/projects/PassportBuddy'
-import MediMate from './pages/projects/MediMate'
-import Liora from './pages/projects/Liora'
-import Portfolio from './pages/projects/Portfolio'
-import Contact from './pages/Contact'
 import divider from './assets/divider.PNG'
 import './App.css'
+
+// Lazy load project pages
+const PassportBuddy = lazy(() => import('./pages/projects/PassportBuddy'))
+const MediMate = lazy(() => import('./pages/projects/MediMate'))
+const Liora = lazy(() => import('./pages/projects/Liora'))
+const Portfolio = lazy(() => import('./pages/projects/Portfolio'))
+const Contact = lazy(() => import('./pages/Contact'))
 
 function HomePage() {
   const { isDarkMode } = useDarkMode();
@@ -44,14 +47,16 @@ function AppContent() {
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navigation />
       <main id="main-content" className="main-content">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/projects/passport-buddy" element={<PassportBuddy />} />
-          <Route path="/projects/medi-mate" element={<MediMate />} />
-          <Route path="/projects/liora" element={<Liora />} />
-          <Route path="/projects/portfolio" element={<Portfolio />} />
-        </Routes>
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/projects/passport-buddy" element={<PassportBuddy />} />
+            <Route path="/projects/medi-mate" element={<MediMate />} />
+            <Route path="/projects/liora" element={<Liora />} />
+            <Route path="/projects/portfolio" element={<Portfolio />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </div>
