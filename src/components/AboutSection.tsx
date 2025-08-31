@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import AsciiMorphText from './AsciiMorphText';
 import TypewriterCarousel from './TypewriterCarousel';
-import journalImage from '../assets/journal.PNG';
+import aboutMeJournal from '../assets/aboutme_journal.png';
 import profileImage from '../assets/profile.PNG';
-import koreaStamp from '../assets/korea_stamp.PNG';
 import sticker1 from '../assets/stickers/sticker_1.PNG';
 import sticker2 from '../assets/stickers/sticker_2.PNG';
 import sticker3 from '../assets/stickers/sticker_3.PNG';
@@ -24,6 +23,8 @@ import sticker16 from '../assets/stickers/sticker_16.PNG';
 const AboutSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [asciiText, setAsciiText] = useState('');
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   
   const roles = [
@@ -181,67 +182,60 @@ const AboutSection = () => {
             ))}
           </div>
           
-          {/* Journal with PNG background */}
-          <div 
-            className="max-w-4xl w-full relative z-20 rounded-lg overflow-hidden"
-            style={{
-              backgroundImage: `url(${journalImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              minHeight: '550px'
-            }}
-          >
-            {/* Content overlay */}
-            <div className="relative p-8 md:p-12 flex items-center justify-between min-h-[600px]">
-              {/* Korea stamp overlapping profile */}
-              <div className="absolute left-16 md:left-20 top-[10%] z-0">
-                <img 
-                  src={koreaStamp}
-                  alt="Korea stamp"
-                  className="w-20 h-20 md:w-24 md:h-24 object-contain"
-                  style={{
-                    transform: 'rotate(-30deg)',
-                    opacity: 0.8
-                  }}
-                />
-              </div>
-              
-              {/* Profile image on the left */}
-              <div className="absolute left-8 md:left-12 top-1/2">
-                <img 
-                  src={profileImage}
-                  alt="Layla's profile"
-                  className="w-80 h-80 md:w-96 md:h-96 rounded-lg object-contain"
-                  style={{
-                    transform: 'translateY(-50%) rotate(-5deg)',
-                    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))'
-                  }}
-                />
-              </div>
-              
-              {/* Text on the right */}
-              <div className="max-w-xs w-full ml-auto -mt-8">
-                <div className="space-y-2 text-gray-800" style={{ fontFamily: "'DK Crayonista', sans-serif", fontWeight: 'bold' }}>
-                  <h3 className="text-5xl font-extrabold text-pink-600" style={{ fontFamily: "'DK Crayonista', sans-serif" }}>hi!</h3>
-                  <p className="text-2xl leading-relaxed font-bold">
-                   I’m a software engineer and Computer Science student at the University of Central Florida, 
-                   passionate about developing innovative technologies that 
-                   make a real impact and are built to be used.
-                  </p>
-                  <p className="text-2xl leading-relaxed font-bold">
-                    When I’m not programming, you’ll probably find me traveling the world, 
-                    designing pixel art, throwing pottery, or being a cat mom :) 
-                  </p>
-                
-                 
-                </div>
-              </div>
-            </div>
+          {/* About Me Journal Image */}
+          <div className="max-w-4xl w-full relative z-20">
+            <img 
+              src={aboutMeJournal}
+              alt="About Me"
+              className="w-full h-auto object-contain cursor-pointer hover:opacity-90 transition-opacity"
+              onClick={() => setShowProfileModal(true)}
+            />
           </div>
         </div>
       </div>
       </div>
+      
+      {/* Profile Modal */}
+      {showProfileModal && (
+        <div 
+          className={`fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-50 p-4 ${isClosing ? 'animate-fadeOut' : 'animate-fadeIn'}`}
+          onClick={() => {
+            setIsClosing(true);
+            setTimeout(() => {
+              setShowProfileModal(false);
+              setIsClosing(false);
+            }, 300);
+          }}
+        >
+          <div className={`relative max-w-lg ${isClosing ? 'animate-scaleOut' : 'animate-scaleIn'}`}>
+            <img 
+              src={profileImage}
+              alt="Layla's profile"
+              className="w-full h-full object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <p 
+              className="text-center mt-4 text-gray-700 text-3xl font-bold"
+              style={{ fontFamily: "'DK Crayonista', sans-serif" }}
+            >
+              me in korea
+            </p>
+            <button
+              className="absolute top-4 right-4 text-white bg-pink-500 hover:bg-pink-600 rounded-full w-10 h-10 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsClosing(true);
+                setTimeout(() => {
+                  setShowProfileModal(false);
+                  setIsClosing(false);
+                }, 300);
+              }}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
