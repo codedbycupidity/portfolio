@@ -10,6 +10,7 @@ import PassportBuddy from './pages/projects/PassportBuddy'
 import MediMate from './pages/projects/MediMate'
 import Liora from './pages/projects/Liora'
 import Portfolio from './pages/projects/Portfolio'
+import Contact from './pages/Contact'
 import divider from './assets/divider.PNG'
 import './App.css'
 
@@ -44,6 +45,7 @@ function AppContent() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/projects/passport-buddy" element={<PassportBuddy />} />
           <Route path="/projects/medi-mate" element={<MediMate />} />
           <Route path="/projects/liora" element={<Liora />} />

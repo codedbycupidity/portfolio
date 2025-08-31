@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import AsciiMorphText from './AsciiMorphText';
 import TypewriterCarousel from './TypewriterCarousel';
 import { useDarkMode } from '../contexts/DarkModeContext';
@@ -155,14 +156,12 @@ const AboutSection = () => {
                 >
                   Resume →
                 </button>
-                <button 
+                <Link 
+                  to="/contact"
                   className="hero-action-btn"
-                  onClick={() => {
-                    window.location.href = '/contact';
-                  }}
                 >
                   Contact →
-                </button>
+                </Link>
               </div>
             </div>
             <div style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '200px', color: '#EABEC3' }}>
