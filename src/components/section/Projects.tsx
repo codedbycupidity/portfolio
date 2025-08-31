@@ -247,7 +247,7 @@ const Projects = () => {
         <span
           style={{
             fontFamily: "'DK Crayonista', cursive",
-            fontSize: '26px',
+            fontSize: '35px',
             color: isDarkMode ? '#FDD5DF' : '#ec4899',
             fontWeight: 'bold',
             userSelect: 'none',

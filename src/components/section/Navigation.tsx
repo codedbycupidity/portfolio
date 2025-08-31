@@ -50,7 +50,13 @@ const Navigation = () => {
     <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`} aria-label="Main navigation">
       <div className="nav-container">
         <button className="signature-name"
-          style={{ cursor: 'pointer', color: isDarkMode ? '#EABEC3' : undefined, background: 'none', border: 'none' }}
+          style={{ 
+            cursor: 'pointer', 
+            color: isDarkMode ? '#EABEC3' : '#A6707B', 
+            background: 'none', 
+            border: 'none',
+            WebkitTextFillColor: isDarkMode ? '#EABEC3' : '#A6707B'
+          }}
           onClick={() => window.location.href = '/'}
           aria-label="Layla Le - Go to homepage">
           Layla Le

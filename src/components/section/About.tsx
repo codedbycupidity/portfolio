@@ -1,15 +1,18 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import AsciiMorphText from '../AsciiMorphText';
 import TypewriterCarousel from '../TypewriterCarousel';
 import { useDarkMode } from '../../contexts/DarkModeContext';
-import { aboutMeJournal, profileImage, stickers as stickerImages } from '../../assets';
+import { aboutMeJournal, profile1, profile2, profile3, stickers as stickerImages } from '../../assets';
+
 
 const About = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [asciiText, setAsciiText] = useState('');
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { isDarkMode } = useDarkMode();
 
@@ -18,6 +21,12 @@ const About = () => {
     'Full-Stack Developer',
     'Game Developer',
     'Frontend Developer',
+  ];
+
+  const profileImages = [
+    { src: profile1, caption: "me :)" },
+    { src: profile2, caption: "my cats onion and dishwater" },
+    { src: profile3, caption: "me in korea" }
   ];
 
   const fullAsciiArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -75,6 +84,52 @@ const About = () => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Focus management for modal
+  useEffect(() => {
+    if (showProfileModal) {
+      // Focus the modal when it opens
+      const timer = setTimeout(() => {
+        const modal = document.querySelector('[role="region"][aria-label="Profile photo carousel"]') as HTMLElement;
+        if (modal) {
+          modal.focus();
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [showProfileModal]);
+
+  // Carousel navigation functions
+  const goToPrevious = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? profileImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === profileImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentImageIndex(index);
+  };
+
+  // Keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      goToPrevious();
+    } else if (e.key === 'ArrowRight') {
+      goToNext();
+    } else if (e.key === 'Escape') {
+      setIsClosing(true);
+      setTimeout(() => {
+        setShowProfileModal(false);
+        setIsClosing(false);
+      }, 300);
+    }
+  };
 
   const stickers = [
     { id: 1, image: stickerImages[0], initialX: -180, initialY: -80, finalX: -550, finalY: -100 },
@@ -197,7 +252,8 @@ const About = () => {
       {/* Profile Modal */}
       {showProfileModal && (
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-50 p-4 ${isClosing ? 'animate-fadeOut' : 'animate-fadeIn'}`}
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${isClosing ? 'animate-fadeOut' : 'animate-fadeIn'}`}
+          style={{ backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.5)' }}
           onClick={() => {
             setIsClosing(true);
             setTimeout(() => {
@@ -205,18 +261,107 @@ const About = () => {
               setIsClosing(false);
             }, 300);
           }}
+          onKeyDown={handleKeyDown}
+          tabIndex={-1}
         >
-          <div className={`relative max-w-lg ${isClosing ? 'animate-scaleOut' : 'animate-scaleIn'}`}>
-            <img
-              src={profileImage}
-              alt="Profile photo of Layla Le in Korea"
-              className="w-full h-full object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-              loading="lazy"
-              width="512"
-              height="768"
-            />
-           
+          <div className={`relative max-w-md ${isClosing ? 'animate-scaleOut' : 'animate-scaleIn'}`} onClick={(e) => e.stopPropagation()}>
+            {/* Carousel Container */}
+            <div
+              className="relative w-full bg-black rounded-lg shadow-2xl overflow-hidden focus:outline-none"
+              style={{ aspectRatio: '4/5' }}
+              role="region"
+              aria-label="Profile photo carousel"
+              aria-live="polite"
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
+            >
+              {/* Image Display */}
+              <div
+                className="flex transition-transform duration-500 ease-in-out h-full"
+                style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+                role="group"
+                aria-label={`Image ${currentImageIndex + 1} of ${profileImages.length}`}
+              >
+                {profileImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image.src}
+                    alt={`Profile photo ${index + 1} of Layla Le`}
+                    className="w-full h-full object-cover flex-shrink-0"
+                    loading="lazy"
+                    width="400"
+                    height="500"
+                  />
+                ))}
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={goToPrevious}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300"
+                style={{
+                  backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
+                  color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
+                } as React.CSSProperties}
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+
+              <button
+                onClick={goToNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300"
+                style={{
+                  backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
+                  color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
+                } as React.CSSProperties}
+                aria-label="Next image"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+
+              {/* Image Counter */}
+              <div className="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                {currentImageIndex + 1} / {profileImages.length}
+              </div>
+
+              {/* Caption */}
+              <div className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-lg text-base font-medium max-w-[220px] text-center">
+                {profileImages[currentImageIndex].caption}
+              </div>
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-0 mt-4">
+              {profileImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className="transition-all focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2 flex items-center justify-center"
+                  style={{
+                    minWidth: '44px',
+                    minHeight: '44px',
+                    padding: '0',
+                    backgroundColor: 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  } as React.CSSProperties}
+                  aria-label={`Go to image ${index + 1}`}
+                >
+                  <span
+                    className="rounded-full transition-all"
+                    style={{
+                      width: index === currentImageIndex ? '32px' : '12px',
+                      height: '12px',
+                      backgroundColor: index === currentImageIndex ? '#EABEC3' : (isDarkMode ? 'rgba(234, 190, 195, 0.3)' : 'rgb(209, 213, 219)')
+                    }}
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Close Button */}
             <button
               className="absolute top-4 right-4 text-white bg-pink-500 hover:bg-pink-600 rounded-full w-11 h-11 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90"
               aria-label="Close modal"

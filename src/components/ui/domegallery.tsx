@@ -886,8 +886,8 @@ export default function DomeGallery({
                     style={{
                         touchAction: "none",
                         WebkitUserSelect: "none",
-                        maskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)",
-                        WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)",
+                        maskImage: "radial-gradient(ellipse at center, black 30%, transparent 65%)",
+                        WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 65%)",
                     }}
                 >
                     <div className="stage">

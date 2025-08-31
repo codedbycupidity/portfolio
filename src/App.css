@@ -147,8 +147,8 @@ body {
   font-size: 2.5rem;
   background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--dusty-pink-darker) 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: var(--text-pink);
   margin: 0;
   font-weight: normal;
   letter-spacing: 2px;
@@ -159,6 +159,14 @@ body {
   /* Button reset styles for accessibility */
   padding: 0.2rem 0 0 0;
   text-align: left;
+}
+
+/* Apply gradient text effect only when supported */
+@supports (-webkit-background-clip: text) {
+  .signature-name {
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }
 
 .nav-tabs {
