@@ -243,6 +243,7 @@ const About = () => {
                 onClick={() => setShowProfileModal(true)}
                 width="800"
                 height="600"
+                fetchPriority="high"
               />
             </div>
           </div>

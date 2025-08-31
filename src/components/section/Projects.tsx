@@ -301,7 +301,11 @@ const Projects = () => {
             <h2 className="text-4xl font-bold text-foreground dark:text-white">Projects</h2>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button className="inline-flex items-center justify-center bg-transparent border-none outline-none focus:outline-none" style={{ minWidth: '44px', minHeight: '44px' }}>
+                <button 
+                  className="inline-flex items-center justify-center bg-transparent border-none outline-none focus:outline-none" 
+                  style={{ minWidth: '44px', minHeight: '44px' }}
+                  aria-label="Information about project icons"
+                >
                   <Heart
                     className="h-5 w-5 cursor-pointer transition-colors"
                     style={{ color: '#EABEC3' }}
@@ -352,7 +356,7 @@ const Projects = () => {
                       <Badge key={techIndex} variant="secondary" className="text-xs bg-pink-50 dark:bg-gray-700 text-pink-700 dark:text-pink-300 border-pink-200 dark:border-gray-600"
                         style={{
                           backgroundColor: 'rgba(234, 190, 195, 0.1)',
-                          color: '#A6707B',
+                          color: '#8B5A65',
                           borderColor: '#EABEC3'
                         }}>
                         {tech}
