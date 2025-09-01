@@ -138,7 +138,7 @@ const Projects = () => {
     {
       title: "Passport Buddy",
       description: "Enterprise travel platform combining flight tracking with social networking. Features PWA with cross-platform capabilities, 98% accurate OCR boarding pass scanning, and GraphQL real-time sync. Tested with 10,000+ users.",
-      technologies: ["React.js", "Flutter", "TypeScript", "MongoDB", "Apollo Client", "GraphQL", "Docker"],
+      technologies: ["React.js", "Flutter", "TypeScript", "MongoDB", "Apollo Client", "GraphQL", "Docker", "Google Cloud"],
       icon: PassportBuddyIcon,
       detailsUrl: "/projects/passport-buddy",
       githubUrl: socialLinks.repositories.passportBuddy
@@ -154,7 +154,7 @@ const Projects = () => {
     {
       title: "Liora",
       description: "Web-based ASL gesture recognition app with real-time hand tracking and ML capabilities. Features color-coded finger visualization, motion tracking for movement-based gestures, and personalized accuracy training.",
-      technologies: ["JavaScript", "MediaPipe", "TensorFlow.js", "Python"],
+      technologies: ["JavaScript", "MediaPipe", "TensorFlow.js","AWS S3", "Tailwind CSS"],
       icon: LioraIcon,
       detailsUrl: "/projects/liora",
       githubUrl: socialLinks.repositories.liora
