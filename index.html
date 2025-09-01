@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preload" as="image" href="/src/assets/aboutme_journal-800w.webp" type="image/webp" fetchpriority="high">
     <!-- Font preloading to reduce network dependency chain -->
-    <link rel="preload" as="font" href="/assets/punkbabe/PUNKBABE TRIAL.ttf" type="font/truetype" crossorigin>
-    <link rel="preload" as="font" href="/assets/dk_crayonista/DK Crayonista.ttf" type="font/truetype" crossorigin>
+    <link rel="preload" as="font" href="/src/assets/punkbabe/PUNKBABE TRIAL.ttf" type="font/ttf" crossorigin>
+    <link rel="preload" as="font" href="/src/assets/dk_crayonista/DK Crayonista.ttf" type="font/ttf" crossorigin>
     <title>Layla Le</title>
     <style>
       /* Critical CSS for initial render - Above the fold styles */
@@ -53,12 +53,12 @@
       /* Font faces with swap for better performance */
       @font-face {
         font-family: 'Punk Babe';
-        src: url('/assets/punkbabe/PUNKBABE TRIAL.ttf') format('truetype');
+        src: url('/src/assets/punkbabe/PUNKBABE TRIAL.ttf') format('truetype');
         font-display: swap;
       }
       @font-face {
         font-family: 'DK Crayonista';
-        src: url('/assets/dk_crayonista/DK Crayonista.ttf') format('truetype');
+        src: url('/src/assets/dk_crayonista/DK Crayonista.ttf') format('truetype');
         font-display: swap;
       }
     </style>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { useThemeColors } from '../hooks/useThemeColors';
 
 interface BackButtonProps {
   to?: string;
@@ -17,6 +18,7 @@ const BackButton: React.FC<BackButtonProps> = ({
   ariaLabel = 'Navigate back to projects section'
 }) => {
   const { isDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -36,7 +38,7 @@ const BackButton: React.FC<BackButtonProps> = ({
       onClick={handleClick}
       aria-label={ariaLabel}
       className="inline-flex items-center gap-2 hover:opacity-80 mb-8 transition-colors bg-transparent border-none cursor-pointer" 
-      style={{ color: isDarkMode ? '#EABEC3' : 'rgb(190, 24, 93)' }}
+      style={{ color: themeColors.text.pink }}
     >
       <ArrowLeft className="h-5 w-5" aria-hidden="true" />
       <span>{label}</span>

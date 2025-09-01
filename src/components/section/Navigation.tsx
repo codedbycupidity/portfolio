@@ -2,12 +2,14 @@ import { useState, useEffect, useMemo } from 'react';
 import { Menu, X } from 'lucide-react';
 import DarkModeToggle from '../DarkModeToggle';
 import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useThemeColors } from '../../hooks/useThemeColors';
 
 const Navigation = () => {
   const [activeTab, setActiveTab] = useState('about');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
 
   const tabs = useMemo(() => [
     { id: 'about', label: 'About' },
@@ -59,10 +61,11 @@ const Navigation = () => {
         <button className="signature-name"
           style={{ 
             cursor: 'pointer', 
-            color: isDarkMode ? '#EABEC3' : '#A6707B', 
+            color: themeColors.colors.pink[500], 
             background: 'none', 
             border: 'none',
-            WebkitTextFillColor: isDarkMode ? '#EABEC3' : '#A6707B'
+            outline: 'none',
+            WebkitTextFillColor: themeColors.colors.pink[500]
           }}
           onClick={() => window.location.href = '/'}
           aria-label="Layla Le - Go to homepage">
@@ -76,7 +79,7 @@ const Navigation = () => {
               key={tab.id}
               onClick={() => scrollToSection(tab.id)}
               className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
-              style={{ color: isDarkMode ? '#D9A5AC' : undefined }}
+              style={{ color: themeColors.text.accent }}
               aria-label={`Navigate to ${tab.label} section`}
             >
               {tab.label}
@@ -102,7 +105,7 @@ const Navigation = () => {
             cursor: 'pointer',
             padding: '8px',
             display: 'none',
-            color: isDarkMode ? '#EABEC3' : '#8B5A65'
+            color: themeColors.text.tertiary
           }}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -115,8 +118,8 @@ const Navigation = () => {
           display: isMobileMenuOpen ? 'flex' : 'none',
           flexDirection: 'column',
           padding: '1rem',
-          background: isDarkMode ? 'rgba(10, 15, 27, 0.95)' : 'rgba(255, 232, 239, 0.95)',
-          borderTop: `1px solid ${isDarkMode ? 'rgba(234, 190, 195, 0.1)' : 'rgba(255, 194, 209, 0.15)'}`,
+          background: themeColors.navigation.mobile,
+          borderTop: `1px solid ${themeColors.navigation.border}`,
         }}
       >
         {tabs.map((tab) => (
@@ -130,8 +133,8 @@ const Navigation = () => {
               padding: '0.75rem 1rem',
               textAlign: 'left',
               color: activeTab === tab.id 
-                ? (isDarkMode ? '#EABEC3' : '#8B5A65')
-                : (isDarkMode ? '#D9A5AC' : '#A6707B'),
+                ? themeColors.text.tertiary
+                : themeColors.text.accent,
               fontWeight: activeTab === tab.id ? '600' : '500',
               fontSize: '1rem',
               cursor: 'pointer',

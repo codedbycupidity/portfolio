@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import AsciiMorphText from '../AsciiMorphText';
 import TypewriterCarousel from '../TypewriterCarousel';
 import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useThemeColors, withAlpha } from '../../hooks/useThemeColors';
 import { aboutMeJournalPng, aboutMeJournalWebp800, aboutMeJournalWebp400, profile1, profile2, profile3, stickers as stickerImages } from '../../assets';
 
 
@@ -15,6 +16,7 @@ const About = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { isDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
 
   const roles = [
     'Software Engineer',
@@ -164,15 +166,13 @@ const About = () => {
       transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
       width: '80px',
       height: '80px',
-      filter: 'drop-shadow(0 4px 8px rgba(255, 105, 180, 0.3))'
+      filter: `drop-shadow(0 4px 8px ${themeColors.effects.dropShadow})`
     };
   };
 
   return (
     <section id="about" ref={sectionRef} className="min-h-screen" style={{
-      background: isDarkMode
-        ? '#0A0F1B'
-        : 'linear-gradient(180deg, white 0%, white 40%, rgb(254 245 245) 60%, rgb(254 240 240) 100%)',
+      background: themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out'
     }}>
       {/* Hero Section */}
@@ -203,7 +203,7 @@ const About = () => {
                 </Link>
               </div>
             </div>
-            <div style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '200px', color: '#EABEC3' }}>
+            <div style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '200px', color: themeColors.primary }}>
               <pre>{asciiText}</pre>
             </div>
           </div>
@@ -214,7 +214,7 @@ const About = () => {
       <div className="py-12" style={{
         background: isDarkMode
           ? 'transparent'
-          : 'linear-gradient(180deg, transparent 0%, rgb(254 240 240 / 0.5) 50%, rgb(254 235 235) 100%)'
+          : `linear-gradient(180deg, transparent 0%, ${withAlpha(themeColors.colors.pink[50], 0.5)} 50%, ${themeColors.background.gradientEnd} 100%)`
       }}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-center relative min-h-[600px]">
@@ -263,7 +263,7 @@ const About = () => {
       {showProfileModal && (
         <div
           className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${isClosing ? 'animate-fadeOut' : 'animate-fadeIn'}`}
-          style={{ backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.5)' }}
+          style={{ backgroundColor: themeColors.background.overlay }}
           onClick={() => {
             setIsClosing(true);
             setTimeout(() => {
@@ -310,8 +310,10 @@ const About = () => {
                 onClick={goToPrevious}
                 className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300"
                 style={{
-                  backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
-                  color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
+                  backgroundColor: isDarkMode ? withAlpha(themeColors.colors.dark[700], 0.9) : withAlpha(themeColors.colors.white, 0.8),
+                  color: isDarkMode ? themeColors.colors.white : themeColors.colors.dark[700],
+                  border: isDarkMode ? '2px solid #374151' : 'none',
+                  boxShadow: isDarkMode ? `0 4px 12px ${withAlpha(themeColors.colors.black, 0.6)}` : undefined
                 } as React.CSSProperties}
                 aria-label="Previous image"
               >
@@ -322,8 +324,10 @@ const About = () => {
                 onClick={goToNext}
                 className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300"
                 style={{
-                  backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
-                  color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
+                  backgroundColor: isDarkMode ? withAlpha(themeColors.colors.dark[700], 0.9) : withAlpha(themeColors.colors.white, 0.8),
+                  color: isDarkMode ? themeColors.colors.white : themeColors.colors.dark[700],
+                  border: isDarkMode ? '2px solid #374151' : 'none',
+                  boxShadow: isDarkMode ? `0 4px 12px ${withAlpha(themeColors.colors.black, 0.6)}` : undefined
                 } as React.CSSProperties}
                 aria-label="Next image"
               >
@@ -364,7 +368,7 @@ const About = () => {
                     style={{
                       width: index === currentImageIndex ? '32px' : '12px',
                       height: '12px',
-                      backgroundColor: index === currentImageIndex ? '#EABEC3' : (isDarkMode ? 'rgba(234, 190, 195, 0.3)' : 'rgb(209, 213, 219)')
+                      backgroundColor: index === currentImageIndex ? themeColors.colors.pink[300] : (isDarkMode ? withAlpha(themeColors.colors.pink[300], 0.3) : themeColors.colors.dark[300])
                     }}
                   />
                 </button>
@@ -373,7 +377,13 @@ const About = () => {
 
             {/* Close Button */}
             <button
-              className="absolute top-4 right-4 text-white bg-pink-500 hover:bg-pink-600 rounded-full w-11 h-11 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90"
+              className="absolute top-4 right-4 text-white rounded-full w-11 h-11 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90"
+              style={{ 
+                backgroundColor: themeColors.colors.pink[500],
+                transition: 'all 0.3s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = themeColors.colors.pink[600]}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = themeColors.colors.pink[500]}
               aria-label="Close modal"
               onClick={(e) => {
                 e.stopPropagation();

@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import DomeGallery from "../ui/domegallery";
 import { useDarkMode } from "../../contexts/DarkModeContext";
+import { useThemeColors } from "../../hooks/useThemeColors";
+import { withAlpha } from "../../hooks/useThemeColors";
 
 const Skills = () => {
   const [scale, setScale] = useState(0.5);
   const sectionRef = useRef<HTMLDivElement>(null);
   const domeContainerRef = useRef<HTMLDivElement>(null);
   const { isDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,14 +52,23 @@ const Skills = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="skills" className="min-h-screen py-20" style={{
-      background: isDarkMode
-        ? '#0A0F1B'
-        : 'linear-gradient(180deg, rgb(254 245 245) 0%, rgb(254 240 240) 50%, rgb(254 235 235) 100%)',
+    <section ref={sectionRef} id="skills" className="min-h-screen py-20 relative" style={{
+      background: themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out'
     }}>
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12 text-foreground dark:text-white">Skills</h2>
+      {/* Gradient overlay for smooth transition from previous section */}
+      <div 
+        className="absolute top-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '300px',
+          background: isDarkMode 
+            ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
+            : `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`,
+          zIndex: 1
+        }}
+      />
+      <div className="container mx-auto px-6 relative" style={{ zIndex: 2 }}>
+        <h2 className="text-4xl font-bold text-center mb-12" style={{ color: isDarkMode ? themeColors.colors.white : themeColors.colors.pink[500] }}>Skills</h2>
         <div
           ref={domeContainerRef}
           className="relative w-full"
@@ -73,8 +85,8 @@ const Skills = () => {
             className="absolute inset-0 pointer-events-none"
             style={{
               background: isDarkMode
-                ? `radial-gradient(ellipse at center, transparent 40%, rgba(10, 15, 27, 0.1) 70%, rgba(10, 15, 27, 0.6) 90%, rgba(10, 15, 27, 0.8) 100%)`
-                : `radial-gradient(ellipse at center, transparent 40%, rgba(254, 240, 240, 0.1) 70%, rgba(254, 235, 235, 0.6) 90%, rgba(254, 235, 235, 0.8) 100%)`,
+                ? `radial-gradient(ellipse at center, transparent 40%, ${withAlpha(themeColors.colors.dark[900], 0.1)} 70%, ${withAlpha(themeColors.colors.dark[900], 0.6)} 90%, ${withAlpha(themeColors.colors.dark[900], 0.8)} 100%)`
+                : `radial-gradient(ellipse at center, transparent 40%, ${withAlpha(themeColors.colors.pink[50], 0.1)} 70%, ${withAlpha(themeColors.colors.pink[50], 0.6)} 90%, ${withAlpha(themeColors.colors.pink[50], 0.8)} 100%)`,
               maskImage: 'radial-gradient(ellipse at center, black 50%, transparent 85%)',
               WebkitMaskImage: 'radial-gradient(ellipse at center, black 50%, transparent 85%)',
             }}

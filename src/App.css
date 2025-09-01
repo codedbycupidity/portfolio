@@ -15,17 +15,35 @@
 }
 
 :root {
-  /* Color Palette - Dusty pinks */
-  --lavender-blush: #FAE8ED;
-  --mimi-pink: #FDD5DF;
-  --dusty-pink: #EABEC3;  /* Main dusty pink */
-  --dusty-pink-dark: #D9A5AC;  /* Darker dusty pink */
-  --dusty-pink-darker: #C88B95;  /* Even darker for better contrast */
-  
-  /* Light theme colors */
-  --white: #FFFFFF;
-  --light-pink-bg: #FFF5F7;
-  --text-pink: #8B5A65;  /* Even darker dusty pink for WCAG AA contrast */
+  /* Color Palette - Updated to use centralized color system */
+  /* Pink palette - from colors.ts */
+  --color-pink-50: #FFF5F7;        /* Light pink background */
+  --color-pink-100: #FAE8ED;       /* Lavender blush */
+  --color-pink-200: #FDD5DF;       /* Mimi pink */
+  --color-pink-300: #EABEC3;       /* Main dusty pink */
+  --color-pink-400: #D9A5AC;       /* Darker dusty pink */
+  --color-pink-500: #C88B95;       /* Even darker dusty pink */
+  --color-pink-600: #B8727C;       /* Strong dusty pink */
+  --color-pink-700: #A6707B;       /* Navigation text */
+  --color-pink-800: #8B5A65;       /* Main text pink (WCAG AA) */
+
+  /* Dark theme colors */
+  --color-dark-800: #1E293B;       /* Very dark gray */
+  --color-dark-900: #0F172A;       /* Almost black */
+
+  /* Base colors */
+  --color-white: #FFFFFF;
+  --color-transparent: transparent;
+
+  /* Legacy variables for backward compatibility */
+  --lavender-blush: var(--color-pink-100);
+  --mimi-pink: var(--color-pink-200);
+  --dusty-pink: var(--color-pink-300);
+  --dusty-pink-dark: var(--color-pink-400);
+  --dusty-pink-darker: var(--color-pink-500);
+  --white: var(--color-white);
+  --light-pink-bg: var(--color-pink-50);
+  --text-pink: var(--color-pink-800);
 }
 
 * {
@@ -157,14 +175,14 @@ body {
 .signature-name {
   font-family: 'Punk Babe', sans-serif;
   font-size: 2.5rem;
-  background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--dusty-pink-darker) 100%);
+  background: linear-gradient(135deg, var(--color-pink-500) 0%, var(--color-pink-600) 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  color: var(--text-pink);
+  color: var(--color-pink-500);
   margin: 0;
   font-weight: normal;
   letter-spacing: 2px;
-  filter: drop-shadow(0 2px 4px rgba(234, 190, 195, 0.3));
+  filter: drop-shadow(0 2px 4px rgba(200, 139, 149, 0.3));
   flex-shrink: 0;
   line-height: 1;
   padding-top: 0.2rem;
@@ -377,6 +395,21 @@ body {
 
 .hero-action-btn:hover::before {
   left: 0;
+}
+
+/* Dark mode styles for hero action buttons */
+.dark .hero-action-btn {
+  color: #FDD5DF;
+  border-color: #EABEC3;
+}
+
+.dark .hero-action-btn::before {
+  background: #EABEC3;
+}
+
+.dark .hero-action-btn:hover {
+  color: #0A0F1B;
+  border-color: #FDD5DF;
 }
 
 .hero-description {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useThemeColors } from '../../hooks/useThemeColors';
 
 interface ProjectOverviewProps {
   paragraphs: (string | React.ReactNode)[];
@@ -7,6 +8,7 @@ interface ProjectOverviewProps {
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ paragraphs }) => {
   const { isDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
 
   return (
     <>
@@ -14,7 +16,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({ paragraphs }) => {
         <p 
           key={index} 
           className={`leading-relaxed ${index < paragraphs.length - 1 ? 'mb-4' : ''}`} 
-          style={{ color: isDarkMode ? "white" : "rgb(75, 85, 99)" }}
+          style={{ color: isDarkMode ? themeColors.colors.white : themeColors.text.secondary }}
         >
           {paragraph}
         </p>

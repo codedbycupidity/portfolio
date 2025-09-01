@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useThemeColors } from '../../hooks/useThemeColors';
 import BackButton from '../BackButton';
 
 interface ProjectLayoutProps {
@@ -8,6 +9,7 @@ interface ProjectLayoutProps {
 
 const ProjectLayout: React.FC<ProjectLayoutProps> = ({ children }) => {
   const { isDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
 
   // Scroll to top when component mounts
   React.useEffect(() => {
@@ -18,7 +20,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({ children }) => {
     <main 
       aria-label="Project details" 
       className="min-h-screen py-20 transition-colors duration-300" 
-      style={{ backgroundColor: isDarkMode ? '#0A0F1B' : 'rgb(254 245 245)' }}
+      style={{ backgroundColor: isDarkMode ? themeColors.colors.dark[950] : themeColors.colors.pink[50] }}
     >
       <div className="container mx-auto px-6 max-w-4xl">
         <BackButton />

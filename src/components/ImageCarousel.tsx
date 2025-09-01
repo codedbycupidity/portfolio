@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { useThemeColors } from '../hooks/useThemeColors';
 
 interface ImageCarouselProps {
   images: string[];
@@ -10,6 +11,7 @@ interface ImageCarouselProps {
 const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { isDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => 
@@ -28,12 +30,12 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
   };
 
   return (
-    <div className="rounded-lg shadow-lg p-8 mb-8" style={{ backgroundColor: isDarkMode ? 'rgb(31, 41, 55)' : 'white' }}>
-      <h2 className="text-2xl font-semibold mb-6" style={{ color: isDarkMode ? 'white' : 'rgb(31, 41, 55)' }}>Project Screenshots</h2>
+    <div className="rounded-lg shadow-lg p-8 mb-8" style={{ backgroundColor: themeColors.card.background }}>
+      <h2 className="text-2xl font-semibold mb-6" style={{ color: themeColors.text.primary }}>Project Screenshots</h2>
       
       <div className="relative">
         {/* Main Image Display with Sliding Animation */}
-        <div className="relative aspect-video rounded-lg overflow-hidden" style={{ backgroundColor: isDarkMode ? 'rgb(17, 24, 39)' : 'rgb(243, 244, 246)' }}>
+        <div className="relative aspect-video rounded-lg overflow-hidden" style={{ backgroundColor: isDarkMode ? themeColors.colors.dark[900] : themeColors.colors.dark[100] }}>
           <div 
             className="flex transition-transform duration-500 ease-in-out h-full"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -56,8 +58,8 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
             onClick={goToPrevious}
             className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300" 
             style={{ 
-              backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
-              color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
+              backgroundColor: themeColors.button.secondary.background,
+              color: themeColors.button.secondary.text
             } as React.CSSProperties}
             aria-label="Previous image"
           >
@@ -68,8 +70,8 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
             onClick={goToNext}
             className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full shadow-lg transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300" 
             style={{ 
-              backgroundColor: isDarkMode ? 'rgba(234, 190, 195, 0.2)' : 'rgba(255, 255, 255, 0.8)',
-              color: isDarkMode ? '#EABEC3' : 'rgb(31, 41, 55)'
+              backgroundColor: themeColors.button.secondary.background,
+              color: themeColors.button.secondary.text
             } as React.CSSProperties}
             aria-label="Next image"
           >
@@ -105,7 +107,7 @@ const ImageCarousel = ({ images, projectName }: ImageCarouselProps) => {
                 style={{
                   width: index === currentIndex ? '32px' : '12px',
                   height: '12px',
-                  backgroundColor: index === currentIndex ? '#EABEC3' : (isDarkMode ? 'rgba(234, 190, 195, 0.3)' : 'rgb(209, 213, 219)')
+                  backgroundColor: index === currentIndex ? themeColors.primary : themeColors.interactive.primary
                 }}
               />
             </button>

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useThemeColors } from '../../hooks/useThemeColors';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
@@ -11,6 +12,7 @@ import { PassportBuddyIcon, MediMateIcon, PortfolioIcon, LioraIcon } from '../..
 
 const Projects = () => {
   const { isDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
 
   // track all the random background stars
   const [stars, setStars] = useState<Array<{ id: number; x: number; y: number; image: string; isDragging: boolean }>>([]);
@@ -172,9 +174,7 @@ const Projects = () => {
       id="projects"
       className="min-h-screen py-20 relative overflow-hidden transition-colors duration-300"
       style={{
-        background: isDarkMode
-          ? '#0A0F1B'
-          : 'linear-gradient(180deg, rgb(254 235 235) 0%, rgb(254 240 240) 50%, rgb(254 235 235) 100%)',
+        background: themeColors.background.gradient,
         transition: 'background 0.3s ease-in-out'
       }}
       ref={containerRef}
@@ -184,6 +184,17 @@ const Projects = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
+      {/* Gradient overlay for smooth transition from previous section */}
+      <div 
+        className="absolute top-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '300px',
+          background: isDarkMode 
+            ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
+            : `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`,
+          zIndex: 2
+        }}
+      />
       {/* Special Drag Me Star */}
       <div
         className="special-draggable-star"
@@ -248,10 +259,10 @@ const Projects = () => {
           style={{
             fontFamily: "'DK Crayonista', cursive",
             fontSize: '35px',
-            color: isDarkMode ? '#FDD5DF' : '#ec4899',
+            color: themeColors.colors.special.dragMe,
             fontWeight: 'bold',
             userSelect: 'none',
-            textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+            textShadow: `1px 1px 2px ${themeColors.effects.textShadow}`
           }}
         >
           drag me!
@@ -298,7 +309,7 @@ const Projects = () => {
       <TooltipProvider delayDuration={200}>
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex items-center justify-center gap-1 mb-4">
-            <h2 className="text-4xl font-bold text-foreground dark:text-white">Projects</h2>
+            <h2 className="text-4xl font-bold" style={{ color: isDarkMode ? themeColors.colors.white : themeColors.colors.pink[500] }}>Projects</h2>
             <Tooltip>
               <TooltipTrigger asChild>
                 <button 
@@ -308,9 +319,9 @@ const Projects = () => {
                 >
                   <Heart
                     className="h-5 w-5 cursor-pointer transition-colors"
-                    style={{ color: '#EABEC3' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#D9A5AC'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#EABEC3'}
+                    style={{ color: themeColors.primary }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = themeColors.secondary}
+                    onMouseLeave={(e) => e.currentTarget.style.color = themeColors.primary}
                     fill="none"
                   />
                 </button>
@@ -327,7 +338,10 @@ const Projects = () => {
           {/* grid layout for project cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-pink-100 dark:border-gray-700 bg-white dark:bg-gray-800 relative" aria-label={`${project.title} project`}>
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative" style={{
+                backgroundColor: themeColors.card.background,
+                border: `1px solid ${themeColors.card.border}`
+              }} aria-label={`${project.title} project`}>
                 <CardHeader>
                   <div className="flex items-start gap-3">
                     {project.icon && (
@@ -341,7 +355,7 @@ const Projects = () => {
                       />
                     )}
                     <div className="flex-1">
-                      <CardTitle className="text-xl group-hover:text-pink-500 dark:text-gray-100 dark:group-hover:text-pink-400 transition-colors">
+                      <CardTitle className="text-xl dark:text-gray-100 transition-colors group-hover:!text-pink-500 dark:group-hover:!text-pink-400">
                         {project.title}
                       </CardTitle>
                       <CardDescription className="text-gray-600 dark:text-gray-400 mt-2">
@@ -353,11 +367,12 @@ const Projects = () => {
                 <CardContent>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs bg-pink-50 dark:bg-gray-700 text-pink-700 dark:text-pink-300 border-pink-200 dark:border-gray-600"
+                      <Badge key={techIndex} variant="secondary" className="text-xs"
                         style={{
-                          backgroundColor: 'rgba(234, 190, 195, 0.1)',
-                          color: '#8B5A65',
-                          borderColor: '#EABEC3'
+                          backgroundColor: themeColors.interactive.primary,
+                          color: themeColors.text.accent,
+                          borderColor: themeColors.primary,
+                          border: '1px solid'
                         }}>
                         {tech}
                       </Badge>
@@ -368,7 +383,7 @@ const Projects = () => {
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />
                       Details
                     </Link>
-                    <a href={project.githubUrl} className="project-btn-outline flex items-center gap-1" style={{ textDecoration: 'none', color: 'inherit' }} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source code on GitHub`}>
+                    <a href={project.githubUrl} className="project-btn-outline flex items-center gap-1" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source code on GitHub`}>
                       <Github className="h-4 w-4" aria-hidden="true" />
                       Code
                     </a>
@@ -379,6 +394,18 @@ const Projects = () => {
           </div>
         </div>
       </TooltipProvider>
+      
+      {/* Gradient overlay for smooth transition to next section */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '300px',
+          background: isDarkMode 
+            ? `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`
+            : `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`,
+          zIndex: 1
+        }}
+      />
     </section>
   );
 };

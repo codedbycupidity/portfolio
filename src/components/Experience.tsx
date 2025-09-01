@@ -1,9 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Calendar, MapPin } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { useThemeColors } from '../hooks/useThemeColors';
 
 const Experience = () => {
   const { isDarkMode } = useDarkMode();
+  const themeColors = useThemeColors();
   const experiences = [
     {
       title: "Undergraduate Research Assistant",
@@ -19,14 +21,34 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-8" style={{ 
-      background: isDarkMode 
-        ? '#0A0F1B' 
-        : 'linear-gradient(180deg, rgb(254 235 235) 0%, rgb(254 240 240) 50%, rgb(254 245 245) 100%)',
+    <section id="experience" className="py-8 relative" style={{ 
+      background: themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out'
     }}>
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-6 text-foreground dark:text-white">Experience</h2>
+      {/* Gradient overlay for smooth transition from previous section */}
+      <div 
+        className="absolute top-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '300px',
+          background: isDarkMode 
+            ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
+            : `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`,
+          zIndex: 1
+        }}
+      />
+      {/* Gradient overlay for smooth transition to next section */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '300px',
+          background: isDarkMode 
+            ? `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`
+            : `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`,
+          zIndex: 1
+        }}
+      />
+      <div className="container mx-auto px-6 relative" style={{ zIndex: 2 }}>
+        <h2 className="text-4xl font-bold text-center mb-6" style={{ color: isDarkMode ? themeColors.colors.white : themeColors.colors.pink[500] }}>Experience</h2>
 
         <div className="max-w-4xl mx-auto space-y-4">
           {experiences.map((exp, index) => (
@@ -34,7 +56,7 @@ const Experience = () => {
               <CardHeader className="pb-2">
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-2xl text-pink-600" style={{ color: isDarkMode ? '#EABEC3' : undefined }}>{exp.title}</CardTitle>
+                    <CardTitle className="text-2xl" style={{ color: isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.pink[400] }}>{exp.title}</CardTitle>
                     <p className="text-lg font-semibold text-gray-700 dark:text-gray-300 mt-1">{exp.company}</p>
                   </div>
                   <div className="text-right">
@@ -53,7 +75,7 @@ const Experience = () => {
                 <ul className="space-y-1">
                   {exp.description.map((item, i) => (
                     <li key={i} className="flex items-start">
-                      <span className="mr-2" style={{ color: '#EABEC3' }}>•</span>
+                      <span className="mr-2" style={{ color: themeColors.primary }}>•</span>
                       <span className="text-gray-700 dark:text-gray-300 text-sm">{item}</span>
                     </li>
                   ))}

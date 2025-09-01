@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { colors } from '../styles/colors';
 
 interface AsciiMorphTextProps {
   text: string;
@@ -38,11 +39,11 @@ const AsciiMorphText: React.FC<AsciiMorphTextProps> = ({ text }) => {
           if (iterations < 10) {
             span.textContent = chars[Math.floor(Math.random() * chars.length)];
             span.style.opacity = '1';
-            span.style.color = '#C88B95'; // Darker dusty pink
+            span.style.color = colors.pink[500]; // Darker dusty pink
           } else {
             span.textContent = letter;
             span.style.opacity = '1';
-            span.style.color = '#EABEC3'; // Dusty pink
+            span.style.color = colors.pink[300]; // Dusty pink
             clearInterval(interval);
           }
           iterations++;
@@ -62,7 +63,7 @@ const AsciiMorphText: React.FC<AsciiMorphTextProps> = ({ text }) => {
         letterSpacing: '0.05em',
         textAlign: 'center',
         margin: '0.5rem 0',
-        textShadow: '0 0 15px rgba(255, 194, 209, 0.3)',
+        textShadow: `0 0 15px ${colors.effects.glow}`,
       }}
     />
   );
