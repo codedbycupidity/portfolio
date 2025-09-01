@@ -176,8 +176,8 @@ export const colors = {
   card: {
     light: {
       background: '#FFFFFF',
-      border: 'rgba(234, 190, 195, 0.2)',
-      shadow: 'rgba(234, 190, 195, 0.1)',
+      border: 'rgba(234, 190, 195, 0.3)',
+      shadow: 'rgba(0, 0, 0, 0.1)',
     },
     dark: {
       background: '#1F2937',

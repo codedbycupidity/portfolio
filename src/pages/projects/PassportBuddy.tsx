@@ -1,5 +1,5 @@
 import { Globe, Calendar, Users, Plane } from 'lucide-react';
-import { PassportBuddyIcon, comingSoon } from '../../assets';
+import { PassportBuddyIcon, passportBuddyImages } from '../../assets';
 import ImageCarousel from '../../components/ImageCarousel';
 import ProjectLayout from '../../components/project/ProjectLayout';
 import ProjectHeader from '../../components/project/ProjectHeader';
@@ -10,13 +10,7 @@ import TechnicalHighlights from '../../components/project/TechnicalHighlights';
 import { socialLinks } from '../../config/socialLinks';
 
 const PassportBuddy = () => {
-  const projectImages = [
-    comingSoon,
-    comingSoon,
-    comingSoon,
-    comingSoon,
-    comingSoon,
-  ];
+  const projectImages = passportBuddyImages;
 
   const features = [
     {

@@ -9,6 +9,14 @@ import comingSoon from './coming_soon.png';
 import dividerPng from './divider-optimized.png';
 import dividerWebp from './divider.webp';
 
+// PassportBuddy project images
+import passportbuddy1 from './project_snapshots/passportbuddy/passportbuddy_snapshot_1.png';
+import passportbuddy2 from './project_snapshots/passportbuddy/passportbuddy_snapshot_2.png';
+import passportbuddy3 from './project_snapshots/passportbuddy/passportbuddy_snapshot_3.png';
+import passportbuddy4 from './project_snapshots/passportbuddy/passportbuddy_snapshot_4.png';
+import passportbuddy5 from './project_snapshots/passportbuddy/passportbuddy_snapshot_5.png';
+import passportbuddy6 from './project_snapshots/passportbuddy/passportbuddy_snapshot_6.png';
+
 // For backward compatibility
 const aboutMeJournal = aboutMeJournalPng;
 const divider = dividerPng;
@@ -34,6 +42,16 @@ export const mainAssets = {
   dividerWebp,
 };
 
+// PassportBuddy images export
+export const passportBuddyImages = [
+  passportbuddy1,
+  passportbuddy2,
+  passportbuddy3,
+  passportbuddy4,
+  passportbuddy5,
+  passportbuddy6,
+];
+
 export {
   aboutMeJournal,
   aboutMeJournalPng,
@@ -46,6 +64,12 @@ export {
   divider,
   dividerPng,
   dividerWebp,
+  passportbuddy1,
+  passportbuddy2,
+  passportbuddy3,
+  passportbuddy4,
+  passportbuddy5,
+  passportbuddy6,
 };
 
 export default {
