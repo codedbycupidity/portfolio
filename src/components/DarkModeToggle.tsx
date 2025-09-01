@@ -26,6 +26,9 @@ const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ checked, onChange }) =>
         style={{ outline: 'none' }}
         aria-label={`Switch to ${checked ? 'light' : 'dark'} mode`}
         title={`Switch to ${checked ? 'light' : 'dark'} mode`}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+        placeholder={undefined}
       />
     </div>
   );

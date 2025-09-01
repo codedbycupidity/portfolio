@@ -38,7 +38,7 @@ const Contact = () => {
 
         {/* Contact Header */}
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4" style={{ color: themeColors.colors.pink[500] }}>Let's Connect!</h1>
+          <h1 className="text-4xl font-bold mb-4" style={{ color: isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.pink[600] }}>Let's Connect!</h1>
           <p className="text-lg" style={{ color: themeColors.text.secondary }}>
           </p>
         </header>

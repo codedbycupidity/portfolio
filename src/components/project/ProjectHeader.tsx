@@ -1,6 +1,5 @@
 import React from 'react';
 import { Github, type LucideIcon } from 'lucide-react';
-import { useDarkMode } from '../../contexts/DarkModeContext';
 import { useThemeColors } from '../../hooks/useThemeColors';
 
 interface ProjectHeaderProps {
@@ -22,7 +21,6 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   githubUrl, 
   features 
 }) => {
-  const { isDarkMode } = useDarkMode();
   const themeColors = useThemeColors();
 
   return (

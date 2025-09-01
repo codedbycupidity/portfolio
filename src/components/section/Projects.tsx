@@ -259,7 +259,7 @@ const Projects = () => {
           style={{
             fontFamily: "'DK Crayonista', cursive",
             fontSize: '35px',
-            color: themeColors.colors.special.dragMe,
+            color: isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.special.dragMe,
             fontWeight: 'bold',
             userSelect: 'none',
             textShadow: `1px 1px 2px ${themeColors.effects.textShadow}`
@@ -358,7 +358,7 @@ const Projects = () => {
                       <CardTitle className="text-xl dark:text-gray-100 transition-colors group-hover:!text-pink-500 dark:group-hover:!text-pink-400">
                         {project.title}
                       </CardTitle>
-                      <CardDescription className="text-gray-600 dark:text-gray-400 mt-2">
+                      <CardDescription className="text-gray-600 dark:text-gray-300 mt-2">
                         {project.description}
                       </CardDescription>
                     </div>

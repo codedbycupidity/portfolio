@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { useDarkMode } from '../contexts/DarkModeContext';
 import { useThemeColors } from '../hooks/useThemeColors';
 
 interface BackButtonProps {
@@ -17,7 +16,6 @@ const BackButton: React.FC<BackButtonProps> = ({
   label = 'Back to Projects',
   ariaLabel = 'Navigate back to projects section'
 }) => {
-  const { isDarkMode } = useDarkMode();
   const themeColors = useThemeColors();
   const navigate = useNavigate();
 

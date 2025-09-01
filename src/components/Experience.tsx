@@ -57,7 +57,7 @@ const Experience = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-2xl" style={{ color: isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.pink[400] }}>{exp.title}</CardTitle>
-                    <p className="text-lg font-semibold text-gray-700 dark:text-gray-300 mt-1">{exp.company}</p>
+                    <p className="text-lg font-semibold text-gray-700 dark:text-gray-400 mt-1">{exp.company}</p>
                   </div>
                   <div className="text-right">
                     <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
@@ -76,7 +76,7 @@ const Experience = () => {
                   {exp.description.map((item, i) => (
                     <li key={i} className="flex items-start">
                       <span className="mr-2" style={{ color: themeColors.primary }}>•</span>
-                      <span className="text-gray-700 dark:text-gray-300 text-sm">{item}</span>
+                      <span className="text-sm" style={{ color: isDarkMode ? themeColors.colors.dark[200] : themeColors.colors.dark[600] }}>{item}</span>
                     </li>
                   ))}
                 </ul>
