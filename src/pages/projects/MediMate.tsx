@@ -1,5 +1,5 @@
 import { Pill, Brain, Bell, Shield } from 'lucide-react';
-import { MediMateIcon, comingSoon } from '../../assets';
+import { MediMateIcon, mediMateImages } from '../../assets';
 import ImageCarousel from '../../components/ImageCarousel';
 import ProjectLayout from '../../components/project/ProjectLayout';
 import ProjectHeader from '../../components/project/ProjectHeader';
@@ -10,13 +10,7 @@ import TechnicalHighlights from '../../components/project/TechnicalHighlights';
 import { socialLinks } from '../../config/socialLinks';
 
 const MediMate = () => {
-  const projectImages = [
-    comingSoon,
-    comingSoon,
-    comingSoon,
-    comingSoon,
-    comingSoon,
-  ];
+  const projectImages = mediMateImages;
 
   const features = [
     {

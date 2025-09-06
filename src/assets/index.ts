@@ -17,6 +17,14 @@ import passportbuddy4 from './project_snapshots/passportbuddy/passportbuddy_snap
 import passportbuddy5 from './project_snapshots/passportbuddy/passportbuddy_snapshot_5.png';
 import passportbuddy6 from './project_snapshots/passportbuddy/passportbuddy_snapshot_6.png';
 
+// MediMate project images
+import medimate1 from './project_snapshots/medimate/medimate_snapshot_1.png';
+import medimate2 from './project_snapshots/medimate/medimate_snapshot_2.png';
+import medimate3 from './project_snapshots/medimate/medimate_snapshot_3.png';
+import medimate4 from './project_snapshots/medimate/medimate_snapshot_4.png';
+import medimate5 from './project_snapshots/medimate/medimate_snapshot_5.png';
+import medimate6 from './project_snapshots/medimate/medimate_snapshot_6.png';
+
 // For backward compatibility
 const aboutMeJournal = aboutMeJournalPng;
 const divider = dividerPng;
@@ -52,6 +60,16 @@ export const passportBuddyImages = [
   passportbuddy6,
 ];
 
+// MediMate images export
+export const mediMateImages = [
+  medimate1,
+  medimate2,
+  medimate3,
+  medimate4,
+  medimate5,
+  medimate6,
+];
+
 export {
   aboutMeJournal,
   aboutMeJournalPng,
@@ -70,6 +88,12 @@ export {
   passportbuddy4,
   passportbuddy5,
   passportbuddy6,
+  medimate1,
+  medimate2,
+  medimate3,
+  medimate4,
+  medimate5,
+  medimate6,
 };
 
 export default {
