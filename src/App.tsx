@@ -4,7 +4,7 @@ import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext'
 import { useThemeColors } from './hooks/useThemeColors'
 import Navigation from './components/section/Navigation'
 import About from './components/section/About'
-import divider from './assets/divider.PNG'
+import { divider } from './assets'
 import './App.css'
 
 // Lazy load project pages

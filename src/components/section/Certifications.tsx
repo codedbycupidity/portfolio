@@ -1,7 +1,7 @@
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import { useThemeColors } from '../../hooks/useThemeColors';
-import awsCloudFoundationsBadge from '../../assets/badges/AWS_cloud_foundations_badge.png';
-import awsCloudPractitionerBadge from '../../assets/badges/AWS_cloud_practitioner_badge.png';
+import awsCloudFoundationsBadge from '../../assets/badges/AWS_cloud_foundations_badge.webp';
+import awsCloudPractitionerBadge from '../../assets/badges/AWS_cloud_practitioner_badge.webp';
 
 const Certifications = () => {
   const { isDarkMode } = useDarkMode();
@@ -66,10 +66,11 @@ const Certifications = () => {
                     <img
                       src={badge.image}
                       alt={badge.alt}
-                      className="w-40 h-40 object-contain transition-transform duration-300 group-hover:scale-105"
+                      className="w-32 h-32 md:w-40 md:h-40 object-contain transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                       width="160"
                       height="160"
+                      sizes="(max-width: 768px) 128px, 160px"
                     />
                   </div>
                   <h3 className="text-center text-sm font-medium mb-2" style={{ color: isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.pink[500] }}>

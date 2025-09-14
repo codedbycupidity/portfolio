@@ -1,13 +1,14 @@
 // Main assets module - consolidates common assets
-import aboutMeJournalPng from './aboutme_journal-optimized.png';
+import aboutMeJournalPng from './aboutme_journal-small.png';
 import aboutMeJournalWebp800 from './aboutme_journal-800w.webp';
 import aboutMeJournalWebp400 from './aboutme_journal-400w.webp';
 import profile1 from './profile1.jpg';
 import profile2 from './profile2.jpg';
 import profile3 from './profile3.jpg';
 import comingSoon from './coming_soon.png';
-import dividerPng from './divider-optimized.png';
-import dividerWebp from './divider.webp';
+import dividerPng from './divider.PNG';
+import dividerWebp from './divider-original.webp';
+import divider from './divider-original.webp';
 
 // PassportBuddy project images
 import passportbuddy1 from './project_snapshots/passportbuddy/passportbuddy_snapshot_1.png';
@@ -27,7 +28,6 @@ import medimate6 from './project_snapshots/medimate/medimate_snapshot_6.png';
 
 // For backward compatibility
 const aboutMeJournal = aboutMeJournalPng;
-const divider = dividerPng;
 
 // Re-export all asset modules
 export * from './stars';

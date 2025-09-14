@@ -19,7 +19,7 @@ const Projects = () => {
   const [draggedStar, setDraggedStar] = useState<number | null>(null);
 
   // the special "drag me" star that starts in top right
-  const [specialStar, setSpecialStar] = useState<{ x: number; y: number }>({ x: 85, y: 7 });
+  const [specialStar, setSpecialStar] = useState<{ x: number; y: number }>({ x: 85, y: 10 });
   const [isDraggingSpecial, setIsDraggingSpecial] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);

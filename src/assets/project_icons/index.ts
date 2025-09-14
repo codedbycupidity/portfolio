@@ -1,8 +1,8 @@
 // Project icons module - consolidates all project icon imports
-import PassportBuddyIcon from './PassportBuddyIcon.png';
-import MediMateIcon from './MediMateIcon.png';
-import PortfolioIcon from './PortfolioIcon.png';
-import LioraIcon from './LioraIcon.png';
+import PassportBuddyIcon from './PassportBuddyIcon.webp';
+import MediMateIcon from './MediMateIcon.webp';
+import PortfolioIcon from './PortfolioIcon.webp';
+import LioraIcon from './LioraIcon.webp';
 
 export {
   PassportBuddyIcon,
