@@ -172,7 +172,7 @@ const About = () => {
 
   return (
     <section id="about" ref={sectionRef} className="min-h-screen" style={{
-      background: themeColors.background.gradient,
+      background: themeColors.background.sections?.about || themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out'
     }}>
       {/* Hero Section */}
@@ -184,7 +184,10 @@ const About = () => {
                 <AsciiMorphText text="Hi, I'm Layla" />
               </div>
               <div className="hero-subtitle justify-start">
-                <span>I am a<TypewriterCarousel roles={roles} /></span>
+                <div className="flex flex-wrap items-center">
+                  <span className={isDarkMode ? 'hero-subtitle-dark' : 'hero-subtitle-light'}>I am a&nbsp;</span>
+                  <TypewriterCarousel roles={roles} className={isDarkMode ? 'hero-subtitle-dark' : 'hero-subtitle-light'} />
+                </div>
               </div>
               <div className="hero-buttons">
                 <button
@@ -203,7 +206,7 @@ const About = () => {
                 </Link>
               </div>
             </div>
-            <div style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '200px', color: themeColors.primary }}>
+            <div style={{ fontSize: '1rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '200px', color: isDarkMode ? themeColors.primary : themeColors.colors.pink[500] }}>
               <pre>{asciiText}</pre>
             </div>
           </div>
@@ -214,7 +217,7 @@ const About = () => {
       <div className="py-12" style={{
         background: isDarkMode
           ? 'transparent'
-          : `linear-gradient(180deg, transparent 0%, ${withAlpha(themeColors.colors.pink[50], 0.5)} 50%, ${themeColors.background.gradientEnd} 100%)`
+          : `linear-gradient(180deg, transparent 0%, ${withAlpha(themeColors.colors.pink[50], 0.5)} 50%, ${themeColors.colors.pink[25]} 100%)`
       }}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-center relative min-h-[600px]">

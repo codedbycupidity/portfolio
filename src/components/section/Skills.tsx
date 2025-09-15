@@ -53,7 +53,7 @@ const Skills = () => {
 
   return (
     <section ref={sectionRef} id="skills" className="min-h-screen py-20 relative" style={{
-      background: themeColors.background.gradient,
+      background: themeColors.background.sections?.skills || themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out'
     }}>
       {/* Gradient overlay for smooth transition from previous section */}
@@ -63,7 +63,7 @@ const Skills = () => {
           height: '300px',
           background: isDarkMode 
             ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
-            : `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`,
+            : `linear-gradient(180deg, ${themeColors.colors.pink[25]} 0%, transparent 100%)`,
           zIndex: 1
         }}
       />

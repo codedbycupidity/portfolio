@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Calendar, MapPin } from 'lucide-react';
-import { useDarkMode } from '../contexts/DarkModeContext';
-import { useThemeColors } from '../hooks/useThemeColors';
+import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useThemeColors } from '../../hooks/useThemeColors';
 
 const Experience = () => {
   const { isDarkMode } = useDarkMode();
@@ -13,37 +13,37 @@ const Experience = () => {
       location: "Orlando, FL",
       period: "May 2025 - Present",
       description: [
-        "Operated BioPac biometric systems (ECG, EEG headband, electrodermal sensors, respiratory monitoring) to capture physiological data during cognitive load experiments",
-        "Facilitated research studies analyzing programmer performance and stress responses while participants solved C programming challenges",
-        "Established data collection protocols and performed equipment calibration for human-computer interaction research",
+        "Operated BIOPAC systems with AcqKnowledge to capture ECG, EDA, respiration, and fNIR data from 20+ participants, ensuring accurate signal collection",
+        "Applied Tobii Pro Lab for eye-tracking analysis and assisted with fNIR studies using COBI Studio Modern and fnirSoft, achieving 95%+ reliability in measurements",
+        "Completed 3 CITI Program certifications and 15+ practice trials to master research protocols while maintaining safety and ethical standards",
       ]
     }
   ];
 
   return (
-    <section id="experience" className="py-8 relative" style={{ 
-      background: themeColors.background.gradient,
+    <section id="experience" className="py-8 relative" style={{
+      background: themeColors.background.sections?.experience || themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out'
     }}>
-      {/* Gradient overlay for smooth transition from previous section */}
-      <div 
+      {/* Subtle gradient overlay for top edge blending */}
+      <div
         className="absolute top-0 left-0 right-0 pointer-events-none"
         style={{
-          height: '300px',
-          background: isDarkMode 
+          height: '60px',
+          background: isDarkMode
             ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
-            : `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`,
+            : `linear-gradient(180deg, ${themeColors.colors.pink[25]} 0%, transparent 100%)`,
           zIndex: 1
         }}
       />
-      {/* Gradient overlay for smooth transition to next section */}
-      <div 
+      {/* Subtle gradient overlay for bottom edge blending to white divider */}
+      <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
-          height: '300px',
-          background: isDarkMode 
+          height: '60px',
+          background: isDarkMode
             ? `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`
-            : `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`,
+            : `linear-gradient(180deg, transparent 0%, ${themeColors.colors.white} 100%)`,
           zIndex: 1
         }}
       />

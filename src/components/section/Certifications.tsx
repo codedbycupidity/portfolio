@@ -29,31 +29,9 @@ const Certifications = () => {
 
   return (
     <section id="certifications" className="py-8 relative" style={{
-      background: themeColors.background.gradient,
+      background: themeColors.background.sections?.certifications || themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out'
     }}>
-      {/* Gradient overlay for smooth transition from previous section */}
-      <div
-        className="absolute top-0 left-0 right-0 pointer-events-none"
-        style={{
-          height: '300px',
-          background: isDarkMode
-            ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
-            : `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`,
-          zIndex: 1
-        }}
-      />
-      {/* Gradient overlay for smooth transition to next section */}
-      <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{
-          height: '300px',
-          background: isDarkMode
-            ? `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`
-            : `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`,
-          zIndex: 1
-        }}
-      />
       <div className="container mx-auto px-6 relative" style={{ zIndex: 2 }}>
         <h2 className="text-4xl font-bold text-center mb-6" style={{ color: isDarkMode ? themeColors.colors.white : themeColors.colors.pink[500] }}>Certifications & Credentials</h2>
 
@@ -88,7 +66,9 @@ const Certifications = () => {
                   href={badge.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block transition-transform duration-300 hover:scale-105 cursor-pointer"
+                  className="block transition-transform duration-300 hover:scale-105 cursor-pointer focus:outline-none"
+                  style={{ outline: 'none' }}
+                  onFocus={(e) => e.currentTarget.blur()}
                   aria-label={`View ${badge.title} credential`}
                 >
                   <BadgeComponent />
@@ -102,6 +82,17 @@ const Certifications = () => {
           </div>
         </div>
       </div>
+      {/* Bottom gradient overlay for smooth transition to next section */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '60px',
+          background: isDarkMode
+            ? `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`
+            : `linear-gradient(180deg, transparent 0%, ${themeColors.colors.pink[25]} 100%)`,
+          zIndex: 1
+        }}
+      />
     </section>
   );
 };

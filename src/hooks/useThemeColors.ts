@@ -16,30 +16,39 @@ export const useThemeColors = () => {
   return {
     // Theme-specific colors
     ...themeColors,
-    
+
     // Base colors (theme-independent)
     colors,
-    
+
     // Utilities
     theme,
     isDarkMode,
-    
+
     // Quick access to common colors
     primary: colors.pink[300], // Main dusty pink
     secondary: colors.pink[400], // Darker dusty pink
     accent: colors.pink[200], // Mimi pink
-    
+
     // Semantic helpers
     textPrimary: themeColors.text.primary,
     textSecondary: themeColors.text.secondary,
     bgPrimary: themeColors.background.primary,
     bgSecondary: themeColors.background.secondary,
-    
+
+    // Background gradients with proper white midpoints
+    background: {
+      ...themeColors.background,
+      // Override gradient to use proper color definitions
+      gradient: colors.background[theme].gradient,
+      gradientEnd: colors.background[theme].gradientEnd,
+      sections: colors.background[theme].sections,
+    },
+
     // Interactive state colors
     hover: themeColors.interactive.hover,
     active: themeColors.interactive.active,
     focus: themeColors.interactive.focus,
-    
+
     // Effects (theme-independent)
     effects: colors.effects,
   };

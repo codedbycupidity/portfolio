@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext'
 import { useThemeColors } from './hooks/useThemeColors'
+import { colors } from './styles/colors'
 import Navigation from './components/section/Navigation'
 import About from './components/section/About'
 import { divider } from './assets'
@@ -16,7 +17,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 
 // Lazy load below-the-fold components for better initial load
 const Projects = lazy(() => import('./components/section/Projects'))
-const Experience = lazy(() => import('./components/Experience'))
+const Experience = lazy(() => import('./components/section/Experience'))
 const Skills = lazy(() => import('./components/section/Skills'))
 const Certifications = lazy(() => import('./components/section/Certifications'))
 const Footer = lazy(() => import('./components/Footer'))
@@ -36,17 +37,17 @@ function HomePage() {
       </Suspense>
       {/* Divider with gradient transitions */}
       <div className="w-full py-8 relative" style={{
-        background: themeColors.background.gradient,
+        background: isDarkMode ? themeColors.background.gradientEnd : colors.white,
         transition: 'background 0.3s ease-in-out'
       }}>
         {/* Top gradient overlay to blend with Experience section */}
-        <div 
+        <div
           className="absolute top-0 left-0 right-0 pointer-events-none"
           style={{
-            height: '200px',
-            background: isDarkMode 
+            height: '60px',
+            background: isDarkMode
               ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
-              : `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`,
+              : `linear-gradient(180deg, ${colors.white} 0%, transparent 100%)`,
             zIndex: 1
           }}
         />
@@ -57,11 +58,23 @@ function HomePage() {
             height: '200px',
             background: isDarkMode 
               ? `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`
-              : `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`,
+              : `linear-gradient(180deg, transparent 0%, ${themeColors.colors.pink[25]} 100%)`,
             zIndex: 1
           }}
         />
-        <img src={divider} alt="Section divider" className="w-full h-auto relative" style={{ zIndex: 2 }} width="1200" height="100" loading="lazy" />
+        <img
+          src={divider}
+          alt="Section divider"
+          className="w-full h-auto relative"
+          style={{
+            zIndex: 2,
+            filter: isDarkMode ? 'invert(1) hue-rotate(180deg)' : 'none',
+            opacity: isDarkMode ? 0.7 : 1
+          }}
+          width="1200"
+          height="100"
+          loading="lazy"
+        />
       </div>
       <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
         <Skills />

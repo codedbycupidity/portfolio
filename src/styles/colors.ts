@@ -13,6 +13,7 @@ export const colors = {
 
   // Primary Pink Palette
   pink: {
+    25: '#FEF8FA',        // Very light pink transition color (rgb(254 248 250))
     50: '#FFF5F7',        // Light pink background
     100: '#FAE8ED',       // Lavender blush
     200: '#FDD5DF',       // Mimi pink
@@ -48,11 +49,13 @@ export const colors = {
       gradient: 'linear-gradient(180deg, rgb(254 245 245) 0%, rgb(254 240 240) 50%, rgb(254 235 235) 100%)',
       gradientEnd: 'rgb(254 235 235)', // End color of the main gradient for seamless transitions
       overlay: 'rgba(255, 255, 255, 0.5)',
-      // Section-specific gradients that flow into each other
+      // Section-specific gradients - mostly white with very light pink brush at edges
       sections: {
-        about: 'linear-gradient(180deg, rgb(255 255 255) 0%, rgb(254 245 245) 30%, rgb(254 240 240) 100%)',
-        skills: 'linear-gradient(180deg, rgb(254 240 240) 0%, rgb(254 235 235) 50%, rgb(254 230 230) 100%)',
-        projects: 'linear-gradient(180deg, rgb(254 230 230) 0%, rgb(254 225 225) 50%, rgb(254 220 220) 100%)',
+        about: 'linear-gradient(180deg, rgb(255 255 255) 0%, rgb(254 250 252) 30%, #FEF8FA 100%)',
+        skills: 'linear-gradient(180deg, rgb(254 248 250) 0%, rgb(254 252 253) 30%, rgb(254 252 253) 70%, rgb(255 255 255) 100%)',
+        projects: 'linear-gradient(180deg, rgb(254 248 250) 0%, rgb(255 255 255) 15%, rgb(255 255 255) 85%, rgb(254 248 250) 100%)',
+        experience: 'linear-gradient(180deg, rgb(254 248 250) 0%, rgb(254 252 253) 25%, rgb(254 252 253) 75%, rgb(254 248 250) 100%)',
+        certifications: 'linear-gradient(180deg, rgb(255 255 255) 0%, rgb(255 255 255) 60%, rgb(254 252 253) 100%)',
       },
     },
     dark: {
@@ -66,6 +69,8 @@ export const colors = {
         about: '#0A0F1B',
         skills: '#0A0F1B',
         projects: '#0A0F1B',
+        experience: '#0A0F1B',
+        certifications: '#0A0F1B',
       },
     },
   },

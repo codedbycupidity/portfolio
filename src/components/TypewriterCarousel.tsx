@@ -5,13 +5,15 @@ interface TypewriterCarouselProps {
   typingSpeed?: number;
   deletingSpeed?: number;
   pauseDuration?: number;
+  className?: string;
 }
 
-const TypewriterCarousel = ({ 
-  roles, 
-  typingSpeed = 100, 
-  deletingSpeed = 50, 
-  pauseDuration = 2000 
+const TypewriterCarousel = ({
+  roles,
+  typingSpeed = 100,
+  deletingSpeed = 50,
+  pauseDuration = 2000,
+  className = ''
 }: TypewriterCarouselProps) => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -56,7 +58,7 @@ const TypewriterCarousel = ({
   }, [displayText, isDeleting, isPaused, currentRoleIndex, roles, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <span className="typewriter">
+    <span className={`typewriter ${className}`}>
       {displayText}
       <span className="cursor">|</span>
     </span>

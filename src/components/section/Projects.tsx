@@ -19,7 +19,7 @@ const Projects = () => {
   const [draggedStar, setDraggedStar] = useState<number | null>(null);
 
   // the special "drag me" star that starts in top right
-  const [specialStar, setSpecialStar] = useState<{ x: number; y: number }>({ x: 85, y: 10 });
+  const [specialStar, setSpecialStar] = useState<{ x: number; y: number }>({ x: 85, y: 8 });
   const [isDraggingSpecial, setIsDraggingSpecial] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -174,7 +174,7 @@ const Projects = () => {
       id="projects"
       className="min-h-screen py-20 relative overflow-hidden transition-colors duration-300"
       style={{
-        background: themeColors.background.gradient,
+        background: themeColors.background.sections?.projects || themeColors.background.gradient,
         transition: 'background 0.3s ease-in-out'
       }}
       ref={containerRef}
@@ -191,7 +191,7 @@ const Projects = () => {
           height: '300px',
           background: isDarkMode 
             ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
-            : `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`,
+            : `linear-gradient(180deg, ${themeColors.colors.pink[25]} 0%, transparent 100%)`,
           zIndex: 2
         }}
       />
@@ -204,7 +204,7 @@ const Projects = () => {
           top: `${specialStar.y}%`,
           width: '44px',
           height: '44px',
-          zIndex: 2,
+          zIndex: 15,
           cursor: isDraggingSpecial ? 'grabbing' : 'grab',
           transform: isDraggingSpecial ? 'scale(1.2)' : 'scale(1)',
           transition: isDraggingSpecial ? 'none' : 'transform 0.2s ease',
@@ -235,7 +235,7 @@ const Projects = () => {
           position: 'absolute',
           left: '85%',
           top: '5%',
-          zIndex: 3,
+          zIndex: 16,
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
@@ -402,7 +402,7 @@ const Projects = () => {
           height: '300px',
           background: isDarkMode 
             ? `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`
-            : `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`,
+            : `linear-gradient(180deg, transparent 0%, ${themeColors.colors.pink[25]} 100%)`,
           zIndex: 1
         }}
       />

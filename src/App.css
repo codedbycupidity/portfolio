@@ -347,6 +347,25 @@ body {
   align-items: center;
 }
 
+/* Theme-specific overrides for hero subtitle */
+.hero-subtitle-light {
+  background: linear-gradient(135deg, var(--color-pink-600) 0%, var(--color-pink-800) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.hero-subtitle-dark {
+  background: linear-gradient(135deg, var(--color-pink-300) 0%, var(--color-pink-500) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
 .hero-buttons {
   display: flex;
   gap: 1rem;

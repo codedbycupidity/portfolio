@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import DarkModeToggle from '../DarkModeToggle';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import { useThemeColors } from '../../hooks/useThemeColors';
@@ -10,6 +11,8 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const themeColors = useThemeColors();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const tabs = useMemo(() => [
     { id: 'about', label: 'About' },
@@ -44,11 +47,24 @@ const Navigation = () => {
   }, [tabs]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false); // Close mobile menu after navigation
+    // If we're not on the home page, navigate there first
+    if (location.pathname !== '/') {
+      navigate('/', { replace: true });
+      // Wait for navigation and then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // We're already on the home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+    setIsMobileMenuOpen(false); // Close mobile menu after navigation
   };
 
   const toggleMobileMenu = () => {

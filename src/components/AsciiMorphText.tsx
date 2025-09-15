@@ -43,7 +43,7 @@ const AsciiMorphText: React.FC<AsciiMorphTextProps> = ({ text }) => {
           } else {
             span.textContent = letter;
             span.style.opacity = '1';
-            span.style.color = colors.pink[300]; // Dusty pink
+            span.style.color = colors.pink[600]; // Darker dusty pink
             clearInterval(interval);
           }
           iterations++;
