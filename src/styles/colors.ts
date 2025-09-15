@@ -118,7 +118,7 @@ export const colors = {
       borderScrolled: 'rgba(255, 194, 209, 0.2)',
       shadow: 'rgba(255, 194, 209, 0.08)',
       shadowScrolled: 'rgba(255, 194, 209, 0.12)',
-      mobile: 'rgba(255, 232, 239, 0.95)',
+      mobile: 'rgba(254, 248, 250, 0.95)',
     },
     dark: {
       background: 'rgba(10, 15, 27, 0.4)',

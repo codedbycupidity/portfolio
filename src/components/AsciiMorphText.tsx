@@ -61,7 +61,7 @@ const AsciiMorphText: React.FC<AsciiMorphTextProps> = ({ text }) => {
         fontWeight: 'bold',
         fontFamily: 'monospace',
         letterSpacing: '0.05em',
-        textAlign: 'center',
+        textAlign: 'left',
         margin: '0.5rem 0',
         textShadow: `0 0 15px ${colors.effects.glow}`,
       }}

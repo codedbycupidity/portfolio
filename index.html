@@ -4,9 +4,17 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Preload critical images -->
+    <!-- DNS prefetch and preconnect for faster resource loading -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload critical images with better sizing -->
     <link rel="preload" as="image" href="/src/assets/aboutme_journal-400w.webp" type="image/webp" fetchpriority="high" media="(max-width: 768px)">
     <link rel="preload" as="image" href="/src/assets/aboutme_journal-800w.webp" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
+    <!-- Preload first few stickers for above-the-fold content -->
+    <link rel="preload" as="image" href="/src/assets/sticker_1.webp" type="image/webp">
+    <link rel="preload" as="image" href="/src/assets/sticker_2.webp" type="image/webp">
+    <link rel="preload" as="image" href="/src/assets/sticker_3.webp" type="image/webp">
+    <link rel="preload" as="image" href="/src/assets/sticker_4.webp" type="image/webp">
     <!-- Font preloading to reduce network dependency chain -->
     <link rel="preload" as="font" href="/src/assets/punkbabe/PUNKBABE TRIAL.ttf" type="font/ttf" crossorigin>
     <link rel="preload" as="font" href="/src/assets/dk_crayonista/DK Crayonista.ttf" type="font/ttf" crossorigin>
@@ -52,6 +60,16 @@
       .will-change-transform { will-change: transform; }
       .will-change-opacity { will-change: opacity; }
       .gpu-accelerated { transform: translateZ(0); }
+      /* Optimize repaints and reflows */
+      img, picture {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 200px;
+      }
+      /* Optimize animations */
+      * {
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+      }
       /* Font faces with swap for better performance */
       @font-face {
         font-family: 'Punk Babe';
