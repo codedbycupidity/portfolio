@@ -3,7 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import DarkModeToggle from '../DarkModeToggle';
 import { useDarkMode } from '../../contexts/DarkModeContext';
-import { useThemeColors } from '../../hooks/useThemeColors';
+import { useThemeColors, withAlpha } from '../../hooks/useThemeColors';
 
 const Navigation = () => {
   const [activeTab, setActiveTab] = useState('about');
@@ -83,7 +83,26 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`} aria-label="Main navigation">
+    <nav
+      className={`navigation ${isScrolled ? 'scrolled' : ''}`}
+      aria-label="Main navigation"
+      style={{
+        position: 'fixed',
+        top: '0px',
+        left: '0px',
+        right: '0px',
+        width: '100%',
+        zIndex: 99999,
+        padding: '1rem 0',
+        borderBottom: `1px solid ${isScrolled ? themeColors.navigation.borderScrolled : themeColors.navigation.border}`,
+        boxShadow: `0 ${isScrolled ? '8px 32px' : '4px 24px'} ${isScrolled ? themeColors.navigation.shadowScrolled : themeColors.navigation.shadow}`,
+        backdropFilter: 'saturate(200%) blur(30px)',
+        WebkitBackdropFilter: 'saturate(200%) blur(30px)',
+        transition: 'all 0.3s ease',
+        background: `linear-gradient(135deg,
+          ${withAlpha(isDarkMode ? themeColors.colors.dark[950] : themeColors.colors.pink[50], isScrolled ? 0.7 : 0.5)},
+          ${withAlpha(isDarkMode ? themeColors.colors.dark[900] : themeColors.colors.pink[25], isScrolled ? 0.7 : 0.5)})`
+      }}>
       <div className="nav-container">
         <button className="signature-name"
           style={{ 
@@ -134,8 +153,7 @@ const Navigation = () => {
             padding: '10px',
             display: 'none',
             color: themeColors.colors.pink[500],
-            transition: 'all 0.3s ease',
-            transform: isMobileMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)'
+            transition: 'all 0.3s ease'
           }}
         >
           <div style={{ position: 'relative', width: '24px', height: '24px' }}>
@@ -173,12 +191,9 @@ const Navigation = () => {
           maxHeight: isMobileMenuOpen ? '400px' : '0',
           overflow: isMobileMenuOpen ? 'visible' : 'hidden',
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-          transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
           opacity: isMobileMenuOpen ? 1 : 0,
           boxShadow: isMobileMenuOpen
-            ? isDarkMode
-              ? '0 8px 25px rgba(0, 0, 0, 0.3)'
-              : '0 8px 25px rgba(234, 190, 195, 0.15)'
+            ? `0 8px 25px ${themeColors.navigation.shadowScrolled}`
             : 'none',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
@@ -191,9 +206,10 @@ const Navigation = () => {
             className={`mobile-nav-tab ${activeTab === tab.id ? 'active' : ''}`}
             style={{
               background: activeTab === tab.id
-                ? isDarkMode
-                  ? 'rgba(254, 248, 250, 0.05)'
-                  : 'rgba(254, 248, 250, 0.8)'
+                ? withAlpha(
+                    isDarkMode ? themeColors.colors.pink[50] : themeColors.colors.pink[50],
+                    isDarkMode ? 0.05 : 0.8
+                  )
                 : 'none',
               border: activeTab === tab.id
                 ? `1px solid ${themeColors.colors.pink[200]}`
@@ -208,7 +224,6 @@ const Navigation = () => {
               fontSize: '1rem',
               cursor: 'pointer',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-20px)',
               opacity: isMobileMenuOpen ? 1 : 0,
               transitionDelay: isMobileMenuOpen ? `${index * 0.1}s` : '0s',
               marginBottom: '0.5rem',
@@ -220,18 +235,17 @@ const Navigation = () => {
             }}
             onMouseEnter={(e) => {
               if (activeTab !== tab.id) {
-                e.currentTarget.style.background = isDarkMode
-                  ? 'rgba(254, 248, 250, 0.03)'
-                  : 'rgba(254, 248, 250, 0.5)';
+                e.currentTarget.style.background = withAlpha(
+                  themeColors.colors.pink[50],
+                  isDarkMode ? 0.03 : 0.5
+                );
                 e.currentTarget.style.borderColor = themeColors.colors.pink[200];
-                e.currentTarget.style.transform = isMobileMenuOpen ? 'translateX(4px)' : 'translateX(-20px)';
               }
             }}
             onMouseLeave={(e) => {
               if (activeTab !== tab.id) {
                 e.currentTarget.style.background = 'none';
                 e.currentTarget.style.borderColor = 'transparent';
-                e.currentTarget.style.transform = isMobileMenuOpen ? 'translateX(0)' : 'translateX(-20px)';
               }
             }}
             onFocus={(e) => e.currentTarget.blur()}
@@ -245,7 +259,6 @@ const Navigation = () => {
           style={{
             borderTop: `1px solid ${themeColors.colors.pink[200]}`,
             paddingTop: '1rem',
-            transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-20px)',
             opacity: isMobileMenuOpen ? 1 : 0,
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             transitionDelay: isMobileMenuOpen ? '0.4s' : '0s',

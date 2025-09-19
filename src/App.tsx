@@ -90,25 +90,27 @@ function AppContent() {
   const { isDarkMode } = useDarkMode();
 
   return (
-    <div className="app transition-colors duration-300" style={{ backgroundColor: isDarkMode ? '#101727' : undefined }}>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
+    <>
       <Navigation />
-      <main id="main-content" className="main-content">
-        <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/projects/passport-buddy" element={<PassportBuddy />} />
-            <Route path="/projects/medi-mate" element={<MediMate />} />
-            <Route path="/projects/liora" element={<Liora />} />
-            <Route path="/projects/portfolio" element={<Portfolio />} />
-          </Routes>
+      <div className="app transition-colors duration-300" style={{ backgroundColor: isDarkMode ? '#101727' : undefined }}>
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+        <main id="main-content" className="main-content">
+          <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/projects/passport-buddy" element={<PassportBuddy />} />
+              <Route path="/projects/medi-mate" element={<MediMate />} />
+              <Route path="/projects/liora" element={<Liora />} />
+              <Route path="/projects/portfolio" element={<Portfolio />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <Suspense fallback={<div className="h-32 flex items-center justify-center">Loading...</div>}>
+          <Footer />
         </Suspense>
-      </main>
-      <Suspense fallback={<div className="h-32 flex items-center justify-center">Loading...</div>}>
-        <Footer />
-      </Suspense>
-    </div>
+      </div>
+    </>
   )
 }
 

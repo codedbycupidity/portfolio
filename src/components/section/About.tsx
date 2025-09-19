@@ -202,8 +202,9 @@ const About = () => {
     <section id="about" ref={sectionRef} className="min-h-screen" style={{
       background: themeColors.background.sections?.about || themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out',
-      overflowX: 'hidden',
-      width: '100%'
+      overflow: 'hidden',
+      width: '100%',
+      maxWidth: '100vw'
     }}>
       {/* Hero Section */}
       <div className="py-10 md:py-20">

@@ -65,11 +65,7 @@
         content-visibility: auto;
         contain-intrinsic-size: 0 200px;
       }
-      /* Optimize animations */
-      * {
-        transform-style: preserve-3d;
-        backface-visibility: hidden;
-      }
+      /* Optimize animations - removed global transform-style that breaks fixed positioning */
       /* Font faces with swap for better performance */
       @font-face {
         font-family: 'Punk Babe';
