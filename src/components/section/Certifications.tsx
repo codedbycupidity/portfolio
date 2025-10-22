@@ -22,8 +22,8 @@ const Certifications = () => {
       image: awsCloudPractitionerBadge,
       alt: 'AWS Cloud Practitioner Badge',
       title: 'AWS Certified Cloud Practitioner',
-      credentialUrl: null,
-      status: 'in-progress'
+      credentialUrl: 'https://www.credly.com/badges/5a732787-159d-4730-b064-3224ca430a1e/public_url',
+      status: 'completed'
     }
   ];
 
