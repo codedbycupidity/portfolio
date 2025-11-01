@@ -3,12 +3,14 @@ import PassportBuddyIcon from './PassportBuddyIcon.webp';
 import MediMateIcon from './MediMateIcon.webp';
 import PortfolioIcon from './PortfolioIcon.webp';
 import LioraIcon from './LioraIcon.webp';
+import AlignrIcon from './AlignrIcon.webp';
 
 export {
   PassportBuddyIcon,
   MediMateIcon,
   PortfolioIcon,
   LioraIcon,
+  AlignrIcon,
 };
 
 export default {
@@ -16,4 +18,5 @@ export default {
   MediMateIcon,
   PortfolioIcon,
   LioraIcon,
+  AlignrIcon,
 };

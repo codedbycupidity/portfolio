@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/
 import { ExternalLink, Github, Heart } from 'lucide-react';
 import { socialLinks } from '../../config/socialLinks';
 import { lightStars, darkStars, specialStars } from '../../assets/stars';
-import { PassportBuddyIcon, MediMateIcon, PortfolioIcon, LioraIcon } from '../../assets/project_icons';
+import { PassportBuddyIcon, MediMateIcon, PortfolioIcon, LioraIcon, AlignrIcon } from '../../assets/project_icons';
 
 const Projects = () => {
   const { isDarkMode } = useDarkMode();
@@ -137,16 +137,16 @@ const Projects = () => {
   const projects = [
     {
       title: "Passport Buddy",
-      description: "Enterprise travel platform combining flight tracking with social networking. Features PWA with cross-platform capabilities, 98% accurate OCR boarding pass scanning, and GraphQL real-time sync. Tested with 10,000+ users.",
-      technologies: ["React.js", "Flutter", "TypeScript", "MongoDB", "Apollo Client", "GraphQL", "Docker", "Google Cloud"],
+      description: "Enterprise-grade travel platform combining flight tracking with social networking. Features interactive 3D globe, GraphQL API sync, cross-platform PWA with OCR boarding pass scanning, and Docker containerization with CI/CD.",
+      technologies: ["React.js", "Flutter", "TypeScript", "Dart", "MongoDB", "GraphQL", "Three.js", "Docker", "Google Cloud"],
       icon: PassportBuddyIcon,
       detailsUrl: "/projects/passport-buddy",
       githubUrl: socialLinks.repositories.passportBuddy
     },
     {
       title: "Medi-Mate",
-      description: "Full-stack medication reminder platform with AI-powered scheduling and prescription conflict detection. Features Pinecone vector search achieving 95% accuracy in duplicate detection, containerized microservices architecture.",
-      technologies: ["React.js", "React Native", "TypeScript", "Node.js", "Express.js", "MongoDB", "Pinecone", "Docker", "OpenAI"],
+      description: "Electronic Health Record mock system with patient, doctor, and admin portals. Features Firebase multi-factor authentication with real-time FCM notifications, vector-based conflict detection using Pinecone and OpenAI, and Node.js microservices architecture.",
+      technologies: ["React.js", "React Native", "TypeScript", "Node.js", "Firebase", "Pinecone", "OpenAI", "Docker"],
       icon: MediMateIcon,
       detailsUrl: "/projects/medi-mate",
       githubUrl: socialLinks.repositories.mediMate
@@ -166,6 +166,14 @@ const Projects = () => {
       icon: PortfolioIcon,
       detailsUrl: "/projects/portfolio",
       githubUrl: socialLinks.repositories.portfolio
+    },
+    {
+      title: "Alignr",
+      description: "AI-powered collaborative event planning canvas developed for KnightHacks 2025. Features real-time coordination with 8 interactive block types, dual AI architecture (Google Gemini 2.0 + Snowflake Cortex), availability heatmaps, and universal calendar export.",
+      technologies: ["React", "TypeScript", "Firebase", "Google Gemini", "Snowflake", "Tailwind CSS", "Docker"],
+      icon: AlignrIcon,
+      detailsUrl: "/projects/alignr",
+      githubUrl: socialLinks.repositories.alignr
     }
   ];
 
@@ -338,7 +346,7 @@ const Projects = () => {
           {/* grid layout for project cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative" style={{
+              <Card key={index} className={`group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative ${index === projects.length - 1 && projects.length % 2 === 1 ? 'md:col-span-2 md:max-w-[calc(50%-1rem)] md:mx-auto' : ''}`} style={{
                 backgroundColor: themeColors.card.background,
                 border: `1px solid ${themeColors.card.border}`
               }} aria-label={`${project.title} project`}>

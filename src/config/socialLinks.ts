@@ -11,6 +11,7 @@ export const socialLinks = {
     mediMate: import.meta.env.VITE_GITHUB_MEDIMATE_URL,
     liora: import.meta.env.VITE_GITHUB_LIORA_URL,
     portfolio: import.meta.env.VITE_GITHUB_PORTFOLIO_URL,
+    alignr: import.meta.env.VITE_GITHUB_ALIGNR_URL,
   },
   
   // Formatted display names (extracted from environment variables)

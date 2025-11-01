@@ -13,6 +13,7 @@ const PassportBuddy = lazy(() => import('./pages/projects/PassportBuddy'))
 const MediMate = lazy(() => import('./pages/projects/MediMate'))
 const Liora = lazy(() => import('./pages/projects/Liora'))
 const Portfolio = lazy(() => import('./pages/projects/Portfolio'))
+const Alignr = lazy(() => import('./pages/projects/Alignr'))
 const Contact = lazy(() => import('./pages/Contact'))
 
 // Lazy load below-the-fold components for better initial load
@@ -103,6 +104,7 @@ function AppContent() {
               <Route path="/projects/medi-mate" element={<MediMate />} />
               <Route path="/projects/liora" element={<Liora />} />
               <Route path="/projects/portfolio" element={<Portfolio />} />
+              <Route path="/projects/alignr" element={<Alignr />} />
             </Routes>
           </Suspense>
         </main>
