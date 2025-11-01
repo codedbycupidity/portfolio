@@ -1,4 +1,4 @@
-import { Calendar, Users, Sparkles, LayoutGrid, Vote, DollarSign, Camera, MapPin } from 'lucide-react';
+import { Calendar, Users, Sparkles, LayoutGrid } from 'lucide-react';
 import { AlignrIcon, alignrImages } from '../../assets';
 import ImageCarousel from '../../components/ImageCarousel';
 import ProjectLayout from '../../components/project/ProjectLayout';
