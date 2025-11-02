@@ -5,10 +5,11 @@ import { useThemeColors } from '../../hooks/useThemeColors';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
-import { ExternalLink, Github, Heart } from 'lucide-react';
+import { ExternalLink, Code, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { socialLinks } from '../../config/socialLinks';
 import { lightStars, darkStars, specialStars } from '../../assets/stars';
 import { PassportBuddyIcon, MediMateIcon, PortfolioIcon, LioraIcon, AlignrIcon } from '../../assets/project_icons';
+import { comingSoon } from '../../assets';
 
 const Projects = () => {
   const { isDarkMode } = useDarkMode();
@@ -18,11 +19,17 @@ const Projects = () => {
   const [stars, setStars] = useState<Array<{ id: number; x: number; y: number; image: string; isDragging: boolean }>>([]);
   const [draggedStar, setDraggedStar] = useState<number | null>(null);
 
-  // the special "drag me" star that starts in top right
+  // the special "drag me" star
   const [specialStar, setSpecialStar] = useState<{ x: number; y: number }>({ x: 85, y: 8 });
   const [isDraggingSpecial, setIsDraggingSpecial] = useState(false);
 
+  // carousel state
+  const [currentPage, setCurrentPage] = useState(0);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
+  const projectsPerPage = 4;
+
   const containerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
 
   useEffect(() => {
     // spawn stars when component mounts or dark mode changes
@@ -60,85 +67,172 @@ const Projects = () => {
     setStars(generatedStars);
   }, [isDarkMode]);
 
-  const handleMouseDown = (e: React.MouseEvent, starId: number) => {
-    e.preventDefault();
-    setDraggedStar(starId);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-
-    // figure out where the mouse is as a percentage
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-    // move whichever star we're dragging
-    if (isDraggingSpecial) {
-      setSpecialStar({ x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) });
-    } else if (draggedStar !== null) {
-      setStars(prevStars =>
-        prevStars.map(star =>
-          star.id === draggedStar
-            ? { ...star, x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) }
-            : star
-        )
-      );
-    }
-  };
-
-  const handleMouseUp = () => {
-    setDraggedStar(null);
-    setIsDraggingSpecial(false);
-  };
-
+  // Drag handlers for special star
   const handleSpecialStarMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
+    e.stopPropagation();
     setIsDraggingSpecial(true);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent, starId: number) => {
-    e.preventDefault();
-    setDraggedStar(starId);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!containerRef.current) return;
-
-    const touch = e.touches[0];
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = ((touch.clientX - rect.left) / rect.width) * 100;
-    const y = ((touch.clientY - rect.top) / rect.height) * 100;
-
-    if (isDraggingSpecial) {
-      setSpecialStar({ x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) });
-    } else if (draggedStar !== null) {
-      setStars(prevStars =>
-        prevStars.map(star =>
-          star.id === draggedStar
-            ? { ...star, x: Math.min(95, Math.max(0, x)), y: Math.min(95, Math.max(0, y)) }
-            : star
-        )
-      );
-    }
-  };
-
-  const handleTouchEnd = () => {
-    setDraggedStar(null);
-    setIsDraggingSpecial(false);
+    isDraggingRef.current = true;
   };
 
   const handleSpecialStarTouchStart = (e: React.TouchEvent) => {
-    e.preventDefault();
+    e.stopPropagation();
     setIsDraggingSpecial(true);
+    isDraggingRef.current = true;
   };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDraggingSpecial && containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        // Keep within bounds
+        const clampedX = Math.max(0, Math.min(95, x));
+        const clampedY = Math.max(0, Math.min(95, y));
+
+        setSpecialStar({ x: clampedX, y: clampedY });
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isDraggingSpecial && containerRef.current && e.touches.length > 0) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = ((touch.clientX - rect.left) / rect.width) * 100;
+        const y = ((touch.clientY - rect.top) / rect.height) * 100;
+
+        // Keep within bounds
+        const clampedX = Math.max(0, Math.min(95, x));
+        const clampedY = Math.max(0, Math.min(95, y));
+
+        setSpecialStar({ x: clampedX, y: clampedY });
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDraggingSpecial(false);
+      isDraggingRef.current = false;
+    };
+
+    const handleTouchEnd = () => {
+      setIsDraggingSpecial(false);
+      isDraggingRef.current = false;
+    };
+
+    if (isDraggingSpecial) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener('touchend', handleTouchEnd);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isDraggingSpecial]);
+
+  // Drag handlers for regular stars
+  const handleStarMouseDown = (starId: number) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDraggedStar(starId);
+    isDraggingRef.current = true;
+    setStars(prevStars =>
+      prevStars.map(s => s.id === starId ? { ...s, isDragging: true } : s)
+    );
+  };
+
+  const handleStarTouchStart = (starId: number) => (e: React.TouchEvent) => {
+    e.stopPropagation();
+    setDraggedStar(starId);
+    isDraggingRef.current = true;
+    setStars(prevStars =>
+      prevStars.map(s => s.id === starId ? { ...s, isDragging: true } : s)
+    );
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (draggedStar !== null && containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        // Keep within bounds
+        const clampedX = Math.max(0, Math.min(95, x));
+        const clampedY = Math.max(0, Math.min(95, y));
+
+        setStars(prevStars =>
+          prevStars.map(s =>
+            s.id === draggedStar ? { ...s, x: clampedX, y: clampedY } : s
+          )
+        );
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (draggedStar !== null && containerRef.current && e.touches.length > 0) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = ((touch.clientX - rect.left) / rect.width) * 100;
+        const y = ((touch.clientY - rect.top) / rect.height) * 100;
+
+        // Keep within bounds
+        const clampedX = Math.max(0, Math.min(95, x));
+        const clampedY = Math.max(0, Math.min(95, y));
+
+        setStars(prevStars =>
+          prevStars.map(s =>
+            s.id === draggedStar ? { ...s, x: clampedX, y: clampedY } : s
+          )
+        );
+      }
+    };
+
+    const handleMouseUp = () => {
+      if (draggedStar !== null) {
+        setStars(prevStars =>
+          prevStars.map(s => s.id === draggedStar ? { ...s, isDragging: false } : s)
+        );
+        setDraggedStar(null);
+        isDraggingRef.current = false;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      if (draggedStar !== null) {
+        setStars(prevStars =>
+          prevStars.map(s => s.id === draggedStar ? { ...s, isDragging: false } : s)
+        );
+        setDraggedStar(null);
+        isDraggingRef.current = false;
+      }
+    };
+
+    if (draggedStar !== null) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener('touchend', handleTouchEnd);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [draggedStar]);
 
   // project data - these are the main cards
   const projects = [
     {
       title: "Passport Buddy",
       description: "Enterprise-grade travel platform combining flight tracking with social networking. Features interactive 3D globe, GraphQL API sync, cross-platform PWA with OCR boarding pass scanning, and Docker containerization with CI/CD.",
-      technologies: ["React.js", "Flutter", "TypeScript", "Dart", "MongoDB", "GraphQL", "Three.js", "Docker", "Google Cloud"],
+      technologies: ["React.js", "Flutter", "TypeScript", "Dart", "MongoDB", "GraphQL", "Three.js", "Docker", "Google Cloud Vison"],
       icon: PassportBuddyIcon,
       detailsUrl: "/projects/passport-buddy",
       githubUrl: socialLinks.repositories.passportBuddy
@@ -154,18 +248,10 @@ const Projects = () => {
     {
       title: "Liora",
       description: "Web-based ASL gesture recognition app with real-time hand tracking and ML capabilities. Features color-coded finger visualization, motion tracking for movement-based gestures, and personalized accuracy training.",
-      technologies: ["JavaScript", "MediaPipe", "TensorFlow.js","AWS S3", "Tailwind CSS"],
+      technologies: ["JavaScript", "MediaPipe", "TensorFlow.js","AWS S3", "Tailwind CSS", "HTML"],
       icon: LioraIcon,
       detailsUrl: "/projects/liora",
       githubUrl: socialLinks.repositories.liora
-    },
-    {
-      title: "Personal Portfolio",
-      description: "This portfolio website that you see built with React and TypeScript! Features interactive UI elements, draggable stars, smooth animations, and a clean design focused on user experience.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-      icon: PortfolioIcon,
-      detailsUrl: "/projects/portfolio",
-      githubUrl: socialLinks.repositories.portfolio
     },
     {
       title: "Alignr",
@@ -174,38 +260,70 @@ const Projects = () => {
       icon: AlignrIcon,
       detailsUrl: "/projects/alignr",
       githubUrl: socialLinks.repositories.alignr
+    },
+    {
+      title: "Personal Portfolio",
+      description: "This portfolio website that you see built with React and TypeScript! Features interactive UI elements, draggable stars, smooth animations, and a clean design focused on user experience.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+      icon: PortfolioIcon,
+      detailsUrl: "/projects/portfolio",
+      githubUrl: socialLinks.repositories.portfolio
     }
   ];
+
+  // Calculate carousel pagination
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const startIndex = currentPage * projectsPerPage;
+  const endIndex = startIndex + projectsPerPage;
+  const currentProjects = projects.slice(startIndex, endIndex);
+
+  // Create placeholder cards for "Coming Soon" projects
+  const placeholderCount = projectsPerPage - currentProjects.length;
+  const placeholders = Array.from({ length: placeholderCount }, (_, i) => ({
+    id: `placeholder-${i}`,
+    isPlaceholder: true
+  }));
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setDirection('left');
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setDirection('right');
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
 
   return (
     <section
       id="projects"
-      className="min-h-screen py-20 relative overflow-hidden transition-colors duration-300"
+      className="py-20 relative transition-colors duration-300"
       style={{
         background: themeColors.background.sections?.projects || themeColors.background.gradient,
         transition: 'background 0.3s ease-in-out'
       }}
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
     >
       {/* Gradient overlay for smooth transition from previous section */}
-      <div 
+      <div
         className="absolute top-0 left-0 right-0 pointer-events-none"
         style={{
-          height: '300px',
-          background: isDarkMode 
+          height: '150px',
+          background: isDarkMode
             ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
             : `linear-gradient(180deg, ${themeColors.colors.pink[25]} 0%, transparent 100%)`,
           zIndex: 2
         }}
       />
-      {/* Special Drag Me Star */}
+      {/* Special Drag Me Star - Interactive with Click Me arrow */}
       <div
         className="special-draggable-star"
+        onMouseDown={handleSpecialStarMouseDown}
+        onTouchStart={handleSpecialStarTouchStart}
         style={{
           position: 'absolute',
           left: `${specialStar.x}%`,
@@ -214,13 +332,9 @@ const Projects = () => {
           height: '44px',
           zIndex: 15,
           cursor: isDraggingSpecial ? 'grabbing' : 'grab',
-          transform: isDraggingSpecial ? 'scale(1.2)' : 'scale(1)',
-          transition: isDraggingSpecial ? 'none' : 'transform 0.2s ease',
           userSelect: 'none',
           animation: 'twinkle 3s infinite'
         }}
-        onMouseDown={handleSpecialStarMouseDown}
-        onTouchStart={handleSpecialStarTouchStart}
       >
         <img
           src={isDarkMode ? specialStars.dragMeStarDark : specialStars.dragMeStar}
@@ -260,17 +374,15 @@ const Projects = () => {
           }}
           draggable={false}
           loading="lazy"
-          width="45"
-          height="45"
         />
         <span
           style={{
             fontFamily: "'DK Crayonista', cursive",
-            fontSize: '35px',
-            color: isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.special.dragMe,
+            fontSize: '26px',
+            color: isDarkMode ? '#FDD5DF' : '#ec4899',
             fontWeight: 'bold',
             userSelect: 'none',
-            textShadow: `1px 1px 2px ${themeColors.effects.textShadow}`
+            textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
           }}
         >
           drag me!
@@ -282,20 +394,18 @@ const Projects = () => {
         <div
           key={star.id}
           className="draggable-star"
+          onMouseDown={handleStarMouseDown(star.id)}
+          onTouchStart={handleStarTouchStart(star.id)}
           style={{
             position: 'absolute',
             left: `${star.x}%`,
             top: `${star.y}%`,
             width: '50px',
             height: '50px',
-            cursor: draggedStar === star.id ? 'grabbing' : 'grab',
-            zIndex: draggedStar === star.id ? 5 : 1,  // keep stars behind content
-            transform: draggedStar === star.id ? 'scale(1.2)' : 'scale(1)',
-            transition: draggedStar === star.id ? 'none' : 'transform 0.2s ease',
+            zIndex: 1,
+            cursor: star.isDragging ? 'grabbing' : 'grab',
             userSelect: 'none'
           }}
-          onMouseDown={(e) => handleMouseDown(e, star.id)}
-          onTouchStart={(e) => handleTouchStart(e, star.id)}
         >
           <img
             src={star.image}
@@ -344,9 +454,15 @@ const Projects = () => {
           </p>
 
           {/* grid layout for project cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {projects.map((project, index) => (
-              <Card key={index} className={`group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative ${index === projects.length - 1 && projects.length % 2 === 1 ? 'md:col-span-2 md:max-w-[calc(50%-1rem)] md:mx-auto' : ''}`} style={{
+          <div
+            key={currentPage}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-8"
+            style={{
+              animation: `slideIn${direction === 'right' ? 'Right' : 'Left'} 0.4s ease-out`
+            }}
+          >
+            {currentProjects.map((project, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative" style={{
                 backgroundColor: themeColors.card.background,
                 border: `1px solid ${themeColors.card.border}`
               }} aria-label={`${project.title} project`}>
@@ -372,8 +488,8 @@ const Projects = () => {
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                <CardContent style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div className="flex flex-wrap gap-2 mb-4" style={{ flex: '1 0 auto' }}>
                     {project.technologies.map((tech, techIndex) => (
                       <Badge key={techIndex} variant="secondary" className="text-xs"
                         style={{
@@ -386,29 +502,158 @@ const Projects = () => {
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex gap-3" style={{ marginTop: 'auto', paddingTop: '8px' }}>
                     <Link to={project.detailsUrl} className="project-btn flex items-center gap-1" style={{ textDecoration: 'none', color: 'white' }} aria-label={`View ${project.title} project details`}>
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />
                       Details
                     </Link>
                     <a href={project.githubUrl} className="project-btn-outline flex items-center gap-1" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source code on GitHub`}>
-                      <Github className="h-4 w-4" aria-hidden="true" />
+                      <Code className="h-4 w-4" aria-hidden="true" />
                       Code
                     </a>
                   </div>
                 </CardContent>
               </Card>
             ))}
+
+            {/* Placeholder "Coming Soon" cards */}
+            {placeholders.map((placeholder) => (
+              <Card key={placeholder.id} className="group relative" style={{
+                backgroundColor: themeColors.card.background,
+                border: `1px dashed ${themeColors.card.border}`,
+                opacity: 0.5
+              }} aria-label="Coming soon project">
+                <CardHeader>
+                  <div className="flex items-start gap-3">
+                    <img
+                      src={comingSoon}
+                      alt="Coming soon"
+                      className="w-12 h-12 rounded-lg object-cover opacity-60"
+                      loading="lazy"
+                      width="48"
+                      height="48"
+                    />
+                    <div className="flex-1">
+                      <CardTitle className="text-xl" style={{ color: isDarkMode ? themeColors.colors.white : themeColors.colors.dark[600] }}>
+                        Coming Soon
+                      </CardTitle>
+                      <CardDescription className="text-gray-600 dark:text-gray-300 mt-2">
+                        More exciting projects on the way! Check back soon to see what I'm working on next.
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div className="flex flex-wrap gap-2 mb-4" style={{ flex: '1 0 auto' }}>
+                    <Badge variant="secondary" className="text-xs" style={{
+                      backgroundColor: themeColors.interactive.primary,
+                      color: themeColors.text.accent,
+                      borderColor: themeColors.primary,
+                      border: '1px solid',
+                      opacity: 0.5
+                    }}>
+                      TBA
+                    </Badge>
+                  </div>
+                  <div className="flex gap-3 opacity-30" style={{ marginTop: 'auto', paddingTop: '8px' }}>
+                    <div className="project-btn flex items-center gap-1" style={{ pointerEvents: 'none' }}>
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      Details
+                    </div>
+                    <div className="project-btn-outline flex items-center gap-1" style={{ pointerEvents: 'none' }}>
+                      <Code className="h-4 w-4" aria-hidden="true" />
+                      Code
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Carousel navigation - subtle dots at bottom */}
+          <div className="flex items-center justify-center gap-3 mt-4 relative z-10" style={{ minHeight: '32px' }}>
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 0}
+              className="transition-all duration-200 hover:scale-110"
+              style={{
+                color: isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.pink[400],
+                opacity: currentPage === 0 ? 0.2 : 0.6,
+                cursor: currentPage === 0 ? 'not-allowed' : 'pointer',
+                background: 'none',
+                border: 'none',
+                padding: '4px',
+                minWidth: '28px',
+                minHeight: '28px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              aria-label="Previous projects"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            {/* Page dots */}
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    if (i !== currentPage) {
+                      setDirection(i > currentPage ? 'right' : 'left');
+                      setCurrentPage(i);
+                    }
+                  }}
+                  className="transition-all duration-200"
+                  style={{
+                    width: currentPage === i ? '24px' : '8px',
+                    height: '8px',
+                    borderRadius: '4px',
+                    backgroundColor: currentPage === i
+                      ? (isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.pink[400])
+                      : (isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.pink[400]),
+                    opacity: currentPage === i ? 1 : 0.3,
+                    cursor: 'pointer',
+                    border: 'none',
+                    padding: 0
+                  }}
+                  aria-label={`Go to page ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages - 1}
+              className="transition-all duration-200 hover:scale-110"
+              style={{
+                color: isDarkMode ? themeColors.colors.pink[300] : themeColors.colors.pink[400],
+                opacity: currentPage === totalPages - 1 ? 0.2 : 0.6,
+                cursor: currentPage === totalPages - 1 ? 'not-allowed' : 'pointer',
+                background: 'none',
+                border: 'none',
+                padding: '4px',
+                minWidth: '28px',
+                minHeight: '28px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              aria-label="Next projects"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </TooltipProvider>
       
       {/* Gradient overlay for smooth transition to next section */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
-          height: '300px',
-          background: isDarkMode 
+          height: '150px',
+          background: isDarkMode
             ? `linear-gradient(180deg, transparent 0%, ${themeColors.background.gradientEnd} 100%)`
             : `linear-gradient(180deg, transparent 0%, ${themeColors.colors.pink[25]} 100%)`,
           zIndex: 1

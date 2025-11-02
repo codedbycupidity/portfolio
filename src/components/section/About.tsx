@@ -191,7 +191,8 @@ const About = () => {
     return {
       transform: `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotation}deg)`,
       opacity,
-      transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
+      transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
+      willChange: 'transform, opacity',
       width: isVerySmall ? '50px' : isMobile ? '60px' : '80px',
       height: isVerySmall ? '50px' : isMobile ? '60px' : '80px',
       filter: `drop-shadow(0 4px 8px ${themeColors.effects.dropShadow})`
@@ -202,9 +203,9 @@ const About = () => {
     <section id="about" ref={sectionRef} className="min-h-screen" style={{
       background: themeColors.background.sections?.about || themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out',
-      overflow: 'hidden',
       width: '100%',
-      maxWidth: '100vw'
+      maxWidth: '100vw',
+      contain: 'layout style'
     }}>
       {/* Hero Section */}
       <div className="py-10 md:py-20">
