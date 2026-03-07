@@ -21,7 +21,7 @@ const About = () => {
   const roles = [
     'Software Engineer',
     'Full-Stack Developer',
-    'Game Developer',
+    'Systems Engineer',
     'Frontend Developer',
   ];
 
