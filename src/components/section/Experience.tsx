@@ -8,6 +8,26 @@ const Experience = () => {
   const themeColors = useThemeColors();
   const experiences = [
     {
+      title: "Software Engineer Intern",
+      company: "Apple",
+      location: "Cupertino, CA",
+      period: "May 2026 - August 2026",
+      description: [
+        "Incoming software engineer intern for WebKit Layout & Rendering team",
+      ]
+    },
+    {
+      title: "Mobile Software Developer Intern",
+      company: "Opalink",
+      location: "Orlando, FL",
+      period: "November 2025 - Present",
+      description: [
+        "Shipped production React Native features, using Metro bundler and Xcode for 3,400+ users across 80+ businesses",
+        "Collaborated on frontend components integrated with live REST APIs alongside backend and design teams",
+        "Managed tasks, resolved bugs, and shipped updates using Jira within an Agile sprint cycle",
+      ]
+    },
+    {
       title: "Undergraduate Research Assistant",
       company: "APPLeSEEd Lab",
       location: "Orlando, FL",
