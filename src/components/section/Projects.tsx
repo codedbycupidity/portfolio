@@ -239,7 +239,7 @@ const Projects = () => {
     },
     {
       title: "Medi-Mate",
-      description: "Electronic Health Record mock system with patient, doctor, and admin portals. Features Firebase multi-factor authentication with real-time FCM notifications, vector-based conflict detection using Pinecone and OpenAI, and Node.js microservices architecture.",
+      description: "Electronic Health Record mock system with patient, doctor, and admin portals. Features Firebase BaaS, vector-based conflict detection using Pinecone and OpenAI, and Node.js microservices architecture.",
       technologies: ["React.js", "React Native", "TypeScript", "Node.js", "Firebase", "Pinecone", "OpenAI", "Docker"],
       icon: MediMateIcon,
       detailsUrl: "/projects/medi-mate",
