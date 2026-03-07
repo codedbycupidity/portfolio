@@ -331,31 +331,16 @@ const About = () => {
               onKeyDown={handleKeyDown}
             >
               {/* Image Display */}
-              <div
-                className="flex transition-transform duration-500 ease-in-out h-full"
-                style={{
-                  transform: `translateX(-${currentImageIndex * 100}%)`,
-                  width: `${profileImages.length * 100}%`
-                }}
-                role="group"
-                aria-label={`Image ${currentImageIndex + 1} of ${profileImages.length}`}
-              >
+              <div className="relative w-full h-full flex items-center justify-center">
                 {profileImages.map((image, index) => (
                   <img
                     key={index}
                     src={image.src}
                     alt={`Profile photo ${index + 1} of Layla Le`}
-                    className="w-full h-full object-cover flex-shrink-0"
+                    className={`absolute w-full h-full object-contain transition-opacity duration-500 ${
+                      index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                    }`}
                     loading="eager"
-                    width="400"
-                    height="500"
-                    style={{
-                      minWidth: '100%',
-                      minHeight: '100%',
-                      maxWidth: '100%',
-                      maxHeight: '100%',
-                      objectFit: 'cover'
-                    }}
                     onError={(e) => {
                       console.error('Image failed to load:', image.src);
                       e.currentTarget.style.display = 'block';
