@@ -50,8 +50,8 @@ import layout4 from './project_snapshots/layout_engine/layout_snap_4.png';
 import layout5 from './project_snapshots/layout_engine/layout_snap_5.png';
 
 // IntoMyHeart project images
-import heart1 from './project_snapshots/intomyheart/heart_snapshot1.JPG';
-import heart2 from './project_snapshots/intomyheart/heart_snapshot2.JPG';
+import heart1 from './project_snapshots/intomyheart/heart_snapshot1.webp';
+import heart2 from './project_snapshots/intomyheart/heart_snapshot2.webp';
 import heart3 from './project_snapshots/intomyheart/heart_snapshot3.png';
 import heart4 from './project_snapshots/intomyheart/heart_snapshot4.png';
 
