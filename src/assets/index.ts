@@ -49,6 +49,12 @@ import layout3 from './project_snapshots/layout_engine/layout_snap_3.png';
 import layout4 from './project_snapshots/layout_engine/layout_snap_4.png';
 import layout5 from './project_snapshots/layout_engine/layout_snap_5.png';
 
+// IntoMyHeart project images
+import heart1 from './project_snapshots/intomyheart/heart_snapshot1.JPG';
+import heart2 from './project_snapshots/intomyheart/heart_snapshot2.JPG';
+import heart3 from './project_snapshots/intomyheart/heart_snapshot3.png';
+import heart4 from './project_snapshots/intomyheart/heart_snapshot4.png';
+
 // For backward compatibility
 const aboutMeJournal = aboutMeJournalPng;
 
@@ -118,6 +124,14 @@ export const layoutEngineImages = [
   layout3,
   layout4,
   layout5,
+];
+
+// IntoMyHeart images export
+export const intoMyHeartImages = [
+  heart1,
+  heart2,
+  heart3,
+  heart4,
 ];
 
 export {

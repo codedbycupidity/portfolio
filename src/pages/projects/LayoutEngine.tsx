@@ -34,7 +34,7 @@ const LayoutEngine = () => {
   ];
 
   const overviewParagraphs = [
-    'Mini Layout Engine is a C++ implementation of core browser layout algorithms. It demonstrates understanding of how browsers convert CSS properties into visual layout by implementing a simplified but functional layout pipeline.',
+    'Layout Engine is a C++ implementation of core browser layout algorithms. It demonstrates understanding of how browsers convert CSS properties into visual layout by implementing a simplified but functional layout pipeline.',
     'The engine parses a CSS-like layout description format, constructs a layout tree, and runs fundamental layout algorithms including block normal flow and basic flexbox. It computes positions and dimensions following the box model (margin, border, padding, content) and handles property inheritance through the tree.',
     'A dedicated text layout engine handles word wrapping and line breaking with support for left, center, right, and justified alignment. It uses configurable font metrics including character width, line height, and letter spacing, with justified text distributing word spacing evenly across each line.',
     'The project includes a browser-based HTML5/JavaScript visualizer that compares the C++ engine output side-by-side with native browser rendering, providing a visual validation tool for layout correctness.',
@@ -69,7 +69,7 @@ const LayoutEngine = () => {
     <ProjectLayout>
       <ProjectHeader
         icon={LayoutEngineIcon}
-        title="Mini Layout Engine"
+        title="Layout Engine"
         subtitle="C++ Implementation of Core Browser Layout Algorithms"
         githubUrl={socialLinks.repositories.layoutEngine}
         features={features}

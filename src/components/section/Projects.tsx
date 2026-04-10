@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/
 import { ExternalLink, Code, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { socialLinks } from '../../config/socialLinks';
 import { lightStars, darkStars, specialStars } from '../../assets/stars';
-import { PassportBuddyIcon, MediMateIcon, PortfolioIcon, LioraIcon, AlignrIcon, LayoutEngineIcon } from '../../assets/project_icons';
+import { PassportBuddyIcon, MediMateIcon, PortfolioIcon, LioraIcon, AlignrIcon, LayoutEngineIcon, IntoMyHeartIcon } from '../../assets/project_icons';
 import { comingSoon } from '../../assets';
 
 const Projects = () => {
@@ -246,20 +246,28 @@ const Projects = () => {
       githubUrl: socialLinks.repositories.mediMate
     },
     {
+      title: "IntoMyHeart",
+      description: "Real-time Arduino pulse monitor with WebSocket streaming at <50ms latency. Syncs live pulse signals to a responsive 3D heart model with Three.js animations and dual-display UI with ECG waveform visualization.",
+      technologies: ["Arduino", "C++", "Three.js", "Node.js", "WebSocket", "TWEEN.js", "MAX30102"],
+      icon: IntoMyHeartIcon,
+      detailsUrl: "/projects/into-my-heart",
+      githubUrl: socialLinks.repositories.intoMyHeart
+    },
+    {
+      title: "Layout Engine",
+      description: "A C++ implementation of core browser layout algorithms including block layout, flexbox, and text line-breaking. Built with modern C++17, CMake, and Google Test with 94+ unit tests.",
+      technologies: ["C++17", "CMake", "Google Test", "HTML5", "JavaScript"],
+      icon: LayoutEngineIcon,
+      detailsUrl: "/projects/layout-engine",
+      githubUrl: socialLinks.repositories.layoutEngine
+    },
+    {
       title: "Liora",
       description: "Web-based ASL gesture recognition app with real-time hand tracking and ML capabilities. Features color-coded finger visualization, motion tracking for movement-based gestures, and personalized accuracy training.",
       technologies: ["JavaScript", "MediaPipe", "TensorFlow.js","AWS S3", "Tailwind CSS", "HTML"],
       icon: LioraIcon,
       detailsUrl: "/projects/liora",
       githubUrl: socialLinks.repositories.liora
-    },
-    {
-      title: "Mini Layout Engine",
-      description: "A C++ implementation of core browser layout algorithms including block layout, flexbox, and text line-breaking. Built with modern C++17, CMake, and Google Test with 94+ unit tests.",
-      technologies: ["C++17", "CMake", "Google Test", "HTML5", "JavaScript"],
-      icon: LayoutEngineIcon,
-      detailsUrl: "/projects/layout-engine",
-      githubUrl: socialLinks.repositories.layoutEngine
     },
     {
       title: "Alignr",

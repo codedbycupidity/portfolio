@@ -5,6 +5,7 @@ import PortfolioIcon from './PortfolioIcon.webp';
 import LioraIcon from './LioraIcon.webp';
 import AlignrIcon from './AlignrIcon.webp';
 import LayoutEngineIcon from './LayoutEngineIcon.png';
+import IntoMyHeartIcon from './IntoMyHeartIcon.png';
 
 export {
   PassportBuddyIcon,
@@ -13,6 +14,7 @@ export {
   LioraIcon,
   AlignrIcon,
   LayoutEngineIcon,
+  IntoMyHeartIcon,
 };
 
 export default {
@@ -22,4 +24,5 @@ export default {
   LioraIcon,
   AlignrIcon,
   LayoutEngineIcon,
+  IntoMyHeartIcon,
 };

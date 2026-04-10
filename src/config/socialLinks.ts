@@ -13,6 +13,7 @@ export const socialLinks = {
     portfolio: import.meta.env.VITE_GITHUB_PORTFOLIO_URL,
     alignr: import.meta.env.VITE_GITHUB_ALIGNR_URL,
     layoutEngine: import.meta.env.VITE_GITHUB_LAYOUTENGINE_URL,
+    intoMyHeart: import.meta.env.VITE_GITHUB_INTOMYHEART_URL,
   },
   
   // Formatted display names (extracted from environment variables)

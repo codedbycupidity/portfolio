@@ -15,6 +15,7 @@ const Liora = lazy(() => import('./pages/projects/Liora'))
 const Portfolio = lazy(() => import('./pages/projects/Portfolio'))
 const Alignr = lazy(() => import('./pages/projects/Alignr'))
 const LayoutEngine = lazy(() => import('./pages/projects/LayoutEngine'))
+const IntoMyHeart = lazy(() => import('./pages/projects/IntoMyHeart'))
 const Contact = lazy(() => import('./pages/Contact'))
 
 // Lazy load below-the-fold components for better initial load
@@ -107,6 +108,7 @@ function AppContent() {
               <Route path="/projects/portfolio" element={<Portfolio />} />
               <Route path="/projects/alignr" element={<Alignr />} />
               <Route path="/projects/layout-engine" element={<LayoutEngine />} />
+              <Route path="/projects/into-my-heart" element={<IntoMyHeart />} />
             </Routes>
           </Suspense>
         </main>
