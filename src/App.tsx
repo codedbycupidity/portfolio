@@ -14,6 +14,7 @@ const MediMate = lazy(() => import('./pages/projects/MediMate'))
 const Liora = lazy(() => import('./pages/projects/Liora'))
 const Portfolio = lazy(() => import('./pages/projects/Portfolio'))
 const Alignr = lazy(() => import('./pages/projects/Alignr'))
+const LayoutEngine = lazy(() => import('./pages/projects/LayoutEngine'))
 const Contact = lazy(() => import('./pages/Contact'))
 
 // Lazy load below-the-fold components for better initial load
@@ -105,6 +106,7 @@ function AppContent() {
               <Route path="/projects/liora" element={<Liora />} />
               <Route path="/projects/portfolio" element={<Portfolio />} />
               <Route path="/projects/alignr" element={<Alignr />} />
+              <Route path="/projects/layout-engine" element={<LayoutEngine />} />
             </Routes>
           </Suspense>
         </main>

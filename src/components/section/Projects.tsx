@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/
 import { ExternalLink, Code, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { socialLinks } from '../../config/socialLinks';
 import { lightStars, darkStars, specialStars } from '../../assets/stars';
-import { PassportBuddyIcon, MediMateIcon, PortfolioIcon, LioraIcon, AlignrIcon } from '../../assets/project_icons';
+import { PassportBuddyIcon, MediMateIcon, PortfolioIcon, LioraIcon, AlignrIcon, LayoutEngineIcon } from '../../assets/project_icons';
 import { comingSoon } from '../../assets';
 
 const Projects = () => {
@@ -252,6 +252,14 @@ const Projects = () => {
       icon: LioraIcon,
       detailsUrl: "/projects/liora",
       githubUrl: socialLinks.repositories.liora
+    },
+    {
+      title: "Mini Layout Engine",
+      description: "A C++ implementation of core browser layout algorithms including block layout, flexbox, and text line-breaking. Built with modern C++17, CMake, and Google Test with 94+ unit tests.",
+      technologies: ["C++17", "CMake", "Google Test", "HTML5", "JavaScript"],
+      icon: LayoutEngineIcon,
+      detailsUrl: "/projects/layout-engine",
+      githubUrl: socialLinks.repositories.layoutEngine
     },
     {
       title: "Alignr",

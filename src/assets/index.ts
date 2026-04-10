@@ -42,6 +42,13 @@ import alignr16 from './project_snapshots/alignr/alignr_snapshot_16.webp';
 import alignr18 from './project_snapshots/alignr/alignr_snapshot_18.webp';
 import alignr20 from './project_snapshots/alignr/alignr_snapshot_20.webp';
 
+// Layout Engine project images
+import layout1 from './project_snapshots/layout_engine/layout_snap_1.png';
+import layout2 from './project_snapshots/layout_engine/layout_snap_2.png';
+import layout3 from './project_snapshots/layout_engine/layout_snap_3.png';
+import layout4 from './project_snapshots/layout_engine/layout_snap_4.png';
+import layout5 from './project_snapshots/layout_engine/layout_snap_5.png';
+
 // For backward compatibility
 const aboutMeJournal = aboutMeJournalPng;
 
@@ -102,6 +109,15 @@ export const alignrImages = [
   alignr16,
   alignr18,
   alignr20,
+];
+
+// Layout Engine images export
+export const layoutEngineImages = [
+  layout1,
+  layout2,
+  layout3,
+  layout4,
+  layout5,
 ];
 
 export {

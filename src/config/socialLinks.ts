@@ -12,6 +12,7 @@ export const socialLinks = {
     liora: import.meta.env.VITE_GITHUB_LIORA_URL,
     portfolio: import.meta.env.VITE_GITHUB_PORTFOLIO_URL,
     alignr: import.meta.env.VITE_GITHUB_ALIGNR_URL,
+    layoutEngine: import.meta.env.VITE_GITHUB_LAYOUTENGINE_URL,
   },
   
   // Formatted display names (extracted from environment variables)

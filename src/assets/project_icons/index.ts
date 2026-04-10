@@ -4,6 +4,7 @@ import MediMateIcon from './MediMateIcon.webp';
 import PortfolioIcon from './PortfolioIcon.webp';
 import LioraIcon from './LioraIcon.webp';
 import AlignrIcon from './AlignrIcon.webp';
+import LayoutEngineIcon from './LayoutEngineIcon.png';
 
 export {
   PassportBuddyIcon,
@@ -11,6 +12,7 @@ export {
   PortfolioIcon,
   LioraIcon,
   AlignrIcon,
+  LayoutEngineIcon,
 };
 
 export default {
@@ -19,4 +21,5 @@ export default {
   PortfolioIcon,
   LioraIcon,
   AlignrIcon,
+  LayoutEngineIcon,
 };
