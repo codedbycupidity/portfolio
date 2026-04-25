@@ -20,7 +20,7 @@ const Experience = () => {
       title: "Mobile Software Developer Intern",
       company: "Opalink",
       location: "Orlando, FL",
-      period: "November 2025 - Present",
+      period: "November 2025 - April 2026",
       description: [
         "Shipped production React Native features, using Metro bundler and Xcode for 3,400+ users across 80+ businesses",
         "Collaborated on frontend components integrated with live REST APIs alongside backend and design teams",
@@ -31,7 +31,7 @@ const Experience = () => {
       title: "Undergraduate Research Assistant",
       company: "APPLeSEEd Lab",
       location: "Orlando, FL",
-      period: "May 2025 - Present",
+      period: "May 2025 - May 2026",
       description: [
         "Operated BIOPAC systems with AcqKnowledge to capture ECG, EDA, respiration, and fNIR data from 20+ participants, ensuring accurate signal collection",
         "Applied Tobii Pro Lab for eye-tracking analysis and assisted with fNIR studies using COBI Studio Modern and fnirSoft, achieving 95%+ reliability in measurements",
